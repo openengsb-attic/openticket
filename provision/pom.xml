@@ -10,7 +10,7 @@
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.openengsb.opencit.build</groupId>
+  <groupId>org.openengsb.openhd.build</groupId>
   <artifactId>provision</artifactId>
 
   <name>OpenHD :: Plugin Configuration :: Provision</name>
