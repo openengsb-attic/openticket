@@ -21,16 +21,16 @@
   <modelVersion>4.0.0</modelVersion>
 
   <parent>
-    <groupId>org.openengsb.opencit.build</groupId>
+    <groupId>org.openengsb.openhd.build</groupId>
     <artifactId>shared-plugin-settings</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <relativePath>../poms/</relativePath>
   </parent>
 
-  <groupId>org.openengsb.opencit</groupId>
-  <artifactId>opencit</artifactId>
+  <groupId>org.openengsb.openhd</groupId>
+  <artifactId>openhd</artifactId>
   <packaging>pom</packaging>
-  <name>OpenCIT :: Assembly</name>
+  <name>OpenHD :: Assembly</name>
 
   <properties>
     <!-- platform/felix.xml -->
@@ -44,7 +44,7 @@
     <org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
 
     <!-- platform/settings.debug.composite -->
-    <debug.felix.fileinstall.dir>../assembly/target/opencit-${project.version}-config/opencit-${project.version}/config</debug.felix.fileinstall.dir>
+    <debug.felix.fileinstall.dir>../assembly/target/openhd-${project.version}-config/openhd-${project.version}/config</debug.felix.fileinstall.dir>
     <debug.felix.fileinstall.filter>.*\.cfg</debug.felix.fileinstall.filter>
     <debug.felix.fileinstall.poll>1000</debug.felix.fileinstall.poll>
     <debug.felix.fileinstall.noInitialDelay>true</debug.felix.fileinstall.noInitialDelay>
