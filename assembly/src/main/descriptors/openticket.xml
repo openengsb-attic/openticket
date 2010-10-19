@@ -25,7 +25,7 @@
   </formats>
   <fileSets>
     <fileSet>
-      <directory>${project.basedir}/target/all/openhd/</directory>
+      <directory>${project.basedir}/target/all/openticket/</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
         <include>felix/*</include>
@@ -41,7 +41,7 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>${project.basedir}/assembly/target/openhd-${project.version}-config/openhd-${project.version}/</directory>
+      <directory>${project.basedir}/assembly/target/openticket-${project.version}-config/openticket-${project.version}/</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
         <include>config/*</include>

@@ -3,11 +3,11 @@
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
-  <groupId>org.openengsb.openhd</groupId>
-  <artifactId>openhd-parent</artifactId>
+  <groupId>org.openengsb.openticket</groupId>
+  <artifactId>openticket-parent</artifactId>
   <version>1.0.0-SNAPSHOT</version>
 
-  <name>OpenHD :: Parent</name>
+  <name>OpenTicket :: Parent</name>
 
   <description>Help desk workflow application using OpenEngsB</description>
 
@@ -29,7 +29,7 @@
   </modules>
 
  <build>
-    <finalName>openhd-${version}</finalName>
+    <finalName>openticket-${version}</finalName>
     <resources>
       <resource>
         <directory>src/main/resources</directory>
@@ -146,7 +146,7 @@
               <provision>
                 <param>--platform=felix</param>
                 <param>--executor=script</param>
-                <param>--workingDirectory=target/all/openhd</param>
+                <param>--workingDirectory=target/all/openticket</param>
                 <param>--console=false</param>
                 <param>--ee=J2SE-1.6</param>
                 <param>--definitionURL=file:assembly/target/classes/felix.xml</param>
@@ -161,7 +161,7 @@
             <configuration>
               <appendAssemblyId>false</appendAssemblyId>
               <descriptors>
-                <descriptor>${project.basedir}/assembly/src/main/descriptors/openhd.xml</descriptor>
+                <descriptor>${project.basedir}/assembly/src/main/descriptors/openticket.xml</descriptor>
               </descriptors>
             </configuration>
           </plugin>
@@ -172,9 +172,9 @@
 
   <distributionManagement>
     <snapshotRepository>
-      <id>openhd-snapshots</id>
+      <id>openticket-snapshots</id>
       <name>OpenEngSB Snapshot Repository</name>
-      <url>dav:http://maven.openengsb.org/nexus/content/repositories/openhd-snapshots/</url>
+      <url>dav:http://maven.openengsb.org/nexus/content/repositories/openticket-snapshots/</url>
     </snapshotRepository>
   </distributionManagement>
 
