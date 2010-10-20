@@ -178,13 +178,13 @@
     </snapshotRepository>
   </distributionManagement>
 
-  <repositories>
+  <!-- repositories>
     <repository>
       <id>openengsb-snapshots</id>
       <name>OpenEngSB Snapshots</name>
       <url>http://maven.openengsb.org/nexus/content/repositories/openengsb-snapshots/</url>
     </repository>
-  </repositories>
+  </repositories -->
 
 </project>
 
