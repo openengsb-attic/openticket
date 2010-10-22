@@ -38,6 +38,16 @@
       <artifactId>com.jcraft.jsch-all</artifactId>
       <version>${openengsb.version}</version>
     </dependency>
+    <dependency>
+      <groupId>org.openengsb.wrapped</groupId>
+      <artifactId>org.apache.xmlrpc-all</artifactId>
+      <version>${openengsb.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openengsb.wrapped</groupId>
+      <artifactId>org.neodatis.odb-all</artifactId>
+      <version>${openengsb.version}</version>
+    </dependency>
 
     <dependency>
       <groupId>org.openengsb.config</groupId>

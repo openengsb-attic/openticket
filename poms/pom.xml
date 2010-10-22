@@ -41,8 +41,11 @@
     <plugin.surefire.version>2.5</plugin.surefire.version>
     <docbkx.version>2.0.10</docbkx.version>
     <docbkx.xml.version>5.0-all</docbkx.xml.version>
+    <guava.version>r07</guava.version>
+    <hamcrest.version>1.1</hamcrest.version>
     <jai.version>1.1.3</jai.version>
     <jaxb.plugin.version>1.2</jaxb.plugin.version>
+    <junit.version>4.8.1</junit.version>
     <maven.plugin.project.info.reports.version>2.2</maven.plugin.project.info.reports.version>
     <maven.plugin.changes.version>2.3</maven.plugin.changes.version>
     <maven.plugin.release.version>2.0-beta-9</maven.plugin.release.version>
@@ -55,9 +58,12 @@
     <maven.rat.version>0.6</maven.rat.version>
     <maven.plugin.enforcer.version>1.0-beta-1</maven.plugin.enforcer.version>
     <maven.war.plugin>2.1-beta-1</maven.war.plugin>
+    <mockito.version>1.8.5</mockito.version>
+    <odb.version>1.9.24.679</odb.version>
     <twdata.cli.version>1.0.4</twdata.cli.version>
     <clover.version>3.0.2</clover.version>
     <maven.plugin.antrun>1.5</maven.plugin.antrun>
+    <wicket.version>1.4.12</wicket.version>
     <!-- Component Versions -->
     <osgi.version>4.2.0</osgi.version>
   </properties>

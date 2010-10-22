@@ -26,6 +26,7 @@
 
   <modelVersion>4.0.0</modelVersion>
   <artifactId>wrapped-settings</artifactId>
+  <groupId>org.openengsb.openticket.build</groupId>
 
   <name>OpenTicket :: Plugin Configuration :: Wrapped Settings</name>
 

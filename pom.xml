@@ -9,7 +9,7 @@
 
   <name>OpenTicket :: Parent</name>
 
-  <description>Help desk workflow application using OpenEngsB</description>
+  <description>Help desk workflow application using OpenEngSB</description>
 
   <properties>
     <org.osgi.service.http.port>8080</org.osgi.service.http.port>
@@ -26,9 +26,64 @@
     <module>poms</module>
     <module>provision</module>
     <module>assembly</module>
+    <module>ui</module>
   </modules>
+  
+  <scm>
+    <connection>scm:git:git://github.com/OpenTicket/openticket.git</connection>
+    <developerConnection>scm:git:git@github.com:OpenTicket/openticket.git</developerConnection>
+    <url>http://github.com/OpenTicket/openticket</url>
+  </scm>
+  
+  <developers>
+    <developer>
+      <id>dd</id>
+      <name>Daniel Driza</name>
+      <email>e0825495 [at] student.tuwien.ac.at</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>gr</id>
+      <name>Gregor Ryba</name>
+      <email>e0525606 [at] student.tuwien.ac.at</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>lp</id>
+      <name>Lukas Puschmann</name>
+      <email>e0825354 [at] student.tuwien.ac.at</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>ls</id>
+      <name>Lukas Stampf</name>
+      <email>e0725140 [at] student.tuwien.ac.at</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
+      <id>mh</id>
+      <name>Michael Heil</name>
+      <email>e0826358 [at] student.tuwien.ac.at</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Developer</role>
+      </roles>
+    </developer>
+  </developers>
 
- <build>
+  <build>
     <finalName>openticket-${version}</finalName>
     <resources>
       <resource>
@@ -91,7 +146,6 @@
       </plugin>
     </plugins>
   </build>
-
   <profiles>
     <profile>
       <id>run</id>
@@ -178,13 +232,18 @@
     </snapshotRepository>
   </distributionManagement>
 
-  <!-- repositories>
-    <repository>
+  <repositories>
+    <!-- repository>
       <id>openengsb-snapshots</id>
       <name>OpenEngSB Snapshots</name>
       <url>http://maven.openengsb.org/nexus/content/repositories/openengsb-snapshots/</url>
+    </repository -->
+    <repository>
+      <id>thirdparty</id>
+      <name>OpenEngSB 3rd Party Repository</name>
+      <url>http://maven.openengsb.org/nexus/content/repositories/thirdparty</url>      
     </repository>
-  </repositories -->
+  </repositories>
 
 </project>
 
