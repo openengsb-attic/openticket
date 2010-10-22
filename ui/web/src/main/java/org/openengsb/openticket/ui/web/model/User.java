@@ -18,7 +18,6 @@ package org.openengsb.openticket.ui.web.model;
 
 import java.io.Serializable;
 
-@SuppressWarnings("serial")
 public class User implements Serializable {
     private String username;
     private String password;
@@ -38,5 +37,4 @@ public class User implements Serializable {
     public void setPassword(String password) {
         this.password = password;
     }
-
 }

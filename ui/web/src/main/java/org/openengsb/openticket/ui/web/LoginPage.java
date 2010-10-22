@@ -25,7 +25,6 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.openengsb.openticket.ui.web.model.User;
 
 public class LoginPage extends WebPage {
-
     private User user = new User();
 
     public LoginPage() {

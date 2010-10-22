@@ -16,9 +16,7 @@
 
 package org.openengsb.openticket.ui.web;
 
-@SuppressWarnings("serial")
 public class Index extends BasePage {
-
     public Index() {
 
     }

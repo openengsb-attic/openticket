@@ -27,7 +27,6 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 
 public class WicketApplication extends AuthenticatedWebApplication {
-
     @Override
     protected void init() {
         super.init();

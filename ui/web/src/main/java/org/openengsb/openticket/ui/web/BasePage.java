@@ -16,36 +16,19 @@
 
 package org.openengsb.openticket.ui.web;
 
-import java.util.Locale;
-
 import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 
-@SuppressWarnings("serial")
 @AuthorizeInstantiation("ROLE_USER")
 public class BasePage extends WebPage {
-
     public BasePage() {
         initWebPage();
     }
 
     private void initWebPage() {
-        add(new Link<Object>("lang.en") {
-            @Override
-            public void onClick() {
-                this.getSession().setLocale(Locale.ENGLISH);
-            }
-        });
-        add(new Link<Object>("lang.de") {
-            @Override
-            public void onClick() {
-                this.getSession().setLocale(Locale.GERMAN);
-            }
-        });
-
         add(new Link<Object>("logout") {
             @Override
             public void onClick() {
