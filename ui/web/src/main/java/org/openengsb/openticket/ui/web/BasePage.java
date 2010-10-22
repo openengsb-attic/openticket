@@ -16,6 +16,8 @@
 
 package org.openengsb.openticket.ui.web;
 
+import java.util.Locale;
+
 import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.WebPage;
@@ -29,6 +31,18 @@ public class BasePage extends WebPage {
     }
 
     private void initWebPage() {
+        add(new Link<Object>("lang.en") {
+            @Override
+            public void onClick() {
+                this.getSession().setLocale(Locale.ENGLISH);
+            }
+        });
+        add(new Link<Object>("lang.de") {
+            @Override
+            public void onClick() {
+                this.getSession().setLocale(Locale.GERMAN);
+            }
+        });
         add(new Link<Object>("logout") {
             @Override
             public void onClick() {
@@ -36,6 +50,18 @@ public class BasePage extends WebPage {
                 setResponsePage(LoginPage.class);
             }
         });
+        
         add(new Label("helloWorld", "Hello World"));
+        
+        add(new HeaderTemplate("header", getHeaderMenuItem()));
+        add(new FooterTemplate("footer"));
+    }
+    
+    /**
+     * @return the class name, which should be the index in navigation bar
+     *
+     */
+    public String getHeaderMenuItem() {
+        return this.getClass().getSimpleName();
     }
 }
