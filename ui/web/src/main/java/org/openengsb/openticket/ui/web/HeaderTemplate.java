@@ -61,7 +61,7 @@ public class HeaderTemplate extends Panel {
         });
 
         HeaderTemplate.menuIndex = menuIndex;
-        add(new Label("version", "1.0.0"));//System.getProperty("openticket.version.number")));
+        add(new Label("version", System.getProperty("openticket.version.number")));
 
         addHeaderMenuItem("Index", Index.class, "index.title");
         addHeaderMenuItem("Demo", Index.class, "demo.title");

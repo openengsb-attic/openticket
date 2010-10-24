@@ -12,6 +12,7 @@
   <description>Help desk workflow application using OpenEngSB</description>
 
   <properties>
+    <openticket.version.number>${project.version}</openticket.version.number>
     <org.osgi.service.http.port>8080</org.osgi.service.http.port>
     <org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
     <openengsb.version>1.0.0-SNAPSHOT</openengsb.version>
