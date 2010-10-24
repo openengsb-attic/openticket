@@ -21,7 +21,6 @@ import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collection;
 
 import org.apache.wicket.Page;
@@ -36,7 +35,6 @@ import org.junit.Before;
 import org.junit.Test;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-import org.openengsb.core.common.context.ContextCurrentService;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -46,15 +44,12 @@ import org.springframework.security.core.authority.GrantedAuthorityImpl;
 
 public class BasePageTest {
     private WicketTester tester;
-    private ContextCurrentService contextService;
     private Page basePage;
     private ApplicationContextMock appContext;
 
     @Before
     public void setup() {
-        contextService = mock(ContextCurrentService.class);
         appContext = new ApplicationContextMock();
-        appContext.putBean(contextService);
         mockAuthentication();
         tester = new WicketTester(new WebApplication() {
             @Override
@@ -73,7 +68,6 @@ public class BasePageTest {
                 return new WicketSession(request);
             }
         });
-        when(contextService.getAvailableContexts()).thenReturn(Arrays.asList(new String[]{"foo", "bar"}));
         basePage = tester.startPage(new BasePage());
     }
 
@@ -97,6 +91,6 @@ public class BasePageTest {
 
     @Test
     public void test_label_present() {
-        tester.assertContains("Hello World");
+        tester.assertContains("OpenTicket");
     }
 }

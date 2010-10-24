@@ -16,9 +16,16 @@
 
 package org.openengsb.openticket.ui.web;
 
-public class Index extends BasePage {
-    public Index() {
+import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.openengsb.core.taskbox.TaskboxService;
 
+public class Index extends BasePage {
+    @SpringBean
+    private TaskboxService service;
+    
+    public Index() {
+        add(new Label("testoutput", service.getDemoMessage()));
     }
 
 }
