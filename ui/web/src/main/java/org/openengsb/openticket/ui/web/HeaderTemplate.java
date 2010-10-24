@@ -18,17 +18,18 @@ package org.openengsb.openticket.ui.web;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Locale;
 
 import org.apache.wicket.AttributeModifier;
+import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.StringResourceModel;
-import org.openengsb.openticket.ui.web.Index;
 
 public class HeaderTemplate extends Panel {
     private final ArrayList<HeaderMenuItem> menuItems = new ArrayList<HeaderMenuItem>();
@@ -38,20 +39,40 @@ public class HeaderTemplate extends Panel {
 
     public HeaderTemplate(String id, String menuIndex) {
         super(id);
+        
+        add(new Link<Object>("lang.en") {
+            @Override
+            public void onClick() {
+                this.getSession().setLocale(Locale.ENGLISH);
+            }
+        });
+        add(new Link<Object>("lang.de") {
+            @Override
+            public void onClick() {
+                this.getSession().setLocale(Locale.GERMAN);
+            }
+        });
+        add(new Link<Object>("logout") {
+            @Override
+            public void onClick() {
+                ((AuthenticatedWebSession) this.getSession()).signOut();
+                setResponsePage(LoginPage.class);
+            }
+        });
 
         HeaderTemplate.menuIndex = menuIndex;
-        add(new BookmarkablePageLink<Index>("indexLogo1", Index.class));
-        add(new Label("version", System.getProperty("openticket.version.number")));
+        add(new Label("version", "1.0.0"));//System.getProperty("openticket.version.number")));
 
-        this.addHeaderMenuItem("Index", Index.class, "index.title");
+        addHeaderMenuItem("Index", Index.class, "index.title");
+        addHeaderMenuItem("Demo", Index.class, "demo.title");
 
-        if (HeaderTemplate.getActiveIndex() == null || !this.avialableItems.contains(HeaderTemplate.getActiveIndex())) {
+        if (HeaderTemplate.getActiveIndex() == null || !avialableItems.contains(HeaderTemplate.getActiveIndex())) {
             // update menu item to index, because page index is not found!
             HeaderTemplate.menuIndex = "Index";
         }
 
         // generate main navigation
-        ListView<HeaderMenuItem> headerMenuItems = new ListView<HeaderMenuItem>("headerMenuItems", this.menuItems) {
+        ListView<HeaderMenuItem> headerMenuItems = new ListView<HeaderMenuItem>("headerMenuItems", menuItems) {
             @Override
             protected void populateItem(ListItem<HeaderMenuItem> item) {
                 HeaderMenuItem menuItem = item.getModelObject();
@@ -60,7 +81,6 @@ public class HeaderTemplate extends Panel {
                 // set menu item to active
                 if (menuItem.getItemName().equals(HeaderTemplate.getActiveIndex())) {
                     item.add(new AttributeModifier("class", true, new AbstractReadOnlyModel<String>() {
-
                         @Override
                         public String getObject() {
                             return "active";
@@ -70,7 +90,7 @@ public class HeaderTemplate extends Panel {
             }
         };
 
-        this.add(headerMenuItems);
+        add(headerMenuItems);
     }
 
     /**
@@ -90,16 +110,14 @@ public class HeaderTemplate extends Panel {
     @SuppressWarnings("unchecked")
     public void addHeaderMenuItem(String index, Class<? extends WebPage> linkClass, String langKey) {
         StringResourceModel label = new StringResourceModel(langKey, this, null);
-        this.menuItems.add(new HeaderMenuItem(index, new BookmarkablePageLabelLink("link", linkClass, label)));
-        this.avialableItems.add(index);
+        menuItems.add(new HeaderMenuItem(index, new BookmarkablePageLabelLink("link", linkClass, label)));
+        avialableItems.add(index);
     }
 
     /**
      * single header menu item
-     *
      */
     private static class HeaderMenuItem implements Serializable {
-
         private final String index;
         private final BookmarkablePageLabelLink<? extends WebPage> link;
 
@@ -109,11 +127,11 @@ public class HeaderTemplate extends Panel {
         }
 
         public String getItemName() {
-            return this.index;
+            return index;
         }
 
         public BookmarkablePageLabelLink<? extends WebPage> getLink() {
-            return this.link;
+            return link;
         }
     }
 }

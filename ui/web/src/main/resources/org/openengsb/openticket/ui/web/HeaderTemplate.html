@@ -24,25 +24,28 @@
   <body>
     <wicket:panel>
       <div id="header">
-        <div id="logo">
-          <div class="logoInner">
-            <h1 class="pageTitle">
-              <a href="" wicket:id="indexLogo1">
-                <wicket:message key="headerPage.title">[create.new]</wicket:message>
-                [headerPage.title]
-              </a>
-            </h1>
-            <span wicket:id="version" />
-          </div>
-          <h1>OpenTicket</h1>
+        <div id="banner">
+          <span class="pageTitle">
+          	OpenTicket
+          </span>
+          <span class="version" wicket:id="version"></span>
+          <span class="languages">
+	        <a href="#" wicket:id="lang.en">
+	          <img alt="English" title="English" src="images/english_icon.png" />
+	        </a>
+	        <a href="#" wicket:id="lang.de">
+	          <img alt="Deutsch" title="Deutsch" src="images/german_icon.png" />
+	        </a>
+	      </span>
         </div>
 
         <div id="mainMenu">
           <ul>
-            <li wicket:id="headerMenuItems">
-              <a href="" wicket:id="link">linkTarget</a>
-            </li>
+            <li wicket:id="headerMenuItems"><a href="" wicket:id="link">linkTarget</a></li>
           </ul>
+          <a class="logout" href="#" wicket:id="logout">
+            <wicket:message key="logout"></wicket:message>
+          </a>
         </div>
       </div>
     </wicket:panel>

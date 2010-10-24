@@ -57,7 +57,8 @@ public class WicketApplication extends AuthenticatedWebApplication {
 
     @Override
     protected Class<? extends WebPage> getSignInPageClass() {
-        return LoginPage.class;
+        //return LoginPage.class;
+        return Index.class;
     }
 
     @Override

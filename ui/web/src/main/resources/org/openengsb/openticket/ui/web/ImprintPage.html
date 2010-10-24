@@ -20,35 +20,31 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
       xml:lang="en" lang="en">
-	
+
   <head>
     <title><wicket:message key="imprint.title"></wicket:message></title>
   </head>
   <body>
     <wicket:extend>
-      <div id="sidebarContainer">
-        <div id="sidebar">
-          <h3>Created By</h3>
-          <p>Team OpenTicket</p>
-          <hr />
-          <div id="main" class="usedSidebar">
-            <div class="mainHeadline">
-              <div class="headlineContainer">
-                <h2><wicket:message key="imprint.title"></wicket:message></h2>
-                <p><wicket:message key="imprint.description"></wicket:message></p>
-              </div>
-            </div>
-            <div class="footerValidation">
-              <p>
-                <a href="http://jigsaw.w3.org/css-validator/check/referer">
-                  <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS ist valide!" />
-                </a>
-                <a href="http://validator.w3.org/check?uri=referer">
-                  <img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" />
-                </a>
-              </p>
-            </div>
+      <h3>Created By</h3>
+      <p>Team OpenTicket</p>
+      <hr />
+      <div id="main">
+        <div class="mainHeadline">
+          <div class="headlineContainer">
+            <h2><wicket:message key="imprint.title"></wicket:message></h2>
+            <p><wicket:message key="imprint.description"></wicket:message></p>
           </div>
+        </div>
+        <div class="footerValidation">
+          <p>
+            <a href="http://jigsaw.w3.org/css-validator/check/referer">
+              <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS ist valide!" />
+            </a>
+            <a href="http://validator.w3.org/check?uri=referer">
+              <img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" />
+            </a>
+          </p>
         </div>
       </div>
     </wicket:extend>
