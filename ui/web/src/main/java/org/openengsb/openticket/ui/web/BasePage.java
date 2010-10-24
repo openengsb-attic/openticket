@@ -16,9 +16,10 @@
 
 package org.openengsb.openticket.ui.web;
 
+import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.WebPage;
 
-//@AuthorizeInstantiation("ROLE_USER")
+@AuthorizeInstantiation("ROLE_USER")
 public class BasePage extends WebPage {
     public BasePage() {
         add(new HeaderTemplate("header", getHeaderMenuItem()));
