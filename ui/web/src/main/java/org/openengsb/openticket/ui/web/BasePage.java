@@ -18,12 +18,18 @@ package org.openengsb.openticket.ui.web;
 
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.WebPage;
+import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.openengsb.core.common.context.ContextCurrentService;
 
 @AuthorizeInstantiation("ROLE_USER")
 public class BasePage extends WebPage {
+    @SpringBean
+    private ContextCurrentService contextService;
+    
     public BasePage() {
         add(new HeaderTemplate("header", getHeaderMenuItem()));
         add(new FooterTemplate("footer"));
+        initContextForCurrentThread();
     }
 
     /**
@@ -31,5 +37,35 @@ public class BasePage extends WebPage {
      */
     public String getHeaderMenuItem() {
         return this.getClass().getSimpleName();
+    }
+    
+    final void initContextForCurrentThread() {
+        String sessionContextId = getSessionContextId();
+        try {
+            if (contextService != null) {
+                contextService.setThreadLocalContext(sessionContextId);
+            }
+        } catch (IllegalArgumentException e) {
+            contextService.createContext(sessionContextId);
+            contextService.setThreadLocalContext(sessionContextId);
+        }
+    }
+
+    public String getSessionContextId() {
+        WicketSession session = WicketSession.get();
+        if (session == null) {
+            return "foo";
+        }
+        if (session.getThreadContextId() == null) {
+            setThreadLocalContext("foo");
+        }
+        return session.getThreadContextId();
+    }
+
+    private void setThreadLocalContext(String threadLocalContext) {
+        WicketSession session = WicketSession.get();
+        if (session != null) {
+            session.setThreadContextId(threadLocalContext);
+        }
     }
 }

@@ -17,7 +17,9 @@
 package org.openengsb.openticket.ui.web;
 
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.openengsb.core.taskbox.TaskboxException;
 import org.openengsb.core.taskbox.TaskboxService;
 
 public class Index extends BasePage {
@@ -25,7 +27,11 @@ public class Index extends BasePage {
     private TaskboxService service;
     
     public Index() {
-        add(new Label("testoutput", service.getDemoMessage()));
+        try {
+            service.startWorkflow();
+            add(new Label("testoutput", service.getWorkflowMessage()));
+        } catch (TaskboxException e) {
+            add(new Label("testoutput", new StringResourceModel("error", this, null).getString()));
+        }
     }
-
 }
