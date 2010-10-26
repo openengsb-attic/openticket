@@ -31,7 +31,7 @@ import org.junit.Test;
 import org.openengsb.core.taskbox.TaskboxException;
 import org.openengsb.core.taskbox.TaskboxService;
 
-public class LoginPageTest extends PageTest {
+public class LoginPageTest extends AuthenticatedPageTest {
     private TaskboxService taskbox;
 
     @Before

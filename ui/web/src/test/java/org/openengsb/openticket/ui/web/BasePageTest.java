@@ -16,41 +16,11 @@
 
 package org.openengsb.openticket.ui.web;
 
-import org.junit.Before;
 import org.junit.Test;
 
-import org.apache.wicket.Page;
-import org.apache.wicket.Request;
-import org.apache.wicket.Response;
-import org.apache.wicket.Session;
-import org.apache.wicket.protocol.http.WebApplication;
-import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
-import org.apache.wicket.util.tester.WicketTester;
-
-public class BasePageTest extends PageTest {
-    @Before
-    public void setup() {
-        tester = new WicketTester(new WebApplication() {
-            @Override
-            protected void init() {
-                super.init();
-                addComponentInstantiationListener(new SpringComponentInjector(this, appContext, false));
-            }
-
-            @Override
-            public Class<? extends Page> getHomePage() {
-                return Index.class;
-            }
-
-            @Override
-            public Session newSession(Request request, Response response) {
-                return new WicketSession(request);
-            }
-        });
-    }
-    
+public class BasePageTest extends NonAuthenticatedPageTest {
     @Test
-    public void test_label_present() {
+    public void testLabelPresent() {
         tester.startPage(new BasePage());
         tester.assertContains("OpenTicket");
     }

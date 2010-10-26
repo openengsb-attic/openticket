@@ -8,11 +8,6 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.apache.wicket.Page;
-import org.apache.wicket.Request;
-import org.apache.wicket.Response;
-import org.apache.wicket.Session;
-import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.spring.test.ApplicationContextMock;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
@@ -26,7 +21,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.GrantedAuthorityImpl;
 
-public class PageTest {
+public abstract class PageTest {
     protected WicketTester tester;
     private ContextCurrentService contextService;
     protected ApplicationContextMock appContext;
@@ -40,29 +35,6 @@ public class PageTest {
         appContext.putBean(contextService);
         
         mockAuthentication();
-
-        tester = new WicketTester(new WicketApplication() {
-            @Override
-            protected void init() {
-                super.init();
-                addComponentInstantiationListener(new SpringComponentInjector(this, appContext, false));
-            }
-
-            @Override
-            public Class<? extends Page> getHomePage() {
-                return Index.class;
-            }
-
-            @Override
-            public Session newSession(Request request, Response response) {
-                return new WicketSession(request);
-            }
-
-            @Override
-            protected void addInjector() {
-                addComponentInstantiationListener(new SpringComponentInjector(this, appContext, true));
-            }
-        });
     }
 
     private void mockAuthentication() {
