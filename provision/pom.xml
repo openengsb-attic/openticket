@@ -85,7 +85,18 @@
       <artifactId>openengsb-core-events</artifactId>
       <version>${openengsb.version}</version>
     </dependency>
-  </dependencies>
 
+    <!-- these are to be removed as soon as possible! -->
+    <dependency>
+      <groupId>org.openengsb.domains.example</groupId>
+      <artifactId>openengsb-domains-example-implementation</artifactId>
+      <version>${openengsb.version}</version>
+    </dependency>
+    <dependency>
+      <groupId>org.openengsb.domains.notification</groupId>
+      <artifactId>openengsb-domains-notification-implementation</artifactId>
+      <version>${openengsb.version}</version>
+    </dependency>
+  </dependencies>
 </project>
 
