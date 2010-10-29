@@ -13,12 +13,14 @@
 
   <properties>
     <openticket.version.number>${project.version}</openticket.version.number>
-    <org.osgi.service.http.port>8080</org.osgi.service.http.port>
-    <org.osgi.service.http.port.secure>8443</org.osgi.service.http.port.secure>
+    <org.osgi.service.http.port>8090</org.osgi.service.http.port>
+    <org.osgi.service.http.port.secure>8091</org.osgi.service.http.port.secure>
     <openengsb.version>1.0.0-SNAPSHOT</openengsb.version>
     <plugin.assembly.version>2.2-beta-5</plugin.assembly.version>
     <jdk.version>1.6</jdk.version>
     <plugin.pax.version>1.4</plugin.pax.version>
+    <plugin.wagon.webdav.version>1.0-beta-2</plugin.wagon.webdav.version>
+    <plugin.wagon.ssh.version>1.0-beta-6</plugin.wagon.ssh.version>
   </properties>
 
   <packaging>pom</packaging>
@@ -29,12 +31,25 @@
     <module>assembly</module>
     <module>core</module>
     <module>ui</module>
+    <module>doc</module>
   </modules>
   
+  <url>http://openticket.openengsb.org</url>
+
+  <licenses>
+    <license>
+      <name>Apache 2</name>
+      <url>http://www.apache.org/licenses/LICENSE-2.0.txt</url>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
+  
+  <inceptionYear>2010</inceptionYear>
+  
   <scm>
-    <connection>scm:git:git://github.com/OpenTicket/openticket.git</connection>
-    <developerConnection>scm:git:git@github.com:OpenTicket/openticket.git</developerConnection>
-    <url>http://github.com/OpenTicket/openticket</url>
+    <connection>scm:git:git://github.com/openengsb/openticket.git</connection>
+    <developerConnection>scm:git:git@github.com:openengsb/openticket.git</developerConnection>
+    <url>http://github.com/openengsb/openticket</url>
   </scm>
   
   <developers>
@@ -95,6 +110,18 @@
         </includes>
       </resource>
     </resources>
+    <extensions>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-webdav</artifactId>
+        <version>${plugin.wagon.webdav.version}</version>
+      </extension>
+      <extension>
+        <groupId>org.apache.maven.wagon</groupId>
+        <artifactId>wagon-ssh</artifactId>
+        <version>${plugin.wagon.ssh.version}</version>
+      </extension>
+    </extensions>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -148,6 +175,7 @@
       </plugin>
     </plugins>
   </build>
+
   <profiles>
     <profile>
       <id>run</id>
@@ -226,14 +254,6 @@
     </profile>
   </profiles>
 
-  <distributionManagement>
-    <snapshotRepository>
-      <id>openticket-snapshots</id>
-      <name>OpenEngSB Snapshot Repository</name>
-      <url>dav:http://maven.openengsb.org/nexus/content/repositories/openticket-snapshots/</url>
-    </snapshotRepository>
-  </distributionManagement>
-
   <repositories>
     <repository>
       <id>sonatype.repository</id>
@@ -245,6 +265,4 @@
       <url>http://maven.openengsb.org/nexus/content/repositories/thirdparty</url>      
     </repository>
   </repositories>
-
 </project>
-
