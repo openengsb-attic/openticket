@@ -28,8 +28,14 @@ public class Index extends BasePage {
     
     public Index() {
         try {
-            service.startWorkflow();
+        	String ID = service.createTicket("information");
+        	service.startWorkflow(ID);
             add(new Label("testoutput", service.getWorkflowMessage()));
+        	
+        	ID = service.createTicket("developer");            
+        	service.startWorkflow(ID);
+            add(new Label("testoutput2", service.getWorkflowMessage()));
+            
         } catch (TaskboxException e) {
             add(new Label("testoutput", new StringResourceModel("error", this, null).getString()));
         }
