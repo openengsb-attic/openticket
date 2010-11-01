@@ -25,10 +25,7 @@
     <wicket:panel>
       <div id="header">
         <div id="banner">
-          <span class="pageTitle">
-          	OpenTicket
-          </span>
-          <span class="version" wicket:id="version"></span>
+          <h1>OpenTicket</h1>
           <span class="languages">
 	        <a href="#" wicket:id="lang.en">
 	          <img alt="English" title="English" src="images/english_icon.png" />
@@ -37,11 +34,14 @@
 	          <img alt="Deutsch" title="Deutsch" src="images/german_icon.png" />
 	        </a>
 	      </span>
+	      <span class="version" wicket:id="version"></span>
         </div>
 
         <div id="mainMenu">
           <ul>
-            <li wicket:id="headerMenuItems"><a href="" wicket:id="link">linkTarget</a></li>
+            <li wicket:id="headerMenuItems">
+              <a href="" wicket:id="link">linkTarget</a>
+            </li>
           </ul>
           <a class="logout" href="#" wicket:id="logout">
             <wicket:message key="logout"></wicket:message>

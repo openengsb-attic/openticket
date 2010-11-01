@@ -43,5 +43,4 @@ public class MyAuthenticationProvider extends AbstractUserDetailsAuthenticationP
     public void setService(UserDetailsService service) {
         this.service = service;
     }
-
 }

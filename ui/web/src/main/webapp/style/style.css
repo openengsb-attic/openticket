@@ -15,19 +15,31 @@
  */
 
 body {
-  font-family: Tahoma, "Lucida Sans", Verdana, Arial;
-  font-size: 0.8em;
+  font-family: Calibri, Verdana, Tahoma, Arial;
+  font-size: 0.9em;
   margin: 0px;
-  background-color: #f3f3f3;
+  background-color: #EBF4E3;
+  color: #46503C;
 }
 
 h1, h2, h3, h4, h5, h6, h7, h8 {
   font-weight: bold;
 }
 
-h1, h2 {
-  letter-spacing: -1px;
-  font-family: Verdana;
+h1 {
+  font-size: 1.7em;
+}
+
+h2 {
+  font-size: 1.5em;
+}
+
+h3 {
+  font-size: 1.3em;
+}
+
+hr {
+  color: #46503C;
 }
 
 #loginBox {
@@ -35,7 +47,7 @@ h1, h2 {
 }
 
 a {
-  color: #008E9C;
+  color: #699B46;
   font-weight: bold;
   text-decoration: none;
 }
@@ -67,61 +79,61 @@ a.none {
   background: transparent url("../images/header.png") repeat-x scroll top left;
 }
 
-#banner .version {
-  color: white;
-  float: left;
-  position: absolute;
-  left: 5px;
-}
-
-#banner .pageTitle {
+#banner h1 {
   float: left;
   color: white;
-  font-size: 25pt;
+  font-size: 2.5em;
   font-weight: bold;
-  position: relative;
-  top: 30px;
-  left: 10px;
+  margin-top: 0.7em;
+  margin-left: 0.6em;
 }
 
 #banner .languages {
   float: right;
   position: relative;
-  top: 10px;
+  top: 25px;
   right: 5px;
+}
+
+#banner .version {
+  color: white;
+  float: right;
+  position: absolute;
+  right: 10px;
 }
 
 #mainMenu {
   float: left;
   width: 100%;
-  background-color: #f3f3f3;
-  border-top: 3px #777777 solid;
-  border-bottom: 3px #777777 solid;
+  background-color: #EBF4E3;
+  border-top: 3px #738764 solid;
+  border-bottom: 3px #738764 solid;
 }
 
 #mainMenu .active {
-  background-color: #e0e0e0;
+  background-color: #D5E1C8;
+  border-right: 1px #A5B496 solid;
+  border-left: 1px #A5B496 solid;
 }
 
 #mainMenu ul {
   margin: 0px 0px 0px 10px;
   padding: 0px;
   float: left;
-  text-decoration: none;
   list-style: none;
 }
 
 #mainMenu li {
   float: left;
   padding: 8px 16px 8px 16px;
-  border-left: 1px #cdcdcd solid;
-  border-right: 1px #cdcdcd solid;
+  border-right: 1px #EBF4E3 solid;
+  border-left: 1px #EBF4E3 solid;
 }
 
 #mainMenu a,
 #mainMenu a:visited,
 #mainMenu li a:hover {
-  color: #4b4a4a;
+  color: #507832;
   font-weight: bold;
   font-size: 110%;
   text-decoration: none;
@@ -151,7 +163,15 @@ a.none {
   position: relative;
   padding-top: 5px;
   height: 30px;
-  border-top: 3px #777777 solid;
+  border-top: 3px #738764 solid;
+}
+
+#footer span {
+  padding: 5px 10px 5px 10px;
+}
+
+#footer span.separator {
+  border-left: 1px #A5B496 solid;
 }
 
 .footerValidation {

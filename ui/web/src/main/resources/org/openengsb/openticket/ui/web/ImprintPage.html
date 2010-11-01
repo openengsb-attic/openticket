@@ -26,7 +26,7 @@
   </head>
   <body>
     <wicket:extend>
-      <h3>Team OpenTicket</h3>
+      <h1>Team OpenTicket</h1>
       <ul>
         <li>Lukas Puschmann</li>
         <li>Gregor Ryba</li>
@@ -35,23 +35,19 @@
         <li>Michael Heil</li>
       </ul>
       <hr />
-      <div id="main">
-        <div class="mainHeadline">
-          <div class="headlineContainer">
-            <h2><wicket:message key="imprint.title"></wicket:message></h2>
-            <p><wicket:message key="imprint.description"></wicket:message></p>
-          </div>
-        </div>
-        <div class="footerValidation">
-          <p>
-            <a href="http://jigsaw.w3.org/css-validator/check/referer">
-              <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS ist valide!" />
-            </a>
-            <a href="http://validator.w3.org/check?uri=referer">
-              <img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" />
-            </a>
-          </p>
-        </div>
+      <h1><wicket:message key="imprint.title"></wicket:message></h1>
+      <p>
+        <wicket:message key="imprint.description"></wicket:message>
+      </p>
+      <div class="footerValidation">
+        <p>
+          <a href="http://jigsaw.w3.org/css-validator/check/referer">
+            <img src="http://jigsaw.w3.org/css-validator/images/vcss" alt="CSS ist valide!" />
+          </a>
+          <a href="http://validator.w3.org/check?uri=referer">
+            <img src="http://www.w3.org/Icons/valid-xhtml11" alt="Valid XHTML 1.1" />
+          </a>
+        </p>
       </div>
     </wicket:extend>
   </body>
