@@ -64,7 +64,8 @@ public class HeaderTemplate extends Panel {
         add(new Label("version", System.getProperty("openticket.version.number")));
 
         addHeaderMenuItem("Home", Welcome.class, "index.title");
-        addHeaderMenuItem("Demo", Demo.class, "demo.title");
+        addHeaderMenuItem("WorkflowDemo", WorkflowDemo.class, "workflowdemo.title");
+        addHeaderMenuItem("PersistenceDemo", PersistenceDemo.class, "persistencedemo.title");
 
         if (HeaderTemplate.getActiveIndex() == null || !avialableItems.contains(HeaderTemplate.getActiveIndex())) {
             // update menu item to index, because page index is not found!
