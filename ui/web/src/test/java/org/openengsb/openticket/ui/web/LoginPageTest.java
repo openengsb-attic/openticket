@@ -49,7 +49,7 @@ public class LoginPageTest extends AuthenticatedPageTest {
 
     @Test
     public void testRedirectToLogin() {
-        tester.startPage(Index.class);
+        tester.startPage(Demo.class);
         tester.assertRenderedPage(LoginPage.class);
     }
 
@@ -61,7 +61,7 @@ public class LoginPageTest extends AuthenticatedPageTest {
         formTester.setValue("password", "password");
         formTester.submit();
         tester.assertNoErrorMessage();
-        tester.assertRenderedPage(Index.class);
+        tester.assertRenderedPage(Demo.class);
     }
 
     @Ignore

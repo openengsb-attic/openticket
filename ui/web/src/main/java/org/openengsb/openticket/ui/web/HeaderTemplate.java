@@ -63,12 +63,12 @@ public class HeaderTemplate extends Panel {
         HeaderTemplate.menuIndex = menuIndex;
         add(new Label("version", System.getProperty("openticket.version.number")));
 
-        addHeaderMenuItem("Index", Index.class, "index.title");
-        addHeaderMenuItem("Demo", Index.class, "demo.title");
+        addHeaderMenuItem("Home", Welcome.class, "index.title");
+        addHeaderMenuItem("Demo", Demo.class, "demo.title");
 
         if (HeaderTemplate.getActiveIndex() == null || !avialableItems.contains(HeaderTemplate.getActiveIndex())) {
             // update menu item to index, because page index is not found!
-            HeaderTemplate.menuIndex = "Index";
+            HeaderTemplate.menuIndex = "Home";
         }
 
         // generate main navigation

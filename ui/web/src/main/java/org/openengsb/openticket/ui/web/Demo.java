@@ -22,11 +22,11 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.taskbox.TaskboxException;
 import org.openengsb.core.taskbox.TaskboxService;
 
-public class Index extends BasePage {
+public class Demo extends BasePage {
     @SpringBean
     private TaskboxService service;
     
-    public Index() {
+    public Demo() {
         try {
         	String ID = service.createTicket("information");
         	service.startWorkflow(ID);

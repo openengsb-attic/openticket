@@ -16,8 +16,8 @@
 
 package org.openengsb.openticket.ui.web;
 
-public class ImprintPage extends BasePage {
-    public ImprintPage() {
+public class Welcome extends BasePage {
+    public Welcome() {
 
     }
 }

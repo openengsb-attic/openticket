@@ -40,7 +40,7 @@ public class WicketApplication extends AuthenticatedWebApplication {
 
     @Override
     public Class<? extends Page> getHomePage() {
-        return Index.class;
+        return Welcome.class;
     }
 
     @Override

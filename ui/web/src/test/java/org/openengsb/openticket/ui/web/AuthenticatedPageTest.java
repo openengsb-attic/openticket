@@ -20,7 +20,7 @@ public abstract class AuthenticatedPageTest extends PageTest {
 
             @Override
             public Class<? extends Page> getHomePage() {
-                return Index.class;
+                return Demo.class;
             }
 
             @Override
