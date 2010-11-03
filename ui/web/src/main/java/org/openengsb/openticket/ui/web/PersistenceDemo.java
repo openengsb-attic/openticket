@@ -25,13 +25,17 @@ import org.apache.wicket.markup.html.form.SimpleFormComponentLabel;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.ResourceModel;
+import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
 import org.openengsb.core.persistence.PersistenceException;
 import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
 import org.openengsb.openticket.ui.web.model.TestObject;
 
 public class PersistenceDemo extends BasePage {
-    private TestObject value = new TestObject("affe");
+    @SpringBean
+    private PersistenceGateway gateway;
+
+    private TestObject value = new TestObject();
 
     public PersistenceDemo() {
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
@@ -39,10 +43,16 @@ public class PersistenceDemo extends BasePage {
         add(feedback);
 
         Form<TestObject> form = new Form<TestObject>("form", new CompoundPropertyModel<TestObject>(value));
-        add(form);
         form.setOutputMarkupId(true);
+        add(form);
 
-        FormComponent<String> fc = new RequiredTextField<String>("value");
+        FormComponent<String> fc = new RequiredTextField<String>("objid");
+        fc.add(StringValidator.minimumLength(2));
+        fc.setLabel(new ResourceModel("id.text"));
+        form.add(fc);
+        form.add(new SimpleFormComponentLabel("id-label", fc));
+
+        fc = new RequiredTextField<String>("value");
         fc.add(StringValidator.minimumLength(2));
         fc.setLabel(new ResourceModel("value.text"));
         form.add(fc);
@@ -53,8 +63,9 @@ public class PersistenceDemo extends BasePage {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 try {
-                    new PersistenceGateway().saveTestObject(value);
+                    gateway.saveTestObject(value);
                     info("Value successfully written.");
+                    target.addComponent(feedback);
                 } catch (PersistenceException e) {
                 }
             }
@@ -69,7 +80,13 @@ public class PersistenceDemo extends BasePage {
         {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                info(new PersistenceGateway().readTestObject(new TestObject("affe")).getValue());
+                try {
+                    info(gateway.readTestObject(new TestObject(value.getObjid())).getValue());
+                }
+                catch (IllegalStateException e) {
+                    error("No value for this ID found!");
+                }
+                target.addComponent(feedback);
             }
         });
     }

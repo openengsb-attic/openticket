@@ -3,24 +3,27 @@ package org.openengsb.openticket.ui.web.model;
 import java.io.Serializable;
 
 public class TestObject implements Serializable {
-    private String id;
+    private String objid;
     private String value;
 
-    public TestObject(String id) {
-        this.id = id;
+    public TestObject() {
     }
 
-    public TestObject(String id, String value) {
-        this.id = id;
+    public TestObject(String objid) {
+        this.objid = objid;
+    }
+
+    public TestObject(String objid, String value) {
+        this.objid = objid;
         this.value = value;
     }
 
-    public String getId() {
-        return id;
+    public String getObjid() {
+        return objid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setObjid(String objid) {
+        this.objid = objid;
     }
 
     public String getValue() {
