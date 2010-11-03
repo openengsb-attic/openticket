@@ -19,6 +19,8 @@ package org.openengsb.openticket.core.config;
 import java.io.InputStream;
 
 import org.apache.commons.io.IOUtils;
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openengsb.core.taskbox.TaskboxService;
 import org.openengsb.core.workflow.RuleBaseException;
 import org.openengsb.core.workflow.RuleManager;
@@ -26,7 +28,9 @@ import org.openengsb.core.workflow.model.RuleBaseElementId;
 import org.openengsb.core.workflow.model.RuleBaseElementType;
 
 public class OpenTicketConfigurator {
-    private RuleManager ruleManager;
+	private Log log = LogFactory.getLog(getClass());
+	
+	private RuleManager ruleManager;
 
     public void init() {
         addGlobalsAndImports();
@@ -36,6 +40,8 @@ public class OpenTicketConfigurator {
     private void addGlobalsAndImports() {
         try {
             ruleManager.addGlobal(TaskboxService.class.getCanonicalName(), "taskbox");
+            
+            //ruleManager.addImport(arg0)
         } catch (RuleBaseException e) {
             throw new RuntimeException(e);
         }
@@ -44,11 +50,18 @@ public class OpenTicketConfigurator {
     private void addWorkflow() {
         InputStream is = null;
         try {
-            is = getClass().getClassLoader().getResourceAsStream("tasktest.rf");
+        	log.info("about to load workflow 'tasktest'");
+        	
+        	is = getClass().getClassLoader().getResourceAsStream("tasktest.rf");
             String testWorkflow = IOUtils.toString(is);
             RuleBaseElementId id = new RuleBaseElementId(RuleBaseElementType.Process, "tasktest");
             ruleManager.add(id, testWorkflow);
+            
+            log.info("loaded workflow 'tasktest'");
+        } catch (RuleBaseException e) {
+        	log.error(e.getMessage(),e);
         } catch (Exception e) {
+        	log.error(e.getMessage(),e);
             throw new RuntimeException(e);
         } finally {
             IOUtils.closeQuietly(is);

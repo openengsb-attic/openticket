@@ -16,11 +16,15 @@
 
 package org.openengsb.openticket.ui.web;
 
+import java.io.PrintWriter;
+import java.io.StringWriter;
+
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.taskbox.TaskboxException;
 import org.openengsb.core.taskbox.TaskboxService;
+import org.openengsb.core.taskbox.model.Ticket;
 
 public class WorkflowDemo extends BasePage {
     @SpringBean
@@ -28,16 +32,26 @@ public class WorkflowDemo extends BasePage {
     
     public WorkflowDemo() {
         try {
-        	String ID = service.createTicket("information");
-        	service.startWorkflow(ID);
+        	TicketService ticketService = new TicketServiceImpl();
+        	Ticket ticket = ticketService.createEmptyTicket();
+        	
+        	ticket.setType("reviewer");
+        	service.startWorkflow("ticket", ticket);
             add(new Label("testoutput", service.getWorkflowMessage()));
         	
-        	ID = service.createTicket("developer");            
-        	service.startWorkflow(ID);
+            ticket = ticketService.createEmptyTicket();
+            ticket.setType("developer");
+        	service.startWorkflow("ticket", ticket);
             add(new Label("testoutput2", service.getWorkflowMessage()));
             
-        } catch (TaskboxException e) {
-            add(new Label("testoutput", new StringResourceModel("error", this, null).getString()));
+        } catch (Exception e) {
+        	StringWriter sw = new StringWriter();
+            PrintWriter pw = new PrintWriter(sw);
+            e.printStackTrace(pw);
+        	
+        	add(new Label("testoutput", new StringResourceModel("error", this, null).getString() + 
+            		"\n" + e.getMessage() + "\n\nStacktrace:\n" + sw.toString()));
+            add(new Label("testoutput2", ""));
         }
     }
 }
