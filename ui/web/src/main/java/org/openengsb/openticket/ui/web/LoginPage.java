@@ -17,20 +17,18 @@
 package org.openengsb.openticket.ui.web;
 
 import org.apache.wicket.authentication.AuthenticatedWebSession;
-import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.PasswordTextField;
 import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
+import org.apache.wicket.model.StringResourceModel;
 import org.openengsb.openticket.ui.web.model.User;
 
-public class LoginPage extends WebPage {
-
+public class LoginPage extends BasePage {
     private User user = new User();
 
     public LoginPage() {
-        @SuppressWarnings("serial")
         Form<User> loginForm = new Form<User>("form") {
             @Override
             protected void onSubmit() {
@@ -38,7 +36,7 @@ public class LoginPage extends WebPage {
                 if (session.signIn(user.getUsername(), user.getPassword())) {
                     setDefaultResponsePageIfNecessary();
                 } else {
-                    error("Username and password did not match");
+                    error(new StringResourceModel("error", this, null).getString());
                 }
             }
 

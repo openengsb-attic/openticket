@@ -17,6 +17,7 @@
 package org.openengsb.openticket.ui.web;
 
 import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
 
@@ -26,7 +27,6 @@ import java.util.List;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.util.tester.FormTester;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.openengsb.core.taskbox.TaskboxException;
 import org.openengsb.core.taskbox.TaskboxService;
@@ -57,33 +57,35 @@ public class LoginPageTest extends AuthenticatedPageTest {
     public void testEnterLogin() {
         tester.startPage(LoginPage.class);
         FormTester formTester = tester.newFormTester("form");
-        formTester.setValue("username", "test");
+        formTester.setValue("username", "user");
         formTester.setValue("password", "password");
         formTester.submit();
         tester.assertNoErrorMessage();
-        tester.assertRenderedPage(WorkflowDemo.class);
+        assertTrue(WicketSession.get().isSignedIn());
+        tester.assertRenderedPage(Welcome.class);
     }
 
-    @Ignore
     @Test
     public void testLogout() {
         tester.startPage(LoginPage.class);
         FormTester formTester = tester.newFormTester("form");
-        formTester.setValue("username", "test");
+        formTester.setValue("username", "user");
         formTester.setValue("password", "password");
         formTester.submit();
-        tester.clickLink("logout");
-        tester.assertRenderedPage(LoginPage.class);
+        tester.clickLink("header:logout");
+        assertFalse(WicketSession.get().isSignedIn());
+        tester.assertRenderedPage(Welcome.class);
     }
 
     @Test
     public void testInvalidLogin() {
         tester.startPage(LoginPage.class);
         FormTester formTester = tester.newFormTester("form");
-        formTester.setValue("username", "test");
+        formTester.setValue("username", "user");
         formTester.setValue("password", "wrongpassword");
         formTester.submit();
         tester.assertRenderedPage(LoginPage.class);
+        assertFalse(WicketSession.get().isSignedIn());
         List<Serializable> messages = tester.getMessages(FeedbackMessage.ERROR);
         assertFalse(messages.isEmpty());
     }

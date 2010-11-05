@@ -19,13 +19,14 @@ package org.openengsb.openticket.ui.web;
 import java.io.PrintWriter;
 import java.io.StringWriter;
 
+import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.openengsb.core.taskbox.TaskboxException;
 import org.openengsb.core.taskbox.TaskboxService;
 import org.openengsb.core.taskbox.model.Ticket;
 
+@AuthorizeInstantiation("CASEWORKER")
 public class WorkflowDemo extends BasePage {
     @SpringBean
     private TaskboxService service;

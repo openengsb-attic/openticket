@@ -3,15 +3,17 @@
   xml:lang="en" lang="en">
 
   <body>
-    <form wicket:id="form">
-      username:
-      <input wicket:id="username" />
-      <br />
-      password:
-      <input type="password" wicket:id="password" />
-      <br />
-      <input type="submit" value="Login" />
-    </form>
-    <div wicket:id="feedback" />
+    <wicket:extend>
+      <div class="loginForm">
+	      <form wicket:id="form">
+		    <wicket:message key="username"></wicket:message>:
+		    <input wicket:id="username" class="login" />
+		    <wicket:message key="password"></wicket:message>:
+		    <input type="password" wicket:id="password" class="login" />
+		    <input type="submit" wicket:message="value:button.login,title:button.login" />
+		  </form>
+		  <span wicket:id="feedback" />
+		</div>
+    </wicket:extend>
   </body>
 </html>

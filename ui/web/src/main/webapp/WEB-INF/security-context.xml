@@ -30,9 +30,9 @@
 
   <authentication-manager alias="authenticationManager">
     <authentication-provider>
-      <!-- TODO change this to reference our real user service -->
+      <password-encoder hash="md5" />
       <user-service>
-        <user name="user" password="password" authorities="ROLE_USER"/>
+        <user name="user" password="5f4dcc3b5aa765d61d8327deb882cf99" authorities="CASEWORKER"/>
       </user-service>
     </authentication-provider>
   </authentication-manager>

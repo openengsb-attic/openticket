@@ -22,6 +22,7 @@ import java.util.Locale;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
+import org.apache.wicket.authorization.strategies.role.Roles;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -30,6 +31,7 @@ import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.StringResourceModel;
+import org.apache.wicket.protocol.http.WebSession;
 
 public class HeaderTemplate extends Panel {
     private final ArrayList<HeaderMenuItem> menuItems = new ArrayList<HeaderMenuItem>();
@@ -39,7 +41,12 @@ public class HeaderTemplate extends Panel {
 
     public HeaderTemplate(String id, String menuIndex) {
         super(id);
-        
+
+        baseInitialization(menuIndex);
+        initializeMenu();
+    }
+
+    private void baseInitialization(String menuIndex) {
         add(new Link<Object>("lang.en") {
             @Override
             public void onClick() {
@@ -52,21 +59,36 @@ public class HeaderTemplate extends Panel {
                 this.getSession().setLocale(Locale.GERMAN);
             }
         });
-        add(new Link<Object>("logout") {
+
+        Link<Object> link = new Link<Object>("logout") {
             @Override
             public void onClick() {
-                ((AuthenticatedWebSession) this.getSession()).signOut();
-                setResponsePage(LoginPage.class);
+                boolean signedIn = ((WicketSession) WebSession.get()).isSignedIn();
+                if (signedIn) {
+                    ((AuthenticatedWebSession) this.getSession()).signOut();
+                }
+                setResponsePage(signedIn ? Welcome.class : LoginPage.class);
             }
-        });
+        };
+        link.add(new Label("text", new StringResourceModel(((WicketSession) WebSession.get()).isSignedIn() ? "logout"
+                : "login", this, null).getString()));
+        add(link);
 
         HeaderTemplate.menuIndex = menuIndex;
         add(new Label("version", System.getProperty("openticket.version.number")));
+    }
 
+    private void initializeMenu() {
         addHeaderMenuItem("Home", Welcome.class, "index.title");
-        addHeaderMenuItem("WorkflowDemo", WorkflowDemo.class, "workflowdemo.title");
-        addHeaderMenuItem("PersistenceDemo", PersistenceDemo.class, "persistencedemo.title");
 
+        Roles roles = ((WicketSession) WebSession.get()).getRoles();
+        for (String role : roles) {
+            if (role.equals("CASEWORKER")) {
+                addHeaderMenuItem("WorkflowDemo", WorkflowDemo.class, "workflowdemo.title");
+                addHeaderMenuItem("PersistenceDemo", PersistenceDemo.class, "persistencedemo.title");
+            }
+        }
+        
         if (HeaderTemplate.getActiveIndex() == null || !avialableItems.contains(HeaderTemplate.getActiveIndex())) {
             // update menu item to index, because page index is not found!
             HeaderTemplate.menuIndex = "Home";
@@ -103,7 +125,7 @@ public class HeaderTemplate extends Panel {
 
     /**
      * adds new item to main header navigation
-     *
+     * 
      * @param index - the name of the index @see HeaderMenuItem.index
      * @param linkClass - class name to be linked to
      * @param langKey - language key, the text which should be displayed

@@ -16,12 +16,10 @@
 
 package org.openengsb.openticket.ui.web;
 
-import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.context.ContextCurrentService;
 
-@AuthorizeInstantiation("ROLE_USER")
 public class BasePage extends WebPage {
     @SpringBean
     private ContextCurrentService contextService;

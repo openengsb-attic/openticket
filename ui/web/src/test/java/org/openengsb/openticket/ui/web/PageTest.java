@@ -40,7 +40,7 @@ public abstract class PageTest {
     private void mockAuthentication() {
         AuthenticationManager authManager = mock(AuthenticationManager.class);
         final Collection<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
-        authorities.add(new GrantedAuthorityImpl("ROLE_USER"));
+        authorities.add(new GrantedAuthorityImpl("LOGIN"));
         when(authManager.authenticate(any(Authentication.class))).thenAnswer(new Answer<Authentication>() {
             @Override
             public Authentication answer(InvocationOnMock invocation) {

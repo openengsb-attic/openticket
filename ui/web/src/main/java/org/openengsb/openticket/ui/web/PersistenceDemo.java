@@ -18,6 +18,7 @@ package org.openengsb.openticket.ui.web;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
+import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
 import org.apache.wicket.markup.html.form.RequiredTextField;
@@ -31,6 +32,7 @@ import org.openengsb.core.persistence.PersistenceException;
 import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
 import org.openengsb.openticket.ui.web.model.TestObject;
 
+@AuthorizeInstantiation("CASEWORKER")
 public class PersistenceDemo extends BasePage {
     @SpringBean
     private PersistenceGateway gateway;

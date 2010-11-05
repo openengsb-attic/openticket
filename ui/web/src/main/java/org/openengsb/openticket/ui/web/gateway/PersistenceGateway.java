@@ -24,7 +24,7 @@ public class PersistenceGateway implements BundleContextAware {
 
     public TestObject readTestObject(TestObject object) throws IllegalStateException {
         List<TestObject> objects = service.query(object);
-        
+
         if (objects.size() == 0) {
             throw new IllegalStateException();
         }
