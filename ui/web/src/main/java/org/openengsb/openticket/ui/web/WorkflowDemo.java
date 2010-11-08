@@ -26,6 +26,9 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.taskbox.TaskboxService;
 import org.openengsb.core.taskbox.model.Ticket;
 
+import org.openengsb.openticket.ui.web.TicketService;
+import org.openengsb.openticket.ui.web.TicketServiceImpl;
+
 @AuthorizeInstantiation("CASEWORKER")
 public class WorkflowDemo extends BasePage {
     @SpringBean
@@ -45,6 +48,11 @@ public class WorkflowDemo extends BasePage {
         	service.startWorkflow("ticket", ticket);
             add(new Label("testoutput2", service.getWorkflowMessage()));
             
+            ticket = ticketService.createEmptyTicket();
+            ticket.setType("mail-incomplete");
+        	service.startWorkflow("ticket", ticket);
+            add(new Label("testoutput3", service.getWorkflowMessage()));
+            
         } catch (Exception e) {
         	StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
@@ -53,6 +61,7 @@ public class WorkflowDemo extends BasePage {
         	add(new Label("testoutput", new StringResourceModel("error", this, null).getString() + 
             		"\n" + e.getMessage() + "\n\nStacktrace:\n" + sw.toString()));
             add(new Label("testoutput2", ""));
+            add(new Label("testoutput3", ""));
         }
     }
 }
