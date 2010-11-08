@@ -24,6 +24,9 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.taskbox.TaskboxService;
+import org.openengsb.core.taskbox.model.InformationTaskStep;
+import org.openengsb.core.taskbox.model.ReviewerTaskStep;
+import org.openengsb.core.taskbox.model.TaskStep;
 import org.openengsb.core.taskbox.model.Ticket;
 
 import org.openengsb.openticket.ui.web.TicketService;
@@ -36,13 +39,21 @@ public class WorkflowDemo extends BasePage {
     
     public WorkflowDemo() {
         try {
-        	TicketService ticketService = new TicketServiceImpl();
-        	Ticket ticket = ticketService.createEmptyTicket();
-        	
-        	ticket.setType("reviewer");
-        	service.startWorkflow("tasktest","ticket", ticket);
-            add(new Label("testoutput", service.getWorkflowMessage()));
-        	
+            TicketService ticketService = new TicketServiceImpl();
+            
+            Ticket ticket = ticketService.createEmptyTicket();
+            ticket.setType("reviewer");
+            //TaskStep...
+            ticket.setCurrentTaskStep(new ReviewerTaskStep("Review-1", "...for your information!"));
+            TaskStep curTS = ((ReviewerTaskStep) ticket.getCurrentTaskStep());
+            ((ReviewerTaskStep) curTS).setFeedback("feedback message");
+            ((ReviewerTaskStep) curTS).setReviewStatus(true);
+            ticket.setCurrentTaskStep(curTS);
+            //TaskStep END...
+            service.startWorkflow("ticket", ticket);
+               add(new Label("testoutput", service.getWorkflowMessage()
+                +" - [current Task step: "+ticket.getCurrentTaskStep().getName()+"]"
+                ));
             ticket = ticketService.createEmptyTicket();
             ticket.setType("developer");
         	service.startWorkflow("tasktest","ticket", ticket);
