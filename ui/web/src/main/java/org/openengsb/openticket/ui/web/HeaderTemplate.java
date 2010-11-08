@@ -86,6 +86,7 @@ public class HeaderTemplate extends Panel {
             if (role.equals("CASEWORKER")) {
                 addHeaderMenuItem("WorkflowDemo", WorkflowDemo.class, "workflowdemo.title");
                 addHeaderMenuItem("PersistenceDemo", PersistenceDemo.class, "persistencedemo.title");
+                addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title");
             }
         }
         
