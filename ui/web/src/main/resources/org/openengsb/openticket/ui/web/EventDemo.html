@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+      xml:lang="en" lang="en">
+
+  <body>
+    <wicket:extend> 
+    
+      <p>
+        <span wicket:id="feedback"></span>
+      </p>
+      <span wicket:id="testoutput"></span>
+      <form wicket:id="form">
+		<input type="submit" wicket:id="firstClick" wicket:message="value:first,title:first" />
+        <input type="submit" wicket:id="secondClick" wicket:message="value:second,title:second" />
+        <input type="submit" wicket:id="thirdClick" wicket:message="value:third,title:third" />
+      </form>
+    </wicket:extend>
+  </body>
+</html>

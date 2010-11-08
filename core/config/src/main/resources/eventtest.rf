@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<process xmlns="http://drools.org/drools-5.0/process"
+         xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+         xs:schemaLocation="http://drools.org/drools-5.0/process drools-processes-5.0.xsd"
+         type="RuleFlow" name="flow" id="eventtest" >
+
+  <header>
+
+  </header>
+  <nodes>
+    <start id="1" name="Start" x="102" y="48" width="48" height="48" />
+    <join id="2" name="Gateway" x="99" y="165" width="49" height="49" type="1" />
+    <eventNode id="3" name="Message" x="297" y="164" width="48" height="48" >
+      <eventFilters>
+        <eventFilter type="eventType" eventType="FirstClick" />
+      </eventFilters>
+    </eventNode>
+    <join id="4" name="Gateway" x="99" y="285" width="49" height="49" type="1" />
+    <eventNode id="5" name="Message" x="303" y="286" width="48" height="48" >
+      <eventFilters>
+        <eventFilter type="eventType" eventType="SecondClick" />
+      </eventFilters>
+    </eventNode>
+    <join id="6" name="Gateway" x="105" y="418" width="49" height="49" type="1" />
+    <end id="7" name="End" x="104" y="562" width="48" height="48" />
+    <eventNode id="8" name="Message" x="302" y="429" width="48" height="48" >
+      <eventFilters>
+        <eventFilter type="eventType" eventType="ThirdClick" />
+      </eventFilters>
+    </eventNode>
+  </nodes>
+
+  <connections>
+    <connection from="1" to="2" />
+    <connection from="3" to="2" />
+    <connection from="5" to="4" />
+    <connection from="2" to="4" />
+    <connection from="8" to="6" />
+    <connection from="4" to="6" />
+    <connection from="6" to="7" />
+  </connections>
+
+</process>

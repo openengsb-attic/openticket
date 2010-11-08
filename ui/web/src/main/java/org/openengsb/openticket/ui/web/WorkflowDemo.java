@@ -50,7 +50,7 @@ public class WorkflowDemo extends BasePage {
             ((ReviewerTaskStep) curTS).setReviewStatus(true);
             ticket.setCurrentTaskStep(curTS);
             //TaskStep END...
-            service.startWorkflow("ticket", ticket);
+            service.startWorkflow("tasktest","ticket", ticket);
                add(new Label("testoutput", service.getWorkflowMessage()
                 +" - [current Task step: "+ticket.getCurrentTaskStep().getName()+"]"
                 ));
