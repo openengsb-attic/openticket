@@ -28,4 +28,5 @@
   </bean>
 
   <osgi:reference id="ruleManager" interface="org.openengsb.core.workflow.RuleManager" />
+  <osgi:reference id="workflowService" interface="org.openengsb.core.workflow.WorkflowService" />
 </beans>

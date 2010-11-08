@@ -40,17 +40,17 @@ public class WorkflowDemo extends BasePage {
         	Ticket ticket = ticketService.createEmptyTicket();
         	
         	ticket.setType("reviewer");
-        	service.startWorkflow("ticket", ticket);
+        	service.startWorkflow("tasktest","ticket", ticket);
             add(new Label("testoutput", service.getWorkflowMessage()));
         	
             ticket = ticketService.createEmptyTicket();
             ticket.setType("developer");
-        	service.startWorkflow("ticket", ticket);
+        	service.startWorkflow("tasktest","ticket", ticket);
             add(new Label("testoutput2", service.getWorkflowMessage()));
             
             ticket = ticketService.createEmptyTicket();
             ticket.setType("mail-incomplete");
-        	service.startWorkflow("ticket", ticket);
+        	service.startWorkflow("tasktest","ticket", ticket);
             add(new Label("testoutput3", service.getWorkflowMessage()));
             
         } catch (Exception e) {
