@@ -25,6 +25,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.Event;
+import org.openengsb.core.common.context.ContextCurrentService;
 import org.openengsb.core.persistence.PersistenceException;
 import org.openengsb.core.taskbox.TaskboxException;
 import org.openengsb.core.taskbox.TaskboxService;
@@ -36,6 +37,10 @@ import org.openengsb.openticket.ui.web.model.TestObject;
 public class EventDemo extends BasePage {
     @SpringBean
     private TaskboxService service;
+    
+    @SpringBean
+    private ContextCurrentService ccservice;
+    
     private Ticket ticket = (new TicketServiceImpl()).createEmptyTicket();
 
     public EventDemo() {
@@ -44,6 +49,8 @@ public class EventDemo extends BasePage {
         feedback.setOutputMarkupId(true);
         add(feedback);
 
+        
+        final String context=ccservice.getThreadLocalContext();
         Form form = new Form<TestObject>("form");
         form.setOutputMarkupId(true);
         add(form);
@@ -56,6 +63,7 @@ public class EventDemo extends BasePage {
                 @Override
                 protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                     try {
+                        ccservice.setThreadLocalContext(context);
                         service.processEvent(new Event() {
                             @Override
                             public String getType() {
@@ -81,6 +89,7 @@ public class EventDemo extends BasePage {
                 @Override
                 protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                     try {
+                        ccservice.setThreadLocalContext(context);
                         service.processEvent(new Event() {
                             @Override
                             public String getType() {
@@ -106,6 +115,7 @@ public class EventDemo extends BasePage {
                 @Override
                 protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                     try {
+                        ccservice.setThreadLocalContext(context);
                         service.processEvent(new Event() {
                             @Override
                             public String getType() {
