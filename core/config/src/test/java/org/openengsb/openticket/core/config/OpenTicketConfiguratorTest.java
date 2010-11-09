@@ -39,8 +39,9 @@ public class OpenTicketConfiguratorTest {
     @Test
     public void testInit() throws RuleBaseException {
         configurator.init();
-        RuleBaseElementId workflowId = new RuleBaseElementId(RuleBaseElementType.Process, "tasktest");
-
-        Mockito.verify(ruleManager).add(Mockito.eq(workflowId), Mockito.anyString());
+        RuleBaseElementId workflowId1 = new RuleBaseElementId(RuleBaseElementType.Process, "tasktest");
+        RuleBaseElementId workflowId2 = new RuleBaseElementId(RuleBaseElementType.Process, "eventtest");
+        Mockito.verify(ruleManager).add(Mockito.eq(workflowId1), Mockito.anyString());
+        Mockito.verify(ruleManager).add(Mockito.eq(workflowId2), Mockito.anyString());
     }
 }

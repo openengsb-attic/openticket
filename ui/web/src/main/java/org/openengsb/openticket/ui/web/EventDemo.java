@@ -24,10 +24,12 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.openengsb.core.common.Event;
 import org.openengsb.core.persistence.PersistenceException;
 import org.openengsb.core.taskbox.TaskboxException;
 import org.openengsb.core.taskbox.TaskboxService;
 import org.openengsb.core.taskbox.model.Ticket;
+import org.openengsb.core.workflow.WorkflowException;
 import org.openengsb.openticket.ui.web.model.TestObject;
 
 @AuthorizeInstantiation("CASEWORKER")
@@ -35,72 +37,97 @@ public class EventDemo extends BasePage {
     @SpringBean
     private TaskboxService service;
     private Ticket ticket = (new TicketServiceImpl()).createEmptyTicket();
-    
+
     public EventDemo() {
 
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
         feedback.setOutputMarkupId(true);
-        add(feedback);        
-        
+        add(feedback);
+
         Form form = new Form<TestObject>("form");
         form.setOutputMarkupId(true);
-        add(form);     
-     
+        add(form);
+
         try {
             service.startWorkflow("eventtest", "task", ticket);
-            add(new Label("testoutput", "gut"));
+
+            form.add(new AjaxButton("firstClick", form)
+            {
+                @Override
+                protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+                    try {
+                        service.processEvent(new Event() {
+                            @Override
+                            public String getType() {
+                                return "FirstClick";
+                            }
+                        });
+
+                        info("FirstClick send!");
+                        target.addComponent(feedback);
+                    } catch (WorkflowException e) {
+                        info(e.getMessage());
+                    }
+                }
+
+                @Override
+                protected void onError(AjaxRequestTarget target, Form<?> form) {
+                    target.addComponent(feedback);
+                }
+            });
+
+            form.add(new AjaxButton("secondClick", form)
+            {
+                @Override
+                protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+                    try {
+                        service.processEvent(new Event() {
+                            @Override
+                            public String getType() {
+                                return "SecondClick";
+                            }
+                        });
+
+                        info("SecondClick send!");
+                        target.addComponent(feedback);
+                    } catch (WorkflowException e) {
+                        info(e.getMessage());
+                    }
+                }
+
+                @Override
+                protected void onError(AjaxRequestTarget target, Form<?> form) {
+                    target.addComponent(feedback);
+                }
+            });
+
+            form.add(new AjaxButton("thirdClick", form)
+            {
+                @Override
+                protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
+                    try {
+                        service.processEvent(new Event() {
+                            @Override
+                            public String getType() {
+                                return "ThirdClick";
+                            }
+                        });
+
+                        info("ThirdClick send.");
+                        target.addComponent(feedback);
+                    } catch (WorkflowException e) {
+                        info(e.getMessage());
+                    }
+                }
+
+                @Override
+                protected void onError(AjaxRequestTarget target, Form<?> form) {
+                    target.addComponent(feedback);
+                }
+            });
         } catch (TaskboxException e) {
-            add(new Label("testoutput", e.getMessage()));
+
         }
-        
-        form.add(new AjaxButton("firstClick", form)
-        {
-            @Override
-            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                /* send mist*/
-                info("Value successfully written.");
-                target.addComponent(feedback);
-            }
-
-            @Override
-            protected void onError(AjaxRequestTarget target, Form<?> form) {
-                target.addComponent(feedback);
-            }
-        });
-        
-        
-        form.add(new AjaxButton("secondClick", form)
-        {
-            @Override
-            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                /* send mist*/
-                info("Value successfully written.");
-                target.addComponent(feedback);
-            }
-
-            @Override
-            protected void onError(AjaxRequestTarget target, Form<?> form) {
-                target.addComponent(feedback);
-            }
-        });
-        
-        form.add(new AjaxButton("thirdClick", form)
-        {
-            @Override
-            protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                
-                info("Value successfully written.");
-                target.addComponent(feedback);
-            }
-
-            @Override
-            protected void onError(AjaxRequestTarget target, Form<?> form) {
-                target.addComponent(feedback);
-            }
-        });
     }
-    
-    private void sendEvent(String event){
-        
-    }
+
 }

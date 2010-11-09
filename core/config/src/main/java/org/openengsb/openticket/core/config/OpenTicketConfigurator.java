@@ -28,9 +28,9 @@ import org.openengsb.core.workflow.model.RuleBaseElementId;
 import org.openengsb.core.workflow.model.RuleBaseElementType;
 
 public class OpenTicketConfigurator {
-	private Log log = LogFactory.getLog(getClass());
-	
-	private RuleManager ruleManager;
+    private Log log = LogFactory.getLog(getClass());
+
+    private RuleManager ruleManager;
 
     public void init() {
         addGlobalsAndImports();
@@ -40,8 +40,8 @@ public class OpenTicketConfigurator {
     private void addGlobalsAndImports() {
         try {
             ruleManager.addGlobal(TaskboxService.class.getCanonicalName(), "taskbox");
-            
-            //ruleManager.addImport(arg0)
+
+            // ruleManager.addImport(arg0)
         } catch (RuleBaseException e) {
             throw new RuntimeException(e);
         }
@@ -49,19 +49,34 @@ public class OpenTicketConfigurator {
 
     private void addWorkflow() {
         InputStream is = null;
+        String testWorkflow;
+        RuleBaseElementId id;
         try {
-        	log.info("about to load workflow 'tasktest'");
-        	
-        	is = getClass().getClassLoader().getResourceAsStream("tasktest.rf");
-            String testWorkflow = IOUtils.toString(is);
-            RuleBaseElementId id = new RuleBaseElementId(RuleBaseElementType.Process, "tasktest");
+
+            log.info("about to load workflow 'tasktest'");
+
+            is = getClass().getClassLoader().getResourceAsStream("tasktest.rf");
+            testWorkflow = IOUtils.toString(is);
+            id = new RuleBaseElementId(RuleBaseElementType.Process, "tasktest");
             ruleManager.add(id, testWorkflow);
-            
+         
+
             log.info("loaded workflow 'tasktest'");
+            // TODO: refactor the copy.
+            log.info("about to load workflow 'eventtest'");
+
+            is = getClass().getClassLoader().getResourceAsStream("eventtest.rf");
+            testWorkflow = IOUtils.toString(is);
+            id = new RuleBaseElementId(RuleBaseElementType.Process, "eventtest");
+            ruleManager.add(id, testWorkflow);
+           
+
+            log.info("loaded workflow 'eventtest'");
+
         } catch (RuleBaseException e) {
-        	log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
         } catch (Exception e) {
-        	log.error(e.getMessage(),e);
+            log.error(e.getMessage(), e);
             throw new RuntimeException(e);
         } finally {
             IOUtils.closeQuietly(is);
