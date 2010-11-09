@@ -41,7 +41,6 @@ public class OpenTicketConfigurator {
         try {
             ruleManager.addGlobal(TaskboxService.class.getCanonicalName(), "taskbox");
 
-            // ruleManager.addImport(arg0)
         } catch (RuleBaseException e) {
             throw new RuntimeException(e);
         }
