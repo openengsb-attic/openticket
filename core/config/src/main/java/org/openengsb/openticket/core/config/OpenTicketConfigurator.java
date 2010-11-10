@@ -22,10 +22,10 @@ import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.openengsb.core.taskbox.TaskboxService;
-import org.openengsb.core.workflow.RuleBaseException;
-import org.openengsb.core.workflow.RuleManager;
-import org.openengsb.core.workflow.model.RuleBaseElementId;
-import org.openengsb.core.workflow.model.RuleBaseElementType;
+import org.openengsb.core.common.workflow.RuleBaseException;
+import org.openengsb.core.common.workflow.RuleManager;
+import org.openengsb.core.common.workflow.model.RuleBaseElementId;
+import org.openengsb.core.common.workflow.model.RuleBaseElementType;
 
 public class OpenTicketConfigurator {
     private Log log = LogFactory.getLog(getClass());
@@ -58,7 +58,7 @@ public class OpenTicketConfigurator {
             testWorkflow = IOUtils.toString(is);
             id = new RuleBaseElementId(RuleBaseElementType.Process, "tasktest");
             ruleManager.add(id, testWorkflow);
-         
+
 
             log.info("loaded workflow 'tasktest'");
             // TODO: refactor the copy.
@@ -68,7 +68,7 @@ public class OpenTicketConfigurator {
             testWorkflow = IOUtils.toString(is);
             id = new RuleBaseElementId(RuleBaseElementType.Process, "eventtest");
             ruleManager.add(id, testWorkflow);
-           
+
 
             log.info("loaded workflow 'eventtest'");
 

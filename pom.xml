@@ -15,7 +15,7 @@
     <openticket.version.number>${project.version}</openticket.version.number>
     <org.osgi.service.http.port>8090</org.osgi.service.http.port>
     <org.osgi.service.http.port.secure>8091</org.osgi.service.http.port.secure>
-    <openengsb.version>1.0.0-SNAPSHOT</openengsb.version>
+    <openengsb.version>1.1.0-SNAPSHOT</openengsb.version>
     <plugin.assembly.version>2.2-beta-5</plugin.assembly.version>
     <jdk.version>1.6</jdk.version>
     <plugin.pax.version>1.4</plugin.pax.version>

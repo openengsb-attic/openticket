@@ -19,10 +19,10 @@ package org.openengsb.openticket.core.config;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.openengsb.core.workflow.RuleBaseException;
-import org.openengsb.core.workflow.RuleManager;
-import org.openengsb.core.workflow.model.RuleBaseElementId;
-import org.openengsb.core.workflow.model.RuleBaseElementType;
+import org.openengsb.core.common.workflow.RuleBaseException;
+import org.openengsb.core.common.workflow.RuleManager;
+import org.openengsb.core.common.workflow.model.RuleBaseElementId;
+import org.openengsb.core.common.workflow.model.RuleBaseElementType;
 
 public class OpenTicketConfiguratorTest {
     private OpenTicketConfigurator configurator;
