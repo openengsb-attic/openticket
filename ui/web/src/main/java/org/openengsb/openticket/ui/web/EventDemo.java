@@ -63,14 +63,14 @@ public class EventDemo extends BasePage {
                 @Override
                 protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                     try {
-                        ccservice.setThreadLocalContext(context);
+                        ccservice.setThreadLocalContext(context);/*
                         service.processEvent(new Event() {
                             @Override
                             public String getType() {
                                 return "FirstClick";
                             }
-                        });
-
+                        });*/
+                        service.processEvent(new FirstClickEvent());
                         info("FirstClick send!");
                         target.addComponent(feedback);
                     } catch (WorkflowException e) {
