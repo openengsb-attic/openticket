@@ -187,7 +187,7 @@
         <configuration>
           <appendAssemblyId>true</appendAssemblyId>
           <descriptors>
-            <descriptor>src/main/descriptors/config.xml</descriptor>
+            <descriptor>${project.basedir}/src/main/descriptors/config.xml</descriptor>
           </descriptors>
         </configuration>
         <executions>
@@ -202,5 +202,93 @@
       </plugin>
     </plugins>
   </build>
+  
+    <profiles>
+    <profile>
+      <id>release</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.ops4j</groupId>
+            <artifactId>maven-pax-plugin</artifactId>
+            <version>${plugin.pax.version}</version>
+            <configuration>
+              <runner>${plugin.paxrunner.version}</runner>
+              <framework>felix</framework>
+              <noDependencies>true</noDependencies>
+              <deployPoms>../provision/pom.xml</deployPoms>
+              <deployURLs>
+				scan-bundle:mvn:org.openengsb.openticket.core/openticket-core-config/${project.version},
+				scan-bundle:mvn:org.openengsb.openticket.ui/openticket-ui-web/${project.version}/war,
+              </deployURLs>
+              <provision>
+                <param>--platform=felix</param>
+                <param>--executor=script</param>
+                <param>--workingDirectory=${project.basedir}/target/all/openticket</param>
+                <param>--console=false</param>
+                <param>--ee=J2SE-1.6</param>
+                <param>scan-composite:file:${project.basedir}/target/classes/karaf.composite</param>
+                <param>scan-composite:file:${project.basedir}/target/classes/settings.debug.composite</param>
+                <param>--definitionURL=file:${project.basedir}/target/classes/felix.xml</param>
+				<param>scan-pom:file:${project.basedir}/target/provision-provision.xml</param>
+                <param>--clean</param>
+              </provision>
+            </configuration>
+            <executions>
+              <execution>
+                <id>prepare-openticket</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>provision</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <version>${maven.plugin.assembly.version}</version>
+            <configuration>
+              <appendAssemblyId>false</appendAssemblyId>
+              <descriptors>
+                <descriptor>${project.basedir}/src/main/descriptors/config.xml</descriptor>
+                <descriptor>${project.basedir}/src/main/descriptors/openticket.xml</descriptor>
+              </descriptors>
+            </configuration>
+            <executions>
+              <execution>
+                <id>assembly-openticket</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>single</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>attach-artifacts</id>
+                <phase>package</phase>
+                <goals>
+                  <goal>attach-artifact</goal>
+                </goals>
+                <configuration>
+                  <artifacts>
+                    <artifact>
+                      <file>${project.basedir}/target/openticket-${project.version}.zip</file>
+                      <type>zip</type>
+                      <!--<classifier>bin</classifier>-->
+                    </artifact>
+                  </artifacts>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
 
 </project>
