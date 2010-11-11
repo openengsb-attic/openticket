@@ -28,10 +28,10 @@
   <modules>
     <module>poms</module>
     <module>provision</module>
-    <module>assembly</module>
     <module>core</module>
     <module>ui</module>
     <module>doc</module>
+    <module>assembly</module>
   </modules>
   
   <url>http://openticket.openengsb.org</url>
