@@ -21,14 +21,14 @@
   <parent>
     <groupId>org.openengsb.openticket.build</groupId>
     <artifactId>compiled-bundle-settings</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0.M1</version>
     <relativePath>../poms/compiled/</relativePath>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.openengsb.openticket.core</groupId>
   <artifactId>openticket-core-parent</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0.M1</version>
 
   <name>OpenTicket :: Core :: Parent</name>
 
