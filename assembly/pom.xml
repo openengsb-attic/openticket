@@ -76,21 +76,21 @@
   <build>
     <resources>
       <resource>
-        <directory>${project.basedir}/target/openengsb-config-client-${project.version}/platform</directory>
+        <directory>${project.basedir}/target/openengsb-config-client-${openengsb.version}/platform</directory>
         <filtering>true</filtering>
         <includes>
           <include>**/*</include>
         </includes>
       </resource>
       <resource>
-        <directory>${project.basedir}/target/openengsb-config-client-${project.version}/config</directory>
+        <directory>${project.basedir}/target/openengsb-config-client-${openengsb.version}/config</directory>
         <filtering>true</filtering>
         <includes>
           <include>**/*</include>
         </includes>
       </resource>
       <resource>
-        <directory>${project.basedir}/target/openengsb-config-client-${project.version}/run</directory>
+        <directory>${project.basedir}/target/openengsb-config-client-${openengsb.version}/run</directory>
         <filtering>true</filtering>
         <includes>
           <include>**/*</include>
@@ -202,7 +202,6 @@
       </plugin>
     </plugins>
   </build>
-  
     <profiles>
     <profile>
       <id>release</id>
@@ -216,10 +215,10 @@
               <runner>${plugin.paxrunner.version}</runner>
               <framework>felix</framework>
               <noDependencies>true</noDependencies>
-              <deployPoms>../provision/pom.xml</deployPoms>
+              <deployPoms>${project.basedir}/../assembly/provision/pom.xml</deployPoms>
               <deployURLs>
-				scan-bundle:mvn:org.openengsb.openticket.core/openticket-core-config/${project.version},
-				scan-bundle:mvn:org.openengsb.openticket.ui/openticket-ui-web/${project.version}/war,
+                scan-bundle:mvn:org.openengsb.openticket.core/openticket-core-config/${project.version},
+                scan-bundle:mvn:org.openengsb.openticket.ui/openticket-ui-web/${project.version}/war,
               </deployURLs>
               <provision>
                 <param>--platform=felix</param>
@@ -230,7 +229,7 @@
                 <param>scan-composite:file:${project.basedir}/target/classes/karaf.composite</param>
                 <param>scan-composite:file:${project.basedir}/target/classes/settings.debug.composite</param>
                 <param>--definitionURL=file:${project.basedir}/target/classes/felix.xml</param>
-				<param>scan-pom:file:${project.basedir}/target/provision-provision.xml</param>
+                <param>scan-pom:file:${project.basedir}/target/provision-provision.xml</param>
                 <param>--clean</param>
               </provision>
             </configuration>
@@ -279,7 +278,6 @@
                     <artifact>
                       <file>${project.basedir}/target/openticket-${project.version}.zip</file>
                       <type>zip</type>
-                      <!--<classifier>bin</classifier>-->
                     </artifact>
                   </artifacts>
                 </configuration>

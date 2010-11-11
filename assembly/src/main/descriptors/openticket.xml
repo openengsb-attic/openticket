@@ -33,7 +33,7 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>${project.basedir}</directory>
+      <directory>${project.basedir}/../</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
         <include>NOTICE</include>
@@ -41,14 +41,14 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>${project.basedir}/assembly/target/openticket-${project.version}-config/openticket-${project.version}/</directory>
+      <directory>${project.basedir}/target/openticket-${project.version}/openticket-${project.version}/</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
         <include>config/*</include>
       </includes>
     </fileSet>
     <fileSet>
-      <directory>${project.basedir}/assembly/src/main/distribution/base/</directory>
+      <directory>${project.basedir}/src/main/distribution/base/</directory>
       <outputDirectory>/</outputDirectory>
       <includes>
         <include>*</include>
@@ -56,7 +56,7 @@
       </includes>
     </fileSet>
     <fileSet>
-      <directory>${project.basedir}/assembly/target/classes/</directory>
+      <directory>${project.basedir}/target/classes/</directory>
       <outputDirectory>/bin/</outputDirectory>
       <includes>
         <include>karaf.sh</include>
