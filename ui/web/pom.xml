@@ -79,24 +79,24 @@
     <dependency>
       <groupId>org.openengsb.wrapped</groupId>
       <artifactId>org.apache.wicket-all</artifactId>
-      <version>${pom.version}</version>
+      <version>${openengsb.version}</version>
     </dependency>
     <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-common</artifactId>
-      <version>${project.version}</version>
+      <version>${openengsb.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-taskbox</artifactId>
-      <version>${pom.version}</version>
+      <version>${openengsb.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-persistence</artifactId>
-      <version>${pom.version}</version>
+      <version>${openengsb.version}</version>
       <scope>provided</scope>
     </dependency>
 
