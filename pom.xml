@@ -46,8 +46,8 @@
     <module>provision</module>
     <module>core</module>
     <module>doc</module>
-    <module>assembly</module>
     <module>app</module>
+    <module>assembly</module>
   </modules>
   
   <url>http://openticket.openengsb.org</url>
