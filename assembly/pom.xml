@@ -45,7 +45,7 @@
     <org.osgi.service.http.port.secure>8091</org.osgi.service.http.port.secure>
 
     <!-- platform/settings.debug.composite -->
-    <debug.felix.fileinstall.dir>../assembly/target/openticket-${project.version}-config/openticket-${project.version}/config</debug.felix.fileinstall.dir>
+    <debug.felix.fileinstall.dir>../assembly/target/openticket-${project.version}/openticket-${project.version}/config</debug.felix.fileinstall.dir>
     <debug.felix.fileinstall.filter>.*\.cfg</debug.felix.fileinstall.filter>
     <debug.felix.fileinstall.poll>1000</debug.felix.fileinstall.poll>
     <debug.felix.fileinstall.noInitialDelay>true</debug.felix.fileinstall.noInitialDelay>
