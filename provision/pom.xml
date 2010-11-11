@@ -50,17 +50,6 @@
     </dependency>
 
     <dependency>
-      <groupId>org.openengsb.config</groupId>
-      <artifactId>openengsb-config-jetty</artifactId>
-      <version>${openengsb.version}</version>
-    </dependency>
-    <dependency>
-      <groupId>org.openengsb.config</groupId>
-      <artifactId>openengsb-config-webextender</artifactId>
-      <version>${openengsb.version}</version>
-    </dependency>
-
-    <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-taskbox</artifactId>
       <version>${openengsb.version}</version>
@@ -88,13 +77,13 @@
 
     <!-- these are to be removed as soon as possible! -->
     <dependency>
-      <groupId>org.openengsb.domains.example</groupId>
-      <artifactId>openengsb-domains-example-implementation</artifactId>
+      <groupId>org.openengsb.domain</groupId>
+      <artifactId>openengsb-domain-example</artifactId>
       <version>${openengsb.version}</version>
     </dependency>
     <dependency>
-      <groupId>org.openengsb.domains.notification</groupId>
-      <artifactId>openengsb-domains-notification-implementation</artifactId>
+      <groupId>org.openengsb.domain</groupId>
+      <artifactId>openengsb-domain-notification</artifactId>
       <version>${openengsb.version}</version>
     </dependency>
   </dependencies>
