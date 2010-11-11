@@ -23,7 +23,7 @@
   <parent>
     <groupId>org.openengsb.openticket.build</groupId>
     <artifactId>shared-plugin-settings</artifactId>
-    <version>1.0.0.M1</version>
+    <version>1.0.0-SNAPSHOT</version>
     <relativePath>../poms/</relativePath>
   </parent>
 
@@ -57,13 +57,13 @@
     <release.felix.fileinstall.noInitialDelay>true</release.felix.fileinstall.noInitialDelay>
 
     <!-- Specific Debug Settings -->
-    <client.debug.properties />
+    <client.debug.properties></client.debug.properties>
 
     <!-- run/karaf.sh -->
-    <client.properties.linux />
+    <client.properties.linux></client.properties.linux>
 
     <!-- run/karaf.bat -->
-    <client.properties.windows />
+    <client.properties.windows></client.properties.windows>
 
     <!-- config/* -->   
     <!-- To be extended, currently no properties required here -->
@@ -218,7 +218,7 @@
               <deployPoms>${project.basedir}/../assembly/provision/pom.xml</deployPoms>
               <deployURLs>
                 scan-bundle:mvn:org.openengsb.openticket.core/openticket-core-config/${project.version},
-                scan-bundle:mvn:org.openengsb.openticket.app/openticket-app/${project.version}/war,
+                scan-bundle:mvn:org.openengsb.openticket.ui/openticket-ui-web/${project.version}/war,
               </deployURLs>
               <provision>
                 <param>--platform=felix</param>
