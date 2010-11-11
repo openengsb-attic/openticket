@@ -26,11 +26,11 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.Event;
 import org.openengsb.core.common.context.ContextCurrentService;
-import org.openengsb.core.persistence.PersistenceException;
+import org.openengsb.core.common.persistence.PersistenceException;
 import org.openengsb.core.taskbox.TaskboxException;
 import org.openengsb.core.taskbox.TaskboxService;
 import org.openengsb.core.taskbox.model.Ticket;
-import org.openengsb.core.workflow.WorkflowException;
+import org.openengsb.core.common.workflow.WorkflowException;
 import org.openengsb.openticket.ui.web.model.TestObject;
 
 @AuthorizeInstantiation("CASEWORKER")

@@ -28,7 +28,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
-import org.openengsb.core.persistence.PersistenceException;
+import org.openengsb.core.common.persistence.PersistenceException;
 import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
 import org.openengsb.openticket.ui.web.model.TestObject;
 

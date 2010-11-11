@@ -2,9 +2,9 @@ package org.openengsb.openticket.ui.web.gateway;
 
 import java.util.List;
 
-import org.openengsb.core.persistence.PersistenceException;
-import org.openengsb.core.persistence.PersistenceManager;
-import org.openengsb.core.persistence.PersistenceService;
+import org.openengsb.core.common.persistence.PersistenceException;
+import org.openengsb.core.common.persistence.PersistenceManager;
+import org.openengsb.core.common.persistence.PersistenceService;
 import org.openengsb.openticket.ui.web.model.TestObject;
 import org.osgi.framework.BundleContext;
 import org.springframework.osgi.context.BundleContextAware;
