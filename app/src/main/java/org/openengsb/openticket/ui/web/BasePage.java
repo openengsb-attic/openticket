@@ -23,7 +23,7 @@ import org.openengsb.core.common.context.ContextCurrentService;
 public class BasePage extends WebPage {
     @SpringBean
     private ContextCurrentService contextService;
-    
+
     public BasePage() {
         add(new HeaderTemplate("header", getHeaderMenuItem()));
         add(new FooterTemplate("footer"));
@@ -36,7 +36,7 @@ public class BasePage extends WebPage {
     public String getHeaderMenuItem() {
         return this.getClass().getSimpleName();
     }
-    
+
     final void initContextForCurrentThread() {
         String sessionContextId = getSessionContextId();
         try {

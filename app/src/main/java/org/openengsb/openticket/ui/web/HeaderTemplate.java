@@ -23,6 +23,7 @@ import java.util.Locale;
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
 import org.apache.wicket.authorization.strategies.role.Roles;
+import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
@@ -70,28 +71,51 @@ public class HeaderTemplate extends Panel {
                 setResponsePage(signedIn ? Welcome.class : LoginPage.class);
             }
         };
-        link.add(new Label("text", new StringResourceModel(((WicketSession) WebSession.get()).isSignedIn() ? "logout"
-                : "login", this, null).getString()));
         add(link);
+
+        WebMarkupContainer container = new WebMarkupContainer("logintext");
+        link.add(container);
+        try {
+            container.setVisible(!((WicketSession) WebSession.get()).isSignedIn());
+        } catch (ClassCastException e) {
+        }
+        container = new WebMarkupContainer("logouttext");
+        link.add(container);
+        try {
+            container.setVisible(((WicketSession) WebSession.get()).isSignedIn());
+        } catch (ClassCastException e) {
+        }
 
         HeaderTemplate.menuIndex = menuIndex;
         add(new Label("version", System.getProperty("openticket.version.number")));
     }
 
-    private void initializeMenu() {
+    private void initMainMenuItems() {
         addHeaderMenuItem("Home", Welcome.class, "index.title");
 
-        Roles roles = ((WicketSession) WebSession.get()).getRoles();
-        for (String role : roles) {
-            if (role.equals("CASEWORKER")) {
-                addHeaderMenuItem("WorkflowDemo", WorkflowDemo.class, "workflowdemo.title");
-                addHeaderMenuItem("PersistenceDemo", PersistenceDemo.class, "persistencedemo.title");
-                addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title");
-                addHeaderMenuItem("EventDemo", EventDemo.class, "eventdemo.title");
-                addHeaderMenuItem("TaskboxMessage", TaskboxMessage.class, "taskboxmessage.title");
+        try {
+            Roles roles = ((WicketSession) WebSession.get()).getRoles();
+            for (String role : roles) {
+                if (role.equals("CASEWORKER")) {
+                    addHeaderMenuItem("WorkflowDemo", WorkflowDemo.class, "workflowdemo.title");
+                    addHeaderMenuItem("PersistenceDemo", PersistenceDemo.class, "persistencedemo.title");
+                    addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title");
+                    addHeaderMenuItem("EventDemo", EventDemo.class, "eventdemo.title");
+                    addHeaderMenuItem("TaskboxMessage", TaskboxMessage.class, "taskboxmessage.title");
+                }
             }
+        } catch (ClassCastException e) {
+            addHeaderMenuItem("WorkflowDemo", WorkflowDemo.class, "workflowdemo.title");
+            addHeaderMenuItem("PersistenceDemo", PersistenceDemo.class, "persistencedemo.title");
+            addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title");
+            addHeaderMenuItem("EventDemo", EventDemo.class, "eventdemo.title");
+            addHeaderMenuItem("TaskboxMessage", TaskboxMessage.class, "taskboxmessage.title");
         }
-        
+    }
+
+    private void initializeMenu() {
+        initMainMenuItems();
+
         if (HeaderTemplate.getActiveIndex() == null || !avialableItems.contains(HeaderTemplate.getActiveIndex())) {
             // update menu item to index, because page index is not found!
             HeaderTemplate.menuIndex = "Home";
@@ -128,7 +152,7 @@ public class HeaderTemplate extends Panel {
 
     /**
      * adds new item to main header navigation
-     * 
+     *
      * @param index - the name of the index @see HeaderMenuItem.index
      * @param linkClass - class name to be linked to
      * @param langKey - language key, the text which should be displayed
