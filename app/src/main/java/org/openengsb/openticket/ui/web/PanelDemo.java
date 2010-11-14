@@ -24,7 +24,9 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
 import org.openengsb.core.taskbox.TaskboxService;
+import org.openengsb.openticket.ui.web.model.DeveloperTaskStep;
 import org.openengsb.openticket.ui.web.model.TestObject;
+import org.openengsb.openticket.ui.web.model.Ticket;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -63,7 +65,10 @@ public class PanelDemo extends BasePage {
         {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                    Panel newPanel = service.createPanel(value.getObjid(), "panel");
+                    Ticket t = new Ticket(value.getObjid());
+                    t.setCurrentTaskStep(new DeveloperTaskStep("first", "first"));
+                    t.finishCurrentTaskStep(new DeveloperTaskStep("second", "second"));
+                    Panel newPanel = t.getPanel("panel");
                     newPanel.setOutputMarkupId(true);
                     panel.replaceWith(newPanel);
                     panel = newPanel;
@@ -75,7 +80,10 @@ public class PanelDemo extends BasePage {
                 target.addComponent(feedback);
             }
         });
-        panel = service.createPanel("test", "panel");
+        Ticket t = new Ticket("test");
+        t.setCurrentTaskStep(new DeveloperTaskStep("first", "first"));
+        t.finishCurrentTaskStep(new DeveloperTaskStep("second", "second"));
+        panel = t.getPanel("panel");
         panel.setOutputMarkupId(true);
         add(panel);
     }

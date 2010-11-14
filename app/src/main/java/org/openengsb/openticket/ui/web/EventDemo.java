@@ -29,9 +29,9 @@ import org.openengsb.core.common.context.ContextCurrentService;
 import org.openengsb.core.common.persistence.PersistenceException;
 import org.openengsb.core.taskbox.TaskboxException;
 import org.openengsb.core.taskbox.TaskboxService;
-import org.openengsb.core.taskbox.model.Ticket;
 import org.openengsb.core.common.workflow.WorkflowException;
 import org.openengsb.openticket.ui.web.model.TestObject;
+import org.openengsb.openticket.ui.web.model.Ticket;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class EventDemo extends BasePage {
@@ -41,7 +41,7 @@ public class EventDemo extends BasePage {
     @SpringBean
     private ContextCurrentService ccservice;
     
-    private Ticket ticket = (new TicketServiceImpl()).createEmptyTicket();
+    private Ticket ticket = new Ticket("");
 
     public EventDemo() {
 

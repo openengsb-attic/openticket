@@ -24,13 +24,12 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.taskbox.TaskboxService;
-import org.openengsb.core.taskbox.model.InformationTaskStep;
-import org.openengsb.core.taskbox.model.ReviewerTaskStep;
 import org.openengsb.core.taskbox.model.TaskStep;
-import org.openengsb.core.taskbox.model.Ticket;
 
 import org.openengsb.openticket.ui.web.TicketService;
 import org.openengsb.openticket.ui.web.TicketServiceImpl;
+import org.openengsb.openticket.ui.web.model.ReviewerTaskStep;
+import org.openengsb.openticket.ui.web.model.Ticket;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class WorkflowDemo extends BasePage {

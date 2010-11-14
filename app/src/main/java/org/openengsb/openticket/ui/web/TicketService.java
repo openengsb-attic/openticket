@@ -19,7 +19,7 @@
 package org.openengsb.openticket.ui.web;
 
 import org.openengsb.core.taskbox.model.TaskStepType;
-import org.openengsb.core.taskbox.model.Ticket;
+import org.openengsb.openticket.ui.web.model.Ticket;
 import org.openengsb.core.taskbox.model.TaskStep;
 
 public interface TicketService {

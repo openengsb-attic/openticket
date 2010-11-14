@@ -20,13 +20,13 @@ package org.openengsb.openticket.ui.web;
 
 import java.util.UUID;
 
-import org.openengsb.core.taskbox.model.CompleteTicketInformationStep;
-import org.openengsb.core.taskbox.model.DeveloperTaskStep;
-import org.openengsb.core.taskbox.model.InformationTaskStep;
-import org.openengsb.core.taskbox.model.ReviewerTaskStep;
+import org.openengsb.openticket.ui.web.model.CompleteTicketInformationStep;
+import org.openengsb.openticket.ui.web.model.DeveloperTaskStep;
+import org.openengsb.openticket.ui.web.model.InformationTaskStep;
+import org.openengsb.openticket.ui.web.model.ReviewerTaskStep;
 import org.openengsb.core.taskbox.model.TaskStep;
 import org.openengsb.core.taskbox.model.TaskStepType;
-import org.openengsb.core.taskbox.model.Ticket;
+import org.openengsb.openticket.ui.web.model.Ticket;
 
 public class TicketServiceImpl implements TicketService {
 	
