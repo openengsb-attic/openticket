@@ -24,53 +24,48 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.taskbox.TaskboxService;
-import org.openengsb.core.taskbox.model.TaskStep;
-
 import org.openengsb.openticket.model.ReviewerTaskStep;
 import org.openengsb.openticket.model.Ticket;
-import org.openengsb.openticket.ui.web.TicketService;
-import org.openengsb.openticket.ui.web.TicketServiceImpl;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class WorkflowDemo extends BasePage {
     @SpringBean
     private TaskboxService service;
-    
+
     public WorkflowDemo() {
         try {
             TicketService ticketService = new TicketServiceImpl();
-            
+
             Ticket ticket = ticketService.createEmptyTicket();
             ticket.setType("reviewer");
-            //TaskStep...
+            // TaskStep...
             ticket.setCurrentTaskStep(new ReviewerTaskStep("Review-1", "...for your information!"));
             WebTaskStep curTS = ((ReviewerTaskStep) ticket.getCurrentTaskStep());
             ((ReviewerTaskStep) curTS).setFeedback("feedback message");
             ((ReviewerTaskStep) curTS).setReviewStatus(true);
             ticket.setCurrentTaskStep(curTS);
-            //TaskStep END...
-            service.startWorkflow("tasktest","ticket", ticket);
-               add(new Label("testoutput", service.getWorkflowMessage()
-                +" - [current Task step: "+ticket.getCurrentTaskStep().getName()+"]"
-                ));
+            // TaskStep END...
+            service.startWorkflow("tasktest", "ticket", ticket);
+            add(new Label("testoutput", service.getWorkflowMessage()
+                    + " - [current Task step: " + ticket.getCurrentTaskStep().getName() + "]"));
             ticket = ticketService.createEmptyTicket();
             ticket.setType("developer");
-        	service.startWorkflow("tasktest","ticket", ticket);
+            service.startWorkflow("tasktest", "ticket", ticket);
             add(new Label("testoutput2", service.getWorkflowMessage()));
-            
+
             ticket = ticketService.createEmptyTicket();
             ticket.setType("mail-incomplete");
-        	service.startWorkflow("tasktest","ticket", ticket);
+            service.startWorkflow("tasktest", "ticket", ticket);
             add(new Label("testoutput3", service.getWorkflowMessage()));
-            
+
         } catch (Exception e) {
-        	StringWriter sw = new StringWriter();
+            StringWriter sw = new StringWriter();
             PrintWriter pw = new PrintWriter(sw);
             e.printStackTrace(pw);
-        	
-        	add(new Label("testoutput", new StringResourceModel("error", this, null).getString() + 
-            		"\n" + e.getMessage() + "\n\nStacktrace:\n" + sw.toString()));
+
+            add(new Label("testoutput", new StringResourceModel("error", this, null).getString() +
+                    "\n" + e.getMessage() + "\n\nStacktrace:\n" + sw.toString()));
             add(new Label("testoutput2", ""));
             add(new Label("testoutput3", ""));
         }

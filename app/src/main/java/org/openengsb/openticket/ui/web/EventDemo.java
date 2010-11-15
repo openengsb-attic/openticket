@@ -19,28 +19,24 @@ package org.openengsb.openticket.ui.web;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.Event;
 import org.openengsb.core.common.context.ContextCurrentService;
-import org.openengsb.core.common.persistence.PersistenceException;
+import org.openengsb.core.common.workflow.WorkflowException;
 import org.openengsb.core.taskbox.TaskboxException;
 import org.openengsb.core.taskbox.TaskboxService;
-import org.openengsb.core.common.workflow.WorkflowException;
-import org.openengsb.openticket.model.TestObject;
 import org.openengsb.openticket.model.Ticket;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class EventDemo extends BasePage {
     @SpringBean
     private TaskboxService service;
-    
+
     @SpringBean
     private ContextCurrentService ccservice;
-    
+
     private Ticket ticket = new Ticket("");
 
     public EventDemo() {
@@ -49,9 +45,8 @@ public class EventDemo extends BasePage {
         feedback.setOutputMarkupId(true);
         add(feedback);
 
-        
-        final String context=ccservice.getThreadLocalContext();
-        Form form = new Form<TestObject>("form");
+        final String context = ccservice.getThreadLocalContext();
+        Form<Object> form = new Form<Object>("form");
         form.setOutputMarkupId(true);
         add(form);
 
@@ -63,14 +58,13 @@ public class EventDemo extends BasePage {
                 @Override
                 protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                     try {
-                        ccservice.setThreadLocalContext(context);/*
+                        ccservice.setThreadLocalContext(context);
                         service.processEvent(new Event() {
                             @Override
                             public String getType() {
                                 return "FirstClick";
                             }
-                        });*/
-                        service.processEvent(new FirstClickEvent());
+                        });
                         info("FirstClick send!");
                         target.addComponent(feedback);
                     } catch (WorkflowException e) {

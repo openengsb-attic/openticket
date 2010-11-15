@@ -43,8 +43,7 @@ public class Ticket implements WebTask, Serializable {
     private List<String> history;
 
     /*
-     * stores general info about the Ticket e.g. mailtext if the ticket was
-     * created out of a mail
+     * stores general info about the Ticket e.g. mailtext if the ticket was created out of a mail
      */
     private List<String> notes;
 
@@ -162,13 +161,13 @@ public class Ticket implements WebTask, Serializable {
         return this.historyTaskSteps;
     }
 
-    public Panel getPanel(String id){
-        if(currentTaskStep==null){
+    public Panel getPanel(String id) {
+        if (currentTaskStep == null) {
             this.setCurrentTaskStep(new DeveloperTaskStep("initial", "initial step"));
             this.finishCurrentTaskStep(new DeveloperTaskStep("first", "first step"));
             this.finishCurrentTaskStep(new DeveloperTaskStep("second", "second step"));
         }
-	    Panel panel = new TicketPanel(id, this);
-	    return panel;
-	}
+        Panel panel = new TicketPanel(id, this);
+        return panel;
+    }
 }
