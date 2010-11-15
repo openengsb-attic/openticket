@@ -53,12 +53,12 @@ public final class BaseExamConfiguration {
     }
 
     public static void addEntireOpenEngSBPlatform(List<Option> baseConfiguration) {
-        baseConfiguration.add(CoreOptions.provision(OpenEngSBBundles.OPENENGSB_CORE_TASKBOX));
+        baseConfiguration.add(CoreOptions.provision(OpenTicketBundles.OPENENGSB_CORE_TASKBOX));
         baseConfiguration.add(CoreOptions.provision(OpenTicketBundles.OPENTICKET_APP));
     }
 
     public static void addHtmlUnitTestDriver(List<Option> baseConfiguration) {
-        baseConfiguration.add(CoreOptions.provision(OpenEngSBBundles.OPENENGSB_INTEGRATIONTEST_WRAPPED_HTMLUNIT));
+        baseConfiguration.add(CoreOptions.provision(OpenTicketBundles.OPENTICKET_INTEGRATIONTEST_WRAPPED_HTMLUNIT));
     }
 
     public static List<Option> getBaseExamOptions(String pathToRoot) {
@@ -148,7 +148,7 @@ public final class BaseExamConfiguration {
         }
     }
 
-    public static String getRootPropertiesFromPom(String fileUrl) {
+    public static String getOpenTicketVersion(String fileUrl) {
         try {
             File file = new File(fileUrl);
             DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
@@ -161,6 +161,34 @@ public final class BaseExamConfiguration {
                 if (fstNode.getNodeType() == Node.ELEMENT_NODE
                         && ((Element) fstNode).getNodeName().equals("version")) {
                     return fstNode.getTextContent();
+                }
+            }
+            return null;
+        } catch (Exception e) {
+            throw new RuntimeException("Internal Error", e);
+        }
+    }
+    
+    public static String getOpenEngSBVersion(String fileUrl) {
+        try {
+            File file = new File(fileUrl);
+            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
+            DocumentBuilder db = dbf.newDocumentBuilder();
+            Document doc = db.parse(file);
+            doc.getDocumentElement().normalize();
+            NodeList nodeLst = doc.getDocumentElement().getChildNodes();
+            for (int s = 0; s < nodeLst.getLength(); s++) {
+                Node fstNode = nodeLst.item(s);
+                if (fstNode.getNodeType() == Node.ELEMENT_NODE
+                        && ((Element) fstNode).getNodeName().equals("properties")) {
+                    nodeLst = fstNode.getChildNodes();
+                    for (int s2 = 0; s2 < nodeLst.getLength(); s2++) {
+                        fstNode = nodeLst.item(s);
+                        if (fstNode.getNodeType() == Node.ELEMENT_NODE
+                                && ((Element) fstNode).getNodeName().equals("openengsb.version")) {
+                            return fstNode.getTextContent();
+                        }
+                    }
                 }
             }
             return null;

@@ -26,8 +26,12 @@ public final class OpenTicketBundles {
             .artifactId("openengsb-core-taskbox").version(new OpenEngSBVersionResolver()));
 
     public static final MavenArtifactProvisionOption OPENTICKET_APP = CoreOptions
-        .mavenBundle(new MavenArtifactUrlReference().groupId("org.openengsb.openticket.app").artifactId("openticket-app")
-            .type("war").version(new OpenTicketVersionResolver()));
+        .mavenBundle(new MavenArtifactUrlReference().groupId("org.openengsb.openticket").artifactId(
+                "openticket-app").type("war").version(new OpenTicketVersionResolver()));
+
+    public static final MavenArtifactProvisionOption OPENTICKET_INTEGRATIONTEST_WRAPPED_HTMLUNIT = CoreOptions
+        .mavenBundle(new MavenArtifactUrlReference().groupId("org.openengsb.openticket.integrationtest.wrapped")
+            .artifactId("net.sourceforge.htmlunit-all").version(new OpenTicketVersionResolver()));
 
     private OpenTicketBundles() {
         // should not be instanciable, but should be allowed to contain private

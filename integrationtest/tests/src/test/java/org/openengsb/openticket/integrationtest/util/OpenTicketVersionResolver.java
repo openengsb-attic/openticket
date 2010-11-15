@@ -24,7 +24,7 @@ public class OpenTicketVersionResolver implements VersionResolver {
     @Override
     public String getVersion(String arg0, String arg1) {
         if (openticketVersion == null) {
-            openticketVersion = BaseExamConfiguration.getRootPropertiesFromPom("../../pom.xml");
+            openticketVersion = BaseExamConfiguration.getOpenTicketVersion("../../pom.xml");
         }
         return openticketVersion;
     }
