@@ -23,6 +23,11 @@ import static org.junit.Assert.fail;
 import org.junit.Before;
 import org.junit.Test;
 import org.openengsb.core.taskbox.model.TaskStepType;
+import org.openengsb.openticket.model.CompleteTicketInformationStep;
+import org.openengsb.openticket.model.DeveloperTaskStep;
+import org.openengsb.openticket.model.InformationTaskStep;
+import org.openengsb.openticket.model.ReviewerTaskStep;
+import org.openengsb.openticket.model.Ticket;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class TaskboxModelTest {

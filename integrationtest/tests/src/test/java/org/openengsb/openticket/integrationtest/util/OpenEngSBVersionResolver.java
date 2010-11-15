@@ -14,27 +14,19 @@
  * limitations under the License.
  */
 
-package org.openengsb.openticket.ui.web.model;
+package org.openengsb.openticket.integrationtest.util;
 
-import java.io.Serializable;
+import org.ops4j.pax.exam.options.MavenUrlReference.VersionResolver;
 
-public class User implements Serializable {
-    private String username;
-    private String password;
+public class OpenEngSBVersionResolver implements VersionResolver {
+    private static String openengsbVersion;
 
-    public String getUsername() {
-        return this.username;
+    @Override
+    public String getVersion(String arg0, String arg1) {
+        if (openengsbVersion == null) {
+            openengsbVersion = BaseExamConfiguration.getRootPropertiesFromPom("../../pom.xml");
+        }
+        return openengsbVersion;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
-    public String getPassword() {
-        return this.password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
-    }
 }

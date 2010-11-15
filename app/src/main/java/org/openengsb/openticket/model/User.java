@@ -14,19 +14,27 @@
  * limitations under the License.
  */
 
-package org.openengsb.openticket.ui.web.model;
+package org.openengsb.openticket.model;
 
-import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.markup.html.basic.Label;
+import java.io.Serializable;
 
-public class DeveloperTaskStepPanel extends Panel {
+public class User implements Serializable {
+    private String username;
+    private String password;
 
-    //private DeveloperTaskStep step;
-    
-    public DeveloperTaskStepPanel(String id, DeveloperTaskStep step) {
-        super(id);
-        //this.step = step;
-        add(new Label("testoutput", "StepId: "+step.getName()));
-        
+    public String getUsername() {
+        return this.username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return this.password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 }

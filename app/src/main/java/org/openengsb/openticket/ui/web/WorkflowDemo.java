@@ -26,10 +26,10 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.taskbox.TaskboxService;
 import org.openengsb.core.taskbox.model.TaskStep;
 
+import org.openengsb.openticket.model.ReviewerTaskStep;
+import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.ui.web.TicketService;
 import org.openengsb.openticket.ui.web.TicketServiceImpl;
-import org.openengsb.openticket.ui.web.model.ReviewerTaskStep;
-import org.openengsb.openticket.ui.web.model.Ticket;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 @AuthorizeInstantiation("CASEWORKER")
