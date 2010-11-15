@@ -54,8 +54,7 @@
       <artifactId>openengsb-core-taskbox</artifactId>
       <version>${openengsb.version}</version>
     </dependency>
-	
-	<dependency>
+    <dependency>
       <groupId>org.openengsb.ui</groupId>
       <artifactId>openengsb-ui-taskbox</artifactId>
       <version>${openengsb.version}</version>

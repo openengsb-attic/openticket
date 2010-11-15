@@ -31,12 +31,6 @@
 
   <packaging>pom</packaging>
 
-  <properties>
-    <exam.version>1.2.2</exam.version>
-    <htmlunit.version>2.8</htmlunit.version>
-    <tinybundle.version>1.3.0</tinybundle.version>
-  </properties>
-
   <build>
     <resources>
       <resource>

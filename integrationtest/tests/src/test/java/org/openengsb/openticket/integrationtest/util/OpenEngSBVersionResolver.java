@@ -24,7 +24,7 @@ public class OpenEngSBVersionResolver implements VersionResolver {
     @Override
     public String getVersion(String arg0, String arg1) {
         if (openengsbVersion == null) {
-            openengsbVersion = BaseExamConfiguration.getOpenEngSBVersion("../../pom.xml");
+            openengsbVersion = BaseExamConfiguration.extractAllPropertiesFromPom("../../pom.xml").get("openengsb.version");
         }
         return openengsbVersion;
     }

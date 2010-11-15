@@ -36,7 +36,6 @@
 
   <modules>
     <module>tests</module>
-    <module>wrapped</module>
   </modules>
 
 </project>

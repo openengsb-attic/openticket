@@ -49,8 +49,9 @@
       <groupId>org.openengsb.openticket</groupId>
       <artifactId>openticket-app</artifactId>
       <version>${project.version}</version>
-      <type>war</type>
+      <type>jar</type>
       <scope>test</scope>
+      <classifier>classes</classifier>
     </dependency>
 
     <dependency>

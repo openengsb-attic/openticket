@@ -29,6 +29,10 @@ public final class OpenTicketBundles {
         .mavenBundle(new MavenArtifactUrlReference().groupId("org.openengsb.openticket").artifactId(
                 "openticket-app").type("war").version(new OpenTicketVersionResolver()));
 
+    public static final MavenArtifactProvisionOption OPENENGSB_WRAPPED_GUAVA = CoreOptions
+        .mavenBundle(new MavenArtifactUrlReference().groupId("org.openengsb.wrapped")
+            .artifactId("com.google.guava-all").version(new OpenEngSBVersionResolver()));
+
     public static final MavenArtifactProvisionOption OPENTICKET_INTEGRATIONTEST_WRAPPED_HTMLUNIT = CoreOptions
         .mavenBundle(new MavenArtifactUrlReference().groupId("org.openengsb.openticket.integrationtest.wrapped")
             .artifactId("net.sourceforge.htmlunit-all").version(new OpenTicketVersionResolver()));

@@ -58,7 +58,6 @@
     </plugins>
   </build>
 
-
   <dependencies>
     <dependency>
       <groupId>${wrapped.groupId}</groupId>

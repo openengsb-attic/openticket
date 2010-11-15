@@ -55,6 +55,7 @@ public final class BaseExamConfiguration {
     public static void addEntireOpenEngSBPlatform(List<Option> baseConfiguration) {
         baseConfiguration.add(CoreOptions.provision(OpenTicketBundles.OPENENGSB_CORE_TASKBOX));
         baseConfiguration.add(CoreOptions.provision(OpenTicketBundles.OPENTICKET_APP));
+        baseConfiguration.add(CoreOptions.provision(OpenTicketBundles.OPENENGSB_WRAPPED_GUAVA));
     }
 
     public static void addHtmlUnitTestDriver(List<Option> baseConfiguration) {
@@ -62,7 +63,7 @@ public final class BaseExamConfiguration {
     }
 
     public static List<Option> getBaseExamOptions(String pathToRoot) {
-        Map<String, String> properties = extractAllPropertiesFromPom(pathToRoot + "poms/pom.xml");
+        Map<String, String> properties = extractAllPropertiesFromPom(pathToRoot + "pom.xml");
         String pomfile = readFileAsString(pathToRoot + "provision/pom.xml");
         for (Entry<String, String> entry : properties.entrySet()) {
             pomfile = pomfile.replaceAll("\\$\\{" + entry.getKey() + "\\}", entry.getValue());
@@ -120,7 +121,7 @@ public final class BaseExamConfiguration {
         }
     }
 
-    private static Map<String, String> extractAllPropertiesFromPom(String fileUrl) {
+    public static Map<String, String> extractAllPropertiesFromPom(String fileUrl) {
         try {
             Map<String, String> versions = new HashMap<String, String>();
             File file = new File(fileUrl);
@@ -161,34 +162,6 @@ public final class BaseExamConfiguration {
                 if (fstNode.getNodeType() == Node.ELEMENT_NODE
                         && ((Element) fstNode).getNodeName().equals("version")) {
                     return fstNode.getTextContent();
-                }
-            }
-            return null;
-        } catch (Exception e) {
-            throw new RuntimeException("Internal Error", e);
-        }
-    }
-    
-    public static String getOpenEngSBVersion(String fileUrl) {
-        try {
-            File file = new File(fileUrl);
-            DocumentBuilderFactory dbf = DocumentBuilderFactory.newInstance();
-            DocumentBuilder db = dbf.newDocumentBuilder();
-            Document doc = db.parse(file);
-            doc.getDocumentElement().normalize();
-            NodeList nodeLst = doc.getDocumentElement().getChildNodes();
-            for (int s = 0; s < nodeLst.getLength(); s++) {
-                Node fstNode = nodeLst.item(s);
-                if (fstNode.getNodeType() == Node.ELEMENT_NODE
-                        && ((Element) fstNode).getNodeName().equals("properties")) {
-                    nodeLst = fstNode.getChildNodes();
-                    for (int s2 = 0; s2 < nodeLst.getLength(); s2++) {
-                        fstNode = nodeLst.item(s);
-                        if (fstNode.getNodeType() == Node.ELEMENT_NODE
-                                && ((Element) fstNode).getNodeName().equals("openengsb.version")) {
-                            return fstNode.getTextContent();
-                        }
-                    }
                 }
             }
             return null;
