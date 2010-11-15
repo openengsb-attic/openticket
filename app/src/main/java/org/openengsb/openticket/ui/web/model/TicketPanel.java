@@ -21,14 +21,14 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.openengsb.core.taskbox.model.TaskStep;
+import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class TicketPanel extends Panel {
 
@@ -36,12 +36,12 @@ public class TicketPanel extends Panel {
     private Panel currentTaskPanel;
     private List<Link> list = new ArrayList<Link>();
     private Map<String, Panel> panelMap = new HashMap<String, Panel>();
-    private List<TaskStep> stepList = new ArrayList<TaskStep>();
+    private List<WebTaskStep> stepList = new ArrayList<WebTaskStep>();
     
     public TicketPanel(String id, Ticket ticket) {
         super(id);
         add(new Label("testoutput", "TicketId: "+ticket.getId()));
-        TaskStep currentStep = ticket.getCurrentTaskStep();
+        WebTaskStep currentStep = ticket.getCurrentTaskStep();
         taskPanel = currentTaskPanel = currentStep.getPanel("taskPanel");
         taskPanel.setOutputMarkupId(true);
         currentTaskPanel.setOutputMarkupId(true);
@@ -53,17 +53,16 @@ public class TicketPanel extends Panel {
                 taskPanel = currentTaskPanel;
             }
         });
-        IModel<List<TaskStep>> stepModel = new LoadableDetachableModel<List<TaskStep>>() {
+        IModel<? extends List<? extends WebTaskStep>> stepModel = new LoadableDetachableModel<List<WebTaskStep>>() {
             @Override
-            protected List<TaskStep> load() {
+            protected List<WebTaskStep> load() {
                 return stepList;
             }
         };
-        add(new ListView<TaskStep>("taskItems", stepModel) {
-
+        add(new ListView<WebTaskStep>("taskItems", stepModel) {
             @Override
-            protected void populateItem(ListItem<TaskStep> item) {
-                item.add(new Link<TaskStep>("taskStep", item.getModel()) {
+            protected void populateItem(ListItem<WebTaskStep> item) {
+                item.add(new Link<WebTaskStep>("taskStep", item.getModel()) {
                     @Override
                     public void onClick() {
                         Panel newPanel = getModelObject().getPanel("taskPanel");

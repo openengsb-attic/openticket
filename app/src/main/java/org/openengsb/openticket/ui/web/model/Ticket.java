@@ -24,19 +24,20 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+
 import org.apache.wicket.markup.html.panel.Panel;
-import org.openengsb.core.taskbox.model.TaskStep;
 import org.openengsb.ui.taskbox.model.WebTask;
+import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class Ticket implements WebTask, Serializable {
     private String id;
     private String type;
 
     // the current Task Step is saved here
-    private TaskStep currentTaskStep;
+    private WebTaskStep currentTaskStep;
 
     // history of all previous Task Steps
-    private List<TaskStep> historyTaskSteps;
+    private List<WebTaskStep> historyTaskSteps;
 
     // stores detailed history info about the lifecycle of the ticket
     private List<String> history;
@@ -55,7 +56,7 @@ public class Ticket implements WebTask, Serializable {
         this.notes = new ArrayList<String>();
 
         this.currentTaskStep = null;
-        this.historyTaskSteps = new ArrayList<TaskStep>();
+        this.historyTaskSteps = new ArrayList<WebTaskStep>();
 
         this.addHistoryEntry("created empty Ticket");
     }
@@ -117,7 +118,7 @@ public class Ticket implements WebTask, Serializable {
         return this.notes;
     }
 
-    public void setCurrentTaskStep(TaskStep newCurrentTaskStep) {
+    public void setCurrentTaskStep(WebTaskStep newCurrentTaskStep) {
         if (newCurrentTaskStep != null) {
             this.currentTaskStep = newCurrentTaskStep;
 
@@ -125,12 +126,12 @@ public class Ticket implements WebTask, Serializable {
         }
     }
 
-    public TaskStep getCurrentTaskStep() {
+    public WebTaskStep getCurrentTaskStep() {
         return currentTaskStep;
     }
 
-    public TaskStep finishCurrentTaskStep() {
-        TaskStep ts = currentTaskStep;
+    public WebTaskStep finishCurrentTaskStep() {
+        WebTaskStep ts = currentTaskStep;
         this.currentTaskStep = null;
         if (ts != null) {
             ts.setDoneFlag(true);
@@ -141,8 +142,8 @@ public class Ticket implements WebTask, Serializable {
             return null;
     }
 
-    public TaskStep finishCurrentTaskStep(TaskStep nextTaskStep) {
-        TaskStep ts = this.currentTaskStep;
+    public WebTaskStep finishCurrentTaskStep(WebTaskStep nextTaskStep) {
+        WebTaskStep ts = this.currentTaskStep;
         if (ts != null) {
             ts.setDoneFlag(true);
             this.historyTaskSteps.add(ts);
@@ -155,7 +156,7 @@ public class Ticket implements WebTask, Serializable {
         }
     }
 
-    public List<TaskStep> getHistoryTaskSteps() {
+    public List<WebTaskStep> getHistoryTaskSteps() {
         if (this.historyTaskSteps == null || this.historyTaskSteps.isEmpty())
             return null;
         return this.historyTaskSteps;

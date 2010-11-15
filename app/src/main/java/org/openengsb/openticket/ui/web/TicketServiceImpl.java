@@ -20,13 +20,13 @@ package org.openengsb.openticket.ui.web;
 
 import java.util.UUID;
 
+import org.openengsb.core.taskbox.model.TaskStepType;
 import org.openengsb.openticket.ui.web.model.CompleteTicketInformationStep;
 import org.openengsb.openticket.ui.web.model.DeveloperTaskStep;
 import org.openengsb.openticket.ui.web.model.InformationTaskStep;
 import org.openengsb.openticket.ui.web.model.ReviewerTaskStep;
-import org.openengsb.core.taskbox.model.TaskStep;
-import org.openengsb.core.taskbox.model.TaskStepType;
 import org.openengsb.openticket.ui.web.model.Ticket;
+import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class TicketServiceImpl implements TicketService {
 	
@@ -39,8 +39,8 @@ public class TicketServiceImpl implements TicketService {
 	}
 
 	@Override
-	public TaskStep createNewTaskStep(TaskStepType taskStepType, String taskStepName, String taskStepDescription) {
-		TaskStep newTaskStep = null;
+	public WebTaskStep createNewTaskStep(TaskStepType taskStepType, String taskStepName, String taskStepDescription) {
+	    WebTaskStep newTaskStep = null;
 		switch(taskStepType) {
 		case CompleteTicketInformationStep:
 			newTaskStep = new CompleteTicketInformationStep(taskStepName, taskStepDescription);

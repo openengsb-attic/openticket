@@ -30,6 +30,7 @@ import org.openengsb.openticket.ui.web.TicketService;
 import org.openengsb.openticket.ui.web.TicketServiceImpl;
 import org.openengsb.openticket.ui.web.model.ReviewerTaskStep;
 import org.openengsb.openticket.ui.web.model.Ticket;
+import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class WorkflowDemo extends BasePage {
@@ -44,7 +45,7 @@ public class WorkflowDemo extends BasePage {
             ticket.setType("reviewer");
             //TaskStep...
             ticket.setCurrentTaskStep(new ReviewerTaskStep("Review-1", "...for your information!"));
-            TaskStep curTS = ((ReviewerTaskStep) ticket.getCurrentTaskStep());
+            WebTaskStep curTS = ((ReviewerTaskStep) ticket.getCurrentTaskStep());
             ((ReviewerTaskStep) curTS).setFeedback("feedback message");
             ((ReviewerTaskStep) curTS).setReviewStatus(true);
             ticket.setCurrentTaskStep(curTS);
