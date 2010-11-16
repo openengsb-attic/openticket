@@ -66,6 +66,7 @@ public class Ticket implements WebTask, Serializable {
         return id;
     }
 
+    @Override
     public void setId(String id) {
         String oldId = this.id;
         this.id = id;
@@ -78,6 +79,7 @@ public class Ticket implements WebTask, Serializable {
         return type;
     }
 
+    @Override
     public void setType(String type) {
         String oldType = this.type;
         this.type = type;
