@@ -90,13 +90,10 @@ a.none {
   background: transparent url("../images/header.png") repeat-x scroll top left;
 }
 
-#banner h1 {
+#banner .logo {
   float: left;
-  color: white;
-  font-size: 2.5em;
-  font-weight: bold;
-  margin-top: 0.7em;
-  margin-left: 0.6em;
+  margin-top: 0.4em;
+  margin-left: 0.7em;
 }
 
 #banner .languages {
