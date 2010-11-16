@@ -91,7 +91,6 @@ public class DeveloperTaskStep implements WebTaskStep, Serializable {
 
     @Override
     public String getTaskStepTypeText() {
-        // String className=this.getClass().getName();
         return "DeveloperTaskStep";
     }
 

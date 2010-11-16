@@ -30,7 +30,7 @@ import org.openengsb.openticket.model.ReviewerTaskStep;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
-public class TaskboxModelTest {
+public class OpenticketModelTest {
     private Ticket t;
 
     @Before

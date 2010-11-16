@@ -26,12 +26,17 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.wicket.markup.html.panel.Panel;
+import org.joda.time.DateTime;
 import org.openengsb.ui.taskbox.model.WebTask;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class Ticket implements WebTask, Serializable {
     private String id;
     private String type;
+    private DateTime creationTimestamp;
+    private String description;
+    private TicketPriority priority;
+    private String customer;
 
     // the current Task Step is saved here
     private WebTaskStep currentTaskStep;
@@ -50,13 +55,9 @@ public class Ticket implements WebTask, Serializable {
     public Ticket(String id) {
         super();
         this.id = id;
-        this.type = null;
         this.history = new ArrayList<String>();
         this.notes = new ArrayList<String>();
-
-        this.currentTaskStep = null;
         this.historyTaskSteps = new ArrayList<WebTaskStep>();
-
         this.addHistoryEntry("created empty Ticket");
     }
 
@@ -169,5 +170,37 @@ public class Ticket implements WebTask, Serializable {
         }
         Panel panel = new TicketPanel(id, this);
         return panel;
+    }
+
+    public void setCreationTimestamp(DateTime creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
+    }
+
+    public DateTime getCreationTimestamp() {
+        return creationTimestamp;
+    }
+
+    public void setPriority(TicketPriority priority) {
+        this.priority = priority;
+    }
+
+    public TicketPriority getPriority() {
+        return priority;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    public String getCustomer() {
+        return customer;
     }
 }
