@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package org.openengsb.openticket.ui.web.model;
+package org.openengsb.openticket.model;
 
 import java.io.Serializable;
 

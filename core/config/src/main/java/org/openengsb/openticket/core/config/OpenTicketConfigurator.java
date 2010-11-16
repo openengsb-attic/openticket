@@ -40,6 +40,7 @@ public class OpenTicketConfigurator {
     private void addGlobalsAndImports() {
         try {
             ruleManager.addGlobal(TaskboxService.class.getCanonicalName(), "taskbox");
+            ruleManager.addImport("org.openengsb.openticket.model.Ticket");
 
         } catch (RuleBaseException e) {
             throw new RuntimeException(e);

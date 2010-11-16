@@ -34,7 +34,6 @@
   <packaging>pom</packaging>
 
   <properties>
-    <!-- Plugin Versions -->
     <plugin.bundle.version>2.1.0</plugin.bundle.version>
     <plugin.eclipse.version>2.8</plugin.eclipse.version>
     <plugin.openjpa.version>1.1</plugin.openjpa.version>
@@ -64,8 +63,10 @@
     <clover.version>3.0.2</clover.version>
     <maven.plugin.antrun>1.5</maven.plugin.antrun>
     <wicket.version>1.4.12</wicket.version>
-    <!-- Component Versions -->
     <osgi.version>4.2.0</osgi.version>
+    <exam.version>1.2.2</exam.version>
+    <htmlunit.version>2.8</htmlunit.version>
+    <tinybundle.version>1.3.0</tinybundle.version>
   </properties>
 
   <modules>

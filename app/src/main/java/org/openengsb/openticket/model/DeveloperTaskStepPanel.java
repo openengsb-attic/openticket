@@ -14,20 +14,19 @@
  * limitations under the License.
  */
 
-package org.openengsb.openticket.ui.web;
-
-import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Locale;
-
+package org.openengsb.openticket.model;
 
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.basic.Label;
 
-public class TicketPanel extends Panel {
+public class DeveloperTaskStepPanel extends Panel {
 
-    public TicketPanel(String id) {
+    //private DeveloperTaskStep step;
+    
+    public DeveloperTaskStepPanel(String id, DeveloperTaskStep step) {
         super(id);
-        add(new Label("testoutput", "This is a Test"));
+        //this.step = step;
+        add(new Label("testoutput", "StepId: "+step.getName()));
+        
     }
 }

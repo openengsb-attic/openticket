@@ -19,8 +19,8 @@
 package org.openengsb.openticket.ui.web;
 
 import org.openengsb.core.taskbox.model.TaskStepType;
-import org.openengsb.core.taskbox.model.Ticket;
-import org.openengsb.core.taskbox.model.TaskStep;
+import org.openengsb.openticket.model.Ticket;
+import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public interface TicketService {
 	
@@ -32,5 +32,5 @@ public interface TicketService {
 	/**
 	 * Creates a new TaskStep object of a certain shape/type
 	 * */
-	TaskStep createNewTaskStep(TaskStepType taskStepType, String taskStepName, String taskStepDescription);
+	WebTaskStep createNewTaskStep(TaskStepType taskStepType, String taskStepName, String taskStepDescription);
 }

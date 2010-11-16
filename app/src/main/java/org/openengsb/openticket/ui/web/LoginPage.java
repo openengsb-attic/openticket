@@ -23,7 +23,7 @@ import org.apache.wicket.markup.html.form.RequiredTextField;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.StringResourceModel;
-import org.openengsb.openticket.ui.web.model.User;
+import org.openengsb.openticket.model.User;
 
 public class LoginPage extends BasePage {
     private User user = new User();

@@ -46,7 +46,7 @@ public class WicketApplication extends AuthenticatedWebApplication {
     @Override
     public AjaxRequestTarget newAjaxRequestTarget(Page page) {
         if (page instanceof BasePage) {
-			((BasePage) page).initContextForCurrentThread();
+            ((BasePage) page).initContextForCurrentThread();
         }
         return super.newAjaxRequestTarget(page);
     }
