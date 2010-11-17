@@ -57,11 +57,11 @@ public final class BaseExamConfiguration {
     }
 
     public static void addHtmlUnitTestDriver(List<Option> baseConfiguration) {
-        baseConfiguration.add(CoreOptions.provision(OpenTicketBundles.OPENTICKET_INTEGRATIONTEST_WRAPPED_HTMLUNIT));
+        baseConfiguration.add(CoreOptions.provision(OpenTicketBundles.OPENENGSB_INTEGRATIONTEST_WRAPPED_HTMLUNIT));
     }
 
     public static List<Option> getBaseExamOptions(String pathToRoot) {
-        Map<String, String> properties = extractAllPropertiesFromPom(pathToRoot + "pom.xml");
+        Map<String, String> properties = extractAllPropertiesFromPom(pathToRoot + "poms/pom.xml");
         String pomfile = readFileAsString(pathToRoot + "provision/pom.xml");
         for (Entry<String, String> entry : properties.entrySet()) {
             pomfile = pomfile.replaceAll("\\$\\{" + entry.getKey() + "\\}", entry.getValue());
