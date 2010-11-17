@@ -53,9 +53,7 @@ public final class BaseExamConfiguration {
     }
 
     public static void addEntireOpenEngSBPlatform(List<Option> baseConfiguration) {
-        baseConfiguration.add(CoreOptions.provision(OpenTicketBundles.OPENENGSB_CORE_TASKBOX));
         baseConfiguration.add(CoreOptions.provision(OpenTicketBundles.OPENTICKET_APP));
-        baseConfiguration.add(CoreOptions.provision(OpenTicketBundles.OPENENGSB_WRAPPED_GUAVA));
     }
 
     public static void addHtmlUnitTestDriver(List<Option> baseConfiguration) {
@@ -82,6 +80,7 @@ public final class BaseExamConfiguration {
                 PaxRunnerOptions.scanComposite("file:" + pathToRoot
                         + "assembly/target/classes/settings.debug.composite"),
                 PaxRunnerOptions.scanPom("file:" + pathToRoot + "target/finalPom.xml"),
+                PaxRunnerOptions.scanPom("file:" + pathToRoot + "assembly/target/provision-provision.xml"),
                 CoreOptions.frameworks(CoreOptions.felix()) }));
     }
 
