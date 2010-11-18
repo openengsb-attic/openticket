@@ -22,11 +22,11 @@ import static org.junit.Assert.fail;
 
 import org.junit.Before;
 import org.junit.Test;
-import org.openengsb.core.taskbox.model.TaskStepType;
 import org.openengsb.openticket.model.CompleteTicketInformationStep;
 import org.openengsb.openticket.model.DeveloperTaskStep;
 import org.openengsb.openticket.model.InformationTaskStep;
 import org.openengsb.openticket.model.ReviewerTaskStep;
+import org.openengsb.openticket.model.TaskStepType;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
@@ -73,26 +73,26 @@ public class TaskboxModelTest {
     @Test
     public void testCompleteTicketInformationStep() throws Exception {
         WebTaskStep ts = new CompleteTicketInformationStep("name", "desc");
-        assertThat(ts.getTaskStepTypeText(), is("CompleteTicketInformationStep"));
+        assertThat(ts.getTaskStepType(), is("CompleteTicketInformationStep"));
     }
 
     @Test
     public void testDeveloperTaskStep() throws Exception {
         WebTaskStep ts = new DeveloperTaskStep("name", "desc");
-        assertThat(ts.getTaskStepType(), is(TaskStepType.DeveloperTaskStep));
+        assertThat(ts.getTaskStepType(), is(TaskStepType.DeveloperTaskStep.toString()));
     }
 
     @Test
     public void testInformationTaskStep() throws Exception {
         WebTaskStep ts = new InformationTaskStep("name", "desc");
-        assertThat(ts.getTaskStepTypeText(), is("InformationTaskStep"));
+        assertThat(ts.getTaskStepType(), is("InformationTaskStep"));
     }
 
     @Test
     public void testReviewerTaskStep() throws Exception {
         WebTaskStep ts = new ReviewerTaskStep("name", "desc");
         System.out.println(ts.getTaskStepType());
-        assertThat(ts.getTaskStepTypeText(), is("ReviewerTaskStep"));
+        assertThat(ts.getTaskStepType(), is("ReviewerTaskStep"));
     }
 
     @Test

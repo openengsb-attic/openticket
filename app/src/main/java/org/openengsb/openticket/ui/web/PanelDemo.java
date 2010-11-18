@@ -23,7 +23,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
-import org.openengsb.core.taskbox.TaskboxService;
+import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.openticket.model.DeveloperTaskStep;
 import org.openengsb.openticket.model.TestObject;
 import org.openengsb.openticket.model.Ticket;

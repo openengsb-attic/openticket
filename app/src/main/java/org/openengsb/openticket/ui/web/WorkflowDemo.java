@@ -23,7 +23,7 @@ import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInst
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.openengsb.core.taskbox.TaskboxService;
+import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.openticket.model.ReviewerTaskStep;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.ui.taskbox.model.WebTaskStep;

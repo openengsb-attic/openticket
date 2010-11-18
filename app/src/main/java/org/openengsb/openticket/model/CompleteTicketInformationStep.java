@@ -19,7 +19,6 @@
 package org.openengsb.openticket.model;
 
 import org.apache.wicket.markup.html.panel.Panel;
-import org.openengsb.core.taskbox.model.TaskStepType;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class CompleteTicketInformationStep implements WebTaskStep {
@@ -73,14 +72,8 @@ public class CompleteTicketInformationStep implements WebTaskStep {
     }
 
     @Override
-    public TaskStepType getTaskStepType() {
-        return TaskStepType.CompleteTicketInformationStep;
-    }
-
-    @Override
-    public String getTaskStepTypeText() {
-        // String className=this.getClass().getName();
-        return "CompleteTicketInformationStep";
+    public String getTaskStepType() {
+        return TaskStepType.CompleteTicketInformationStep.toString();
     }
 
     @Override
