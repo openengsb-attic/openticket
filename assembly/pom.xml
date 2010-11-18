@@ -217,8 +217,7 @@
               <noDependencies>true</noDependencies>
               <deployPoms>${project.basedir}/../assembly/provision/pom.xml</deployPoms>
               <deployURLs>
-                scan-bundle:mvn:org.openengsb.openticket.core/openticket-core-config/${project.version},
-                scan-bundle:mvn:org.openengsb.openticket.ui/openticket-ui-web/${project.version}/war,
+                scan-bundle:mvn:org.openengsb.openticket/openticket-app/${project.version}/war,
               </deployURLs>
               <provision>
                 <param>--platform=felix</param>
