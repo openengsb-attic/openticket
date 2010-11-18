@@ -9,10 +9,8 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.IColumn;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.FilterForm;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.FilterToolbar;
 import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.TextFilteredPropertyColumn;
-import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.openengsb.core.taskbox.TaskboxException;
 import org.openengsb.core.taskbox.TaskboxService;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.model.TicketDataProvider;
@@ -25,8 +23,9 @@ public class OverviewPanel extends BasePage {
     
     public OverviewPanel(){
         List<IColumn<Ticket>> columns=new ArrayList<IColumn<Ticket>>();
-        columns.add(new TextFilteredPropertyColumn<Ticket,String>(Model.of("id"),"id"));
-        columns.add(new TextFilteredPropertyColumn<Ticket,String>(Model.of("type"),"type"));
+  
+        columns.add(new TextFilteredPropertyColumn<Ticket,String>(Model.of("Id"),"id","id"));
+        columns.add(new TextFilteredPropertyColumn<Ticket,String>(Model.of("Type"),"type","type"));
         
         TicketDataProvider dataProvider=new TicketDataProvider();
         

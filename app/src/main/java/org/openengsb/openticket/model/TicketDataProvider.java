@@ -17,7 +17,7 @@ public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilte
     ISortState sortState = new SingleSortState();
     TicketFilter filter = new TicketFilter();
 
-    final static int SIZE = 111;
+    final static int SIZE = 99;
     List<Ticket> list;
 
     @Override
@@ -37,6 +37,8 @@ public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilte
         List<Ticket> ret = list;
         if (ret.size() > (first + count)) {
             ret = ret.subList(first, first + count);
+        }else{
+            ret=ret.subList(first, ret.size());
         }
         return ret.iterator();
     }

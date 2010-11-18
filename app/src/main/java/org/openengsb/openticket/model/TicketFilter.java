@@ -26,12 +26,12 @@ public class TicketFilter implements Serializable {
         boolean ret = true;
 
         if (id != null) {
-            if (ticket.getId().startsWith(id))
+            if (!ticket.getId().startsWith(id))
                 ret = false;
         }
 
         if (type != null) {
-            if (ticket.getType().startsWith(type))
+            if (!ticket.getType().startsWith(type))
                 ret = false;
         }
         return ret;
