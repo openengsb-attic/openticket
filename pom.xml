@@ -45,7 +45,6 @@
   <modules>
     <module>poms</module>
     <module>provision</module>
-    <module>core</module>
     <module>doc</module>
     <module>app</module>
     <module>integrationtest</module>
