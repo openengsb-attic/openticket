@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<process xmlns="http://drools.org/drools-5.0/process"
+         xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
+         xs:schemaLocation="http://drools.org/drools-5.0/process drools-processes-5.0.xsd"
+         type="RuleFlow" name="Global Ticket" id="globalTicket" package-name="openticket" routerLayout="2" >
+
+  <header>
+    <variables>
+      <variable name="ticket" >
+        <type name="org.drools.process.core.datatype.impl.type.ObjectDataType" className="org.openengsb.openticket.model.Ticket" />
+      </variable>
+    </variables>
+  </header>
+
+  <nodes>
+    <start id="1" name="Start" x="144" y="16" width="49" height="49" />
+    <end id="2" name="End" x="135" y="472" width="49" height="49" />
+    <split id="7" name="Gateway" x="144" y="97" width="49" height="49" type="2" >
+      <constraints>
+        <constraint toNodeId="9" toType="DROOLS_DEFAULT" name="reviewer" priority="2" type="code" dialect="java" >return "reviewer".equals(ticket.getType());</constraint>
+        <constraint toNodeId="8" toType="DROOLS_DEFAULT" name="developer" priority="1" type="code" dialect="java" >return "developer".equals(ticket.getType());</constraint>
+        <constraint toNodeId="11" toType="DROOLS_DEFAULT" name="unknown" priority="100" type="code" dialect="java" >return true;</constraint>
+      </constraints>
+    </split>
+    <actionNode id="8" name="dev" x="16" y="178" width="80" height="48" >
+        <action type="expression" dialect="java" >taskbox.setWorkflowMessage("processing developer ticket &lt;" + ticket.getType() + "&gt;");</action>
+    </actionNode>
+    <actionNode id="9" name="rev" x="128" y="179" width="80" height="48" >
+        <action type="expression" dialect="java" >taskbox.setWorkflowMessage("processing reviewer ticket &lt;" + ticket.getType() + "&gt;");</action>
+    </actionNode>
+    <join id="10" name="Gateway" x="142" y="324" width="49" height="49" type="2" />
+    <actionNode id="11" name="other" x="240" y="178" width="80" height="48" >
+        <action type="expression" dialect="java" >taskbox.setWorkflowMessage("processing ticket with unknown type &lt;" + ticket.getType() + "&gt;");</action>
+    </actionNode>
+    <subProcess id="12" name="Process DeveloperTaskStep" x="6" y="251" width="159" height="48" processId="developerTaskStep" >
+      <mapping type="in" from="ticket" to="ticket" />
+      <mapping type="out" from="ticket" to="ticket" />
+    </subProcess>
+    <actionNode id="13" name="successMessage" x="108" y="402" width="115" height="48" >
+        <action type="expression" dialect="java" >taskbox.setWorkflowMessage("finished proccessing of ticket &lt;" + ticket.getID() + "&gt;");</action>
+    </actionNode>
+  </nodes>
+
+  <connections>
+    <connection from="13" to="2" />
+    <connection from="1" to="7" />
+    <connection from="7" to="8" />
+    <connection from="7" to="9" />
+    <connection from="9" to="10" />
+    <connection from="11" to="10" />
+    <connection from="12" to="10" />
+    <connection from="7" to="11" />
+    <connection from="8" to="12" />
+    <connection from="10" to="13" />
+  </connections>
+
+</process>

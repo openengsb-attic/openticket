@@ -26,6 +26,7 @@ import org.openengsb.core.common.workflow.RuleBaseException;
 import org.openengsb.core.common.workflow.RuleManager;
 import org.openengsb.core.common.workflow.model.RuleBaseElementId;
 import org.openengsb.core.common.workflow.model.RuleBaseElementType;
+import org.openengsb.openticket.core.TicketService;
 
 public class OpenTicketConfigurator {
     private Log log = LogFactory.getLog(getClass());
@@ -40,6 +41,7 @@ public class OpenTicketConfigurator {
     private void addGlobalsAndImports() {
         try {
             ruleManager.addGlobal(TaskboxService.class.getCanonicalName(), "taskbox");
+            ruleManager.addGlobal(TicketService.class.getCanonicalName(), "ticketService");
             ruleManager.addImport("org.openengsb.openticket.model.Ticket");
         } catch (RuleBaseException e) {
             throw new RuntimeException(e);
@@ -53,22 +55,28 @@ public class OpenTicketConfigurator {
         try {
 
             log.info("about to load workflow 'tasktest'");
-
             is = getClass().getClassLoader().getResourceAsStream("tasktest.rf");
             testWorkflow = IOUtils.toString(is);
             id = new RuleBaseElementId(RuleBaseElementType.Process, "tasktest");
             ruleManager.add(id, testWorkflow);
-
             log.info("loaded workflow 'tasktest'");
+
+            
             // TODO: refactor the copy.
             log.info("about to load workflow 'eventtest'");
-
             is = getClass().getClassLoader().getResourceAsStream("eventtest.rf");
             testWorkflow = IOUtils.toString(is);
             id = new RuleBaseElementId(RuleBaseElementType.Process, "eventtest");
             ruleManager.add(id, testWorkflow);
-
             log.info("loaded workflow 'eventtest'");
+            
+            
+            log.info("about to load workflow 'GlobalTicket'");
+            is = getClass().getClassLoader().getResourceAsStream("GlobalTicket.rf");
+            testWorkflow = IOUtils.toString(is);
+            id = new RuleBaseElementId(RuleBaseElementType.Process, "GlobalTicket");
+            ruleManager.add(id, testWorkflow);
+            log.info("loaded workflow 'GlobalTicket'");
 
         } catch (RuleBaseException e) {
             log.error(e.getMessage(), e);
