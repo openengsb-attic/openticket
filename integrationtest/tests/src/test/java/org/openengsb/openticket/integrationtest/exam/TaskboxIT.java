@@ -19,7 +19,6 @@ package org.openengsb.openticket.integrationtest.exam;
 import static org.junit.Assert.assertEquals;
 
 import java.io.InputStream;
-import java.util.UUID;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
@@ -49,6 +48,7 @@ public class TaskboxIT extends AbstractExamTestHelper {
         ContextCurrentService contextService = retrieveService(getBundleContext(), ContextCurrentService.class);
         contextService.createContext("events");
         contextService.setThreadLocalContext("events");
+
         ruleManager.addGlobal(TaskboxService.class.getCanonicalName(), "taskbox");
 
         InputStream is = getClass().getClassLoader().getResourceAsStream("eventtest.rf");
@@ -59,8 +59,7 @@ public class TaskboxIT extends AbstractExamTestHelper {
 
     @Test
     public void eventTest() throws TaskboxException, WorkflowException {
-        UUID uuid = UUID.randomUUID();
-        Ticket ticket = new Ticket("ID-" + uuid.toString());
+        Ticket ticket = new Ticket("");
 
         taskboxService.startWorkflow("eventtest", "task", ticket);
 

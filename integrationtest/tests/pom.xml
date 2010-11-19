@@ -35,10 +35,11 @@
     <!-- Internal Dependencies -->
     <dependency>
       <groupId>org.openengsb.core</groupId>
-      <artifactId>openengsb-core-persistence</artifactId>
+      <artifactId>openengsb-core-common</artifactId>
       <version>${openengsb.version}</version>
       <scope>test</scope>
     </dependency>
+    <!-- to be removed -->
     <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-taskbox</artifactId>

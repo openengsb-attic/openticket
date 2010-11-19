@@ -30,12 +30,11 @@ import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 
 @RunWith(JUnit4TestRunner.class)
 public class BaseUiInfrastructureIT extends AbstractExamTestHelper {
-
     @Test
     public void testIfAllMainNavigationLinksWork() throws Exception {
         final WebClient webClient = new WebClient();
         String loginPageEntryUrl =
-            "http://localhost:8090/openticket/";
+            "http://localhost:8090/openticket/?wicket:bookmarkablePage=:org.openengsb.openticket.ui.web.LoginPage";
         final HtmlPage page = webClient.getPage(loginPageEntryUrl);
         HtmlForm form = page.getForms().get(0);
         HtmlSubmitInput loginButton = form.getInputByValue("Login");
