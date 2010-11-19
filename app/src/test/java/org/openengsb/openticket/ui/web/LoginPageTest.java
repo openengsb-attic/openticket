@@ -28,8 +28,8 @@ import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.util.tester.FormTester;
 import org.junit.Before;
 import org.junit.Test;
-import org.openengsb.core.taskbox.TaskboxException;
-import org.openengsb.core.taskbox.TaskboxService;
+import org.openengsb.core.common.taskbox.TaskboxException;
+import org.openengsb.core.common.taskbox.TaskboxService;
 
 public class LoginPageTest extends AuthenticatedPageTest {
     private TaskboxService taskbox;

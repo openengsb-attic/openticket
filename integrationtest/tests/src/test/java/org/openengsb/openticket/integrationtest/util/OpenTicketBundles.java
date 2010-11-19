@@ -21,21 +21,13 @@ import org.ops4j.pax.exam.options.MavenArtifactProvisionOption;
 import org.ops4j.pax.exam.options.MavenArtifactUrlReference;
 
 public final class OpenTicketBundles {
-    public static final MavenArtifactProvisionOption OPENENGSB_CORE_TASKBOX = CoreOptions
-        .mavenBundle(new MavenArtifactUrlReference().groupId("org.openengsb.core")
-            .artifactId("openengsb-core-taskbox").version(new OpenEngSBVersionResolver()));
-
     public static final MavenArtifactProvisionOption OPENTICKET_APP = CoreOptions
         .mavenBundle(new MavenArtifactUrlReference().groupId("org.openengsb.openticket").artifactId(
                 "openticket-app").type("war").version(new OpenTicketVersionResolver()));
 
-    public static final MavenArtifactProvisionOption OPENENGSB_WRAPPED_GUAVA = CoreOptions
-        .mavenBundle(new MavenArtifactUrlReference().groupId("org.openengsb.wrapped")
-            .artifactId("com.google.guava-all").version(new OpenEngSBVersionResolver()));
-
-    public static final MavenArtifactProvisionOption OPENTICKET_INTEGRATIONTEST_WRAPPED_HTMLUNIT = CoreOptions
-        .mavenBundle(new MavenArtifactUrlReference().groupId("org.openengsb.openticket.integrationtest.wrapped")
-            .artifactId("net.sourceforge.htmlunit-all").version(new OpenTicketVersionResolver()));
+    public static final MavenArtifactProvisionOption OPENENGSB_INTEGRATIONTEST_WRAPPED_HTMLUNIT = CoreOptions
+        .mavenBundle(new MavenArtifactUrlReference().groupId("org.openengsb.integrationtest.wrapped")
+            .artifactId("net.sourceforge.htmlunit-all").version(new OpenEngSBVersionResolver()));
 
     private OpenTicketBundles() {
         // should not be instanciable, but should be allowed to contain private

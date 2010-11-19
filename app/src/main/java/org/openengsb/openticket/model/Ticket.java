@@ -37,6 +37,7 @@ public class Ticket implements WebTask, Serializable {
     private String description;
     private TicketPriority priority;
     private String customer;
+    private String contactEmailAddress;
 
     // the current Task Step is saved here
     private WebTaskStep currentTaskStep;
@@ -48,7 +49,8 @@ public class Ticket implements WebTask, Serializable {
     private List<String> history;
 
     /*
-     * stores general info about the Ticket e.g. mailtext if the ticket was created out of a mail
+     * stores general info about the Ticket e.g. mailtext if the ticket was
+     * created out of a mail
      */
     private List<String> notes;
 
@@ -124,7 +126,7 @@ public class Ticket implements WebTask, Serializable {
         if (newCurrentTaskStep != null) {
             this.currentTaskStep = newCurrentTaskStep;
 
-            this.addHistoryEntry("set currentTaskStep (of type: <" + this.currentTaskStep.getTaskStepTypeText() + ">)");
+            this.addHistoryEntry("set currentTaskStep (of type: <" + this.currentTaskStep.getTaskStepType() + ">)");
         }
     }
 
@@ -186,8 +188,8 @@ public class Ticket implements WebTask, Serializable {
         this.priority = priority;
     }
 
-    public TicketPriority getPriority() {
-        return priority;
+    public String getPriority() {
+        return priority.toString();
     }
 
     public void setDescription(String description) {
@@ -204,5 +206,13 @@ public class Ticket implements WebTask, Serializable {
 
     public String getCustomer() {
         return customer;
+    }
+
+    public void setContactEmailAddress(String contactEmailAddress) {
+        this.contactEmailAddress = contactEmailAddress;
+    }
+
+    public String getContactEmailAddress() {
+        return contactEmailAddress;
     }
 }

@@ -19,7 +19,6 @@ package org.openengsb.openticket.integrationtest.exam;
 import static org.junit.Assert.assertEquals;
 
 import java.io.InputStream;
-import java.util.UUID;
 
 import org.apache.commons.io.IOUtils;
 import org.junit.Before;
@@ -27,12 +26,12 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openengsb.core.common.Event;
 import org.openengsb.core.common.context.ContextCurrentService;
+import org.openengsb.core.common.taskbox.TaskboxException;
+import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.core.common.workflow.RuleManager;
 import org.openengsb.core.common.workflow.WorkflowException;
 import org.openengsb.core.common.workflow.model.RuleBaseElementId;
 import org.openengsb.core.common.workflow.model.RuleBaseElementType;
-import org.openengsb.core.taskbox.TaskboxException;
-import org.openengsb.core.taskbox.TaskboxService;
 import org.openengsb.openticket.integrationtest.util.AbstractExamTestHelper;
 import org.openengsb.openticket.model.Ticket;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
@@ -49,6 +48,7 @@ public class TaskboxIT extends AbstractExamTestHelper {
         ContextCurrentService contextService = retrieveService(getBundleContext(), ContextCurrentService.class);
         contextService.createContext("events");
         contextService.setThreadLocalContext("events");
+
         ruleManager.addGlobal(TaskboxService.class.getCanonicalName(), "taskbox");
 
         InputStream is = getClass().getClassLoader().getResourceAsStream("eventtest.rf");
@@ -59,8 +59,7 @@ public class TaskboxIT extends AbstractExamTestHelper {
 
     @Test
     public void eventTest() throws TaskboxException, WorkflowException {
-        UUID uuid = UUID.randomUUID();
-        Ticket ticket = new Ticket("ID-" + uuid.toString());
+        Ticket ticket = new Ticket("");
 
         taskboxService.startWorkflow("eventtest", "task", ticket);
 

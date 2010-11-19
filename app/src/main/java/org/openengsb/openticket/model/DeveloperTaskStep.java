@@ -21,7 +21,6 @@ package org.openengsb.openticket.model;
 import java.io.Serializable;
 
 import org.apache.wicket.markup.html.panel.Panel;
-import org.openengsb.core.taskbox.model.TaskStepType;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class DeveloperTaskStep implements WebTaskStep, Serializable {
@@ -38,6 +37,7 @@ public class DeveloperTaskStep implements WebTaskStep, Serializable {
      */
     private Integer workingHours;
     private String developerComment;
+    private String problemsOccurred;
 
     // flag, if step is done or not
     private boolean doneFlag;
@@ -84,14 +84,17 @@ public class DeveloperTaskStep implements WebTaskStep, Serializable {
         return developerComment;
     }
 
-    @Override
-	public Panel getPanel(String id) {
-	    return new DeveloperTaskStepPanel(id, this);
+    public void setProblemsOccurred(String problemsOccurred) {
+        this.problemsOccurred = problemsOccurred;
+    }
+
+    public String getProblemsOccurred() {
+        return problemsOccurred;
     }
 
     @Override
-    public String getTaskStepTypeText() {
-        return "DeveloperTaskStep";
+    public Panel getPanel(String id) {
+        return new DeveloperTaskStepPanel(id, this);
     }
 
     @Override
@@ -100,8 +103,8 @@ public class DeveloperTaskStep implements WebTaskStep, Serializable {
     }
 
     @Override
-    public TaskStepType getTaskStepType() {
-        return TaskStepType.DeveloperTaskStep;
+    public String getTaskStepType() {
+        return TaskStepType.DeveloperTaskStep.toString();
     }
 
     // return ID of the According UI Panel

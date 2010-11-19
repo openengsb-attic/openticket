@@ -19,7 +19,6 @@
 package org.openengsb.openticket.model;
 
 import org.apache.wicket.markup.html.panel.Panel;
-import org.openengsb.core.taskbox.model.TaskStepType;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class InformationTaskStep implements WebTaskStep {
@@ -79,19 +78,13 @@ public class InformationTaskStep implements WebTaskStep {
     }
 
     @Override
-    public String getTaskStepTypeText() {
-        // String className=this.getClass().getName();
-        return "InformationTaskStep";
-    }
-
-    @Override
     public String getTaskStepTypeDescription() {
         return "Information";
     }
 
     @Override
-    public TaskStepType getTaskStepType() {
-        return TaskStepType.InformationTaskStep;
+    public String getTaskStepType() {
+        return TaskStepType.InformationTaskStep.toString();
     }
 
     // return ID of the According UI Panel

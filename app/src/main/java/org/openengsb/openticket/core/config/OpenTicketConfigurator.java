@@ -21,7 +21,7 @@ import java.io.InputStream;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openengsb.core.taskbox.TaskboxService;
+import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.core.common.workflow.RuleBaseException;
 import org.openengsb.core.common.workflow.RuleManager;
 import org.openengsb.core.common.workflow.model.RuleBaseElementId;
@@ -41,7 +41,6 @@ public class OpenTicketConfigurator {
         try {
             ruleManager.addGlobal(TaskboxService.class.getCanonicalName(), "taskbox");
             ruleManager.addImport("org.openengsb.openticket.model.Ticket");
-
         } catch (RuleBaseException e) {
             throw new RuntimeException(e);
         }
