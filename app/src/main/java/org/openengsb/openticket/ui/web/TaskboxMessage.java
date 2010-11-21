@@ -5,6 +5,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.core.common.taskbox.TaskboxService;
+import org.openengsb.openticket.core.TicketService;
+import org.openengsb.openticket.model.Ticket;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class TaskboxMessage extends BasePage {

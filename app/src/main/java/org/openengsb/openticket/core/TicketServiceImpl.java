@@ -20,6 +20,8 @@ package org.openengsb.openticket.core;
 
 import java.util.UUID;
 
+import org.apache.commons.logging.Log;
+import org.apache.commons.logging.LogFactory;
 import org.openengsb.openticket.model.TaskStepType;
 import org.openengsb.openticket.model.CompleteTicketInformationStep;
 import org.openengsb.openticket.model.DeveloperTaskStep;
@@ -29,8 +31,13 @@ import org.openengsb.openticket.model.Ticket;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class TicketServiceImpl implements TicketService {
-	
-	@Override
+    private Log log = LogFactory.getLog(getClass());
+    
+    public void init() {
+        log.trace("successfully initialized TicketService");
+    }
+    
+    @Override
 	public Ticket createEmptyTicket() {
 		UUID uuid = UUID.randomUUID();
     	Ticket ticket = new Ticket("ID-" + uuid.toString());
