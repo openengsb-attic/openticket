@@ -11,15 +11,12 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.Filte
 import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.TextFilteredPropertyColumn;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.openengsb.core.taskbox.TaskboxService;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.model.TicketDataProvider;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class OverviewPanel extends BasePage {
 
-    @SpringBean
-    private TaskboxService service;
     
     public OverviewPanel(){
         List<IColumn<Ticket>> columns=new ArrayList<IColumn<Ticket>>();
