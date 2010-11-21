@@ -90,18 +90,6 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.openengsb.core</groupId>
-      <artifactId>openengsb-core-workflow</artifactId>
-      <version>${openengsb.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
-      <groupId>org.openengsb.core</groupId>
-      <artifactId>openengsb-core-taskbox</artifactId>
-      <version>${openengsb.version}</version>
-      <scope>provided</scope>
-    </dependency>
-    <dependency>
       <groupId>org.openengsb.ui</groupId>
       <artifactId>openengsb-ui-taskbox</artifactId>
       <version>${openengsb.version}</version>

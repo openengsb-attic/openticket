@@ -21,7 +21,6 @@ package org.openengsb.openticket.model;
 import java.io.Serializable;
 
 import org.apache.wicket.markup.html.panel.Panel;
-import org.openengsb.core.taskbox.model.TaskStepType;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class DeveloperTaskStep implements WebTaskStep, Serializable {
@@ -90,19 +89,13 @@ public class DeveloperTaskStep implements WebTaskStep, Serializable {
     }
 
     @Override
-    public String getTaskStepTypeText() {
-        // String className=this.getClass().getName();
-        return "DeveloperTaskStep";
-    }
-
-    @Override
     public String getTaskStepTypeDescription() {
         return "Development";
     }
 
     @Override
-    public TaskStepType getTaskStepType() {
-        return TaskStepType.DeveloperTaskStep;
+    public String getTaskStepType() {
+        return TaskStepType.DeveloperTaskStep.toString();
     }
 
     // return ID of the According UI Panel

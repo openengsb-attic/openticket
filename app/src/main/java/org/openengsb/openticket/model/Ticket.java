@@ -121,7 +121,7 @@ public class Ticket implements WebTask, Serializable {
         if (newCurrentTaskStep != null) {
             this.currentTaskStep = newCurrentTaskStep;
 
-            this.addHistoryEntry("set currentTaskStep (of type: <" + this.currentTaskStep.getTaskStepTypeText() + ">)");
+            this.addHistoryEntry("set currentTaskStep (of type: <" + this.currentTaskStep.getTaskStepType() + ">)");
         }
     }
 

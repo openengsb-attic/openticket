@@ -24,9 +24,9 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.Event;
 import org.openengsb.core.common.context.ContextCurrentService;
+import org.openengsb.core.common.taskbox.TaskboxException;
+import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.core.common.workflow.WorkflowException;
-import org.openengsb.core.taskbox.TaskboxException;
-import org.openengsb.core.taskbox.TaskboxService;
 import org.openengsb.openticket.model.Ticket;
 
 @AuthorizeInstantiation("CASEWORKER")
