@@ -20,7 +20,7 @@ package org.openengsb.openticket.core;
 
 import java.util.UUID;
 
-import org.openengsb.core.taskbox.model.TaskStepType;
+import org.openengsb.openticket.model.TaskStepType;
 import org.openengsb.openticket.model.CompleteTicketInformationStep;
 import org.openengsb.openticket.model.DeveloperTaskStep;
 import org.openengsb.openticket.model.InformationTaskStep;

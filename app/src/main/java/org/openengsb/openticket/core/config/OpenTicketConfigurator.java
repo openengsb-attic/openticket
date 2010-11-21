@@ -41,8 +41,8 @@ public class OpenTicketConfigurator {
     private void addGlobalsAndImports() {
         try {
             ruleManager.addGlobal(TaskboxService.class.getCanonicalName(), "taskbox");
-            ruleManager.addGlobal(TicketService.class.getCanonicalName(), "ticketService");
-            ruleManager.addImport("org.openengsb.openticket.model.Ticket");
+            //ruleManager.addGlobal(TicketService.class.getCanonicalName(), "ticketService");
+            //ruleManager.addImport("org.openengsb.openticket.model.Ticket");
         } catch (RuleBaseException e) {
             throw new RuntimeException(e);
         }
@@ -71,12 +71,12 @@ public class OpenTicketConfigurator {
             log.info("loaded workflow 'eventtest'");
             
             
-            log.info("about to load workflow 'GlobalTicket'");
+            /*log.info("about to load workflow 'GlobalTicket'");
             is = getClass().getClassLoader().getResourceAsStream("GlobalTicket.rf");
             testWorkflow = IOUtils.toString(is);
             id = new RuleBaseElementId(RuleBaseElementType.Process, "GlobalTicket");
             ruleManager.add(id, testWorkflow);
-            log.info("loaded workflow 'GlobalTicket'");
+            log.info("loaded workflow 'GlobalTicket'");*/
 
         } catch (RuleBaseException e) {
             log.error(e.getMessage(), e);

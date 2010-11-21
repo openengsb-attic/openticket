@@ -18,7 +18,7 @@
 
 package org.openengsb.openticket.core;
 
-import org.openengsb.core.taskbox.model.TaskStepType;
+import org.openengsb.openticket.model.TaskStepType;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
