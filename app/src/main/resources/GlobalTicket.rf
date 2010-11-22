@@ -37,7 +37,7 @@
       <mapping type="out" from="ticket" to="ticket" />
     </subProcess>
     <actionNode id="13" name="successMessage" x="108" y="402" width="115" height="48" >
-        <action type="expression" dialect="java" >taskbox.setWorkflowMessage("finished proccessing of ticket &lt;" + ticket.getID() + "&gt;");</action>
+        <action type="expression" dialect="java" >taskbox.setWorkflowMessage("finished proccessing of ticket &lt;" + ticket.getId() + "&gt;");</action>
     </actionNode>
   </nodes>
 
