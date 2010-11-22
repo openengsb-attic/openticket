@@ -14,12 +14,18 @@ import org.apache.wicket.model.Model;
 
 public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilterStateLocator {
 
-    ISortState sortState = new SingleSortState();
+    ISortState sortState;
     TicketFilter filter = new TicketFilter();
 
     final static int SIZE = 99;
     List<Ticket> list;
 
+    public TicketDataProvider(){
+        sortState=new SingleSortState();
+        sortState.setPropertySortOrder("id", ISortState.ASCENDING);
+    }
+    
+    
     @Override
     public Object getFilterState() {
         return filter;
