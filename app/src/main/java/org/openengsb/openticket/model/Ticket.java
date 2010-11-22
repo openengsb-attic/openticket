@@ -26,14 +26,14 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.wicket.markup.html.panel.Panel;
-import org.joda.time.DateTime;
+
 import org.openengsb.ui.taskbox.model.WebTask;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class Ticket implements WebTask, Serializable {
     private String id;
     private String type;
-    private DateTime creationTimestamp;
+    private Date creationTimestamp;
     private String description;
     private TicketPriority priority;
     private String customer;
@@ -176,11 +176,11 @@ public class Ticket implements WebTask, Serializable {
         return panel;
     }
 
-    public void setCreationTimestamp(DateTime creationTimestamp) {
+    public void setCreationTimestamp(Date creationTimestamp) {
         this.creationTimestamp = creationTimestamp;
     }
 
-    public DateTime getCreationTimestamp() {
+    public Date getCreationTimestamp() {
         return creationTimestamp;
     }
 
