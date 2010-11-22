@@ -16,33 +16,23 @@
 
 package org.openengsb.openticket.ui.web;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-import java.util.List;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
-import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
-import org.openengsb.core.common.Event;
 import org.openengsb.core.common.context.ContextCurrentService;
 import org.openengsb.core.common.persistence.PersistenceException;
 import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.core.common.taskbox.TaskboxService;
-import org.openengsb.core.common.workflow.WorkflowException;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.model.CompoundPropertyModel;
-import org.apache.wicket.model.IModel;
-import org.apache.wicket.model.Model;
-import org.apache.wicket.model.PropertyModel;
-import org.apache.wicket.model.ResourceModel;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class CreateTicketPage extends BasePage {
@@ -52,9 +42,6 @@ public class CreateTicketPage extends BasePage {
     @SpringBean
     private PersistenceGateway gateway;
     
-    @SpringBean
-    private ContextCurrentService ccservice;
-
     private Ticket ticket = new Ticket("");
 
     public CreateTicketPage() {
@@ -65,8 +52,6 @@ public class CreateTicketPage extends BasePage {
         CompoundPropertyModel<Ticket> ticketModel = new CompoundPropertyModel<Ticket>(ticket);
         Form<Ticket> form = new Form<Ticket>("inputForm", ticketModel);
         form.setOutputMarkupId(true);
-        
-        final String context = ccservice.getThreadLocalContext();
 
         form.add(new TextField<String>("id").setRequired(true).add(StringValidator.minimumLength(2)));
         form.add(new TextField<String>("type").setRequired(true).add(StringValidator.minimumLength(2)));
