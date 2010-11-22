@@ -193,3 +193,29 @@ a.none {
 .footerValidation p {
   margin: 20px 0px 0px 0px;
 }
+
+table.grid {
+	margin-bottom: 10px;
+	font-size: 1em;
+	width: 100%;
+	border-spacing: 0px;
+	}
+	
+ 
+table.grid tr { padding-top: 2px; padding-bottom: 2px; }
+table.grid tr.odd { background-color: #ffebcd; }
+table.grid tr.even { background-color: #fff; }
+table.grid tr td { padding-left: 8px; padding-right: 30px; }
+
+table.grid tr th { font-weight: normal; padding-top: 3px; padding-bottom: 3px; padding-left: 8px; padding-right: 24px; background-color: #EBF4E3; border-bottom: 1px solid #000; border-top: 1px solid #000; text-align: left; white-space: nowrap; vertical-align: middle;}
+table.grid tr th a { padding-right: 15px; background-position: right; background-repeat:no-repeat; }
+table.grid tr th.wicket_orderDown a { color:black; background-image: url(../images/arrow_down.png); }
+table.grid tr th.wicket_orderUp a {  color:black; background-image: url(../images/arrow_up.png); }
+table.grid tr th.wicket_orderNone a { background-image: url(../images/arrow_off.png);}
+table.grid tr th a { font-weight: normal; }
+
+table.grid td.filter-td { font-size: 1em; background-color: #EBF4E3; border-bottom: 1px solid #000; }
+table.grid td.filter-td input.go { width: 45%; }
+table.grid td.filter-td input.clear { width: 45%; }
+table.grid td.filter-td input { width: 100%; font-size: 0.8em; }
+table.grid td.filter-td select { width: 100%; font-size: 0.8em; }
