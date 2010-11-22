@@ -26,8 +26,15 @@ import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInst
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.apache.wicket.validation.validator.StringValidator;
+import org.openengsb.core.common.Event;
+import org.openengsb.core.common.context.ContextCurrentService;
+import org.openengsb.core.common.persistence.PersistenceException;
+import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.core.common.taskbox.TaskboxService;
+import org.openengsb.core.common.workflow.WorkflowException;
 import org.openengsb.openticket.model.Ticket;
+import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
@@ -35,37 +42,51 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
 import org.apache.wicket.model.PropertyModel;
+import org.apache.wicket.model.ResourceModel;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class CreateTicketPage extends BasePage {
     @SpringBean
     private TaskboxService service;
+    
+    @SpringBean
+    private PersistenceGateway gateway;
+    
+    @SpringBean
+    private ContextCurrentService ccservice;
 
     private Ticket ticket = new Ticket("");
-    private Panel panel;
 
     public CreateTicketPage() {
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
         feedback.setOutputMarkupId(true);
         add(feedback);
         
-        
         CompoundPropertyModel<Ticket> ticketModel = new CompoundPropertyModel<Ticket>(ticket);
         Form<Ticket> form = new Form<Ticket>("inputForm", ticketModel);
         form.setOutputMarkupId(true);
         
+        final String context = ccservice.getThreadLocalContext();
 
-        form.add(new TextField<String>("id").setRequired(true));
-        form.add(new TextField<String>("type").setRequired(true));
-        form.add(new TextField<String>("note").setRequired(true));
+        form.add(new TextField<String>("id").setRequired(true).add(StringValidator.minimumLength(2)));
+        form.add(new TextField<String>("type").setRequired(true).add(StringValidator.minimumLength(2)));
+        form.add(new TextArea<String>("note").setRequired(true));
         
         
         form.add(new AjaxButton("submitButton", form)
         {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                 info(new Integer(ticket.getNotes().size()).toString());
-                 System.out.println("success");
+                try {
+                    info("Ticket created");
+                    target.addComponent(feedback);
+                    service.startWorkflow("", "ticket", ticket);
+                    gateway.saveObject(ticket);
+                } catch (PersistenceException e) {
+                    info(e.getMessage());
+                } catch (TaskboxException e) {
+                    info(e.getMessage());
+                }
             }
 
             @Override

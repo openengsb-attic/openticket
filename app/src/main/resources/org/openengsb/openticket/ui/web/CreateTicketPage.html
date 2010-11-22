@@ -27,18 +27,19 @@
       </p>
       <form wicket:id="inputForm">
       	<fieldset>
-      		<legend wicket:message="value:legend.title,title:legend.title">[Create Ticket]</legend>
+      		<legend><wicket:message key="legend.title">[Create Ticket]</wicket:message></legend>
       		<table class="inputTable">
       			<tr>
-      				<td><label for="id" wicket:message="value:input.label.name,title:input.label.name">[Name Label]</label></td>
+      				<td style="text-align:right"><label for="id"><wicket:message key="input.label.name">[Name Label]</wicket:message></label></td>
       				<td><input wicket:id="id" id="id" type="text" size="10"/></td>
       			</tr>
       			<tr>
-      				<td><label for="type" wicket:message="value:input.label.type, title:input.label.type">[Type Label]</label></td>
+      				<td style="text-align:right"><label for="type"><wicket:message key="input.label.type">[Type Label]</wicket:message></label></td>
       				<td><input wicket:id="type" id="type" type="text" size="10"/></td>
-      			</tr><tr>
-      				<td><label for="notesInput" wicket:message="value:input.label.notes,title:input.label.notes">[Notes Label]</label></td>
-      				<td><input wicket:id="note" id="note" type="text" size="50"/></td>
+      			</tr>
+      			<tr>
+      				<td style="text-align:right" valign="top"><label for="notesInput"><wicket:message key="input.label.notes">[Notes Label]</wicket:message></label></td>
+      				<td><textarea wicket:id="note" rows="5" cols="30"></textarea></td>
       			</tr>
       		</table>
       	</fieldset>
