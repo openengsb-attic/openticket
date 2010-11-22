@@ -25,20 +25,27 @@ import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class DeveloperTaskStep implements WebTaskStep, Serializable {
 
-    // name of this step
+    /**
+     * name of this step
+     */
     private String name;
 
-    // description of this step
+    /**
+     * description of this step
+     */
     private String description;
 
-    /*
+    /**
      * Specific DeveloperTaskStep properties: attended working hours, comments
-     * of the developer
+     * of the developer, occurred problems
      */
     private Integer workingHours;
     private String developerComment;
+    private String problemsOccurred;
 
-    // flag, if step is done or not
+    /**
+     * flag, if step is done (finished) or not
+     */
     private boolean doneFlag;
 
     @Override
@@ -62,9 +69,17 @@ public class DeveloperTaskStep implements WebTaskStep, Serializable {
         return description;
     }
 
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
     @Override
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public void setWorkingHours(Integer workingHours) {
@@ -83,9 +98,17 @@ public class DeveloperTaskStep implements WebTaskStep, Serializable {
         return developerComment;
     }
 
+    public void setProblemsOccurred(String problemsOccurred) {
+        this.problemsOccurred = problemsOccurred;
+    }
+
+    public String getProblemsOccurred() {
+        return problemsOccurred;
+    }
+
     @Override
-	public Panel getPanel(String id) {
-	    return new DeveloperTaskStepPanel(id, this);
+    public Panel getPanel(String id) {
+        return new DeveloperTaskStepPanel(id, this);
     }
 
     @Override
@@ -97,10 +120,4 @@ public class DeveloperTaskStep implements WebTaskStep, Serializable {
     public String getTaskStepType() {
         return TaskStepType.DeveloperTaskStep.toString();
     }
-
-    // return ID of the According UI Panel
-    // WicketPanel createEditingPanel();
-
-    // return ID of the According UI Panel
-    // WicketPanel createViewingPanel();
 }

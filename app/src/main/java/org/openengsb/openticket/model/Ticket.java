@@ -26,12 +26,18 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.wicket.markup.html.panel.Panel;
+import org.joda.time.DateTime;
 import org.openengsb.ui.taskbox.model.WebTask;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class Ticket implements WebTask, Serializable {
     private String id;
     private String type;
+    private DateTime creationTimestamp;
+    private String description;
+    private TicketPriority priority;
+    private String customer;
+    private String contactEmailAddress;
 
     // the current Task Step is saved here
     private WebTaskStep currentTaskStep;
@@ -43,20 +49,17 @@ public class Ticket implements WebTask, Serializable {
     private List<String> history;
 
     /*
-     * stores general info about the Ticket e.g. mailtext if the ticket was created out of a mail
+     * stores general info about the Ticket e.g. mailtext if the ticket was
+     * created out of a mail
      */
     private List<String> notes;
 
     public Ticket(String id) {
         super();
         this.id = id;
-        this.type = null;
         this.history = new ArrayList<String>();
         this.notes = new ArrayList<String>();
-
-        this.currentTaskStep = null;
         this.historyTaskSteps = new ArrayList<WebTaskStep>();
-
         this.addHistoryEntry("created empty Ticket");
     }
 
@@ -65,6 +68,7 @@ public class Ticket implements WebTask, Serializable {
         return id;
     }
 
+    @Override
     public void setId(String id) {
         String oldId = this.id;
         this.id = id;
@@ -77,6 +81,7 @@ public class Ticket implements WebTask, Serializable {
         return type;
     }
 
+    @Override
     public void setType(String type) {
         String oldType = this.type;
         this.type = type;
@@ -169,5 +174,45 @@ public class Ticket implements WebTask, Serializable {
         }
         Panel panel = new TicketPanel(id, this);
         return panel;
+    }
+
+    public void setCreationTimestamp(DateTime creationTimestamp) {
+        this.creationTimestamp = creationTimestamp;
+    }
+
+    public DateTime getCreationTimestamp() {
+        return creationTimestamp;
+    }
+
+    public void setPriority(TicketPriority priority) {
+        this.priority = priority;
+    }
+
+    public String getPriority() {
+        return priority.toString();
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setCustomer(String customer) {
+        this.customer = customer;
+    }
+
+    public String getCustomer() {
+        return customer;
+    }
+
+    public void setContactEmailAddress(String contactEmailAddress) {
+        this.contactEmailAddress = contactEmailAddress;
+    }
+
+    public String getContactEmailAddress() {
+        return contactEmailAddress;
     }
 }

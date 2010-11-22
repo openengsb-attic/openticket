@@ -30,7 +30,7 @@ import org.openengsb.openticket.model.TaskStepType;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
-public class TaskboxModelTest {
+public class OpenticketModelTest {
     private Ticket t;
 
     @Before
@@ -39,7 +39,7 @@ public class TaskboxModelTest {
     }
 
     @Test
-    public void testCreateNewTicket() throws Exception {
+    public void testCreateNewTicket_shouldNotFail() throws Exception {
         Ticket nt = new Ticket("nt1");
         if (nt == null)
             fail();
@@ -47,19 +47,19 @@ public class TaskboxModelTest {
     }
 
     @Test
-    public void testTicketId() throws Exception {
+    public void testTicketId_shouldEqualId2() throws Exception {
         t.setId("2");
         assertThat(t.getId(), is("2"));
     }
 
     @Test
-    public void testTicketType() throws Exception {
+    public void testTicketType_shouldEqualTestTicketType() throws Exception {
         t.setType("TestTicketType");
         assertThat(t.getType(), is("TestTicketType"));
     }
 
     @Test
-    public void testTicketHistoryNotes() throws Exception {
+    public void testTicketHistoryNotes_shouldAssert15() throws Exception {
         t = new Ticket("thn");
         t.setType("type");
         t.addNoteEntry("note1");
@@ -71,32 +71,32 @@ public class TaskboxModelTest {
     }
 
     @Test
-    public void testCompleteTicketInformationStep() throws Exception {
+    public void testCompleteTicketInformationStep_shouldAssertTaskStepType() throws Exception {
         WebTaskStep ts = new CompleteTicketInformationStep("name", "desc");
         assertThat(ts.getTaskStepType(), is("CompleteTicketInformationStep"));
     }
 
     @Test
-    public void testDeveloperTaskStep() throws Exception {
+    public void testDeveloperTaskStep_shouldAssertTaskStepType() throws Exception {
         WebTaskStep ts = new DeveloperTaskStep("name", "desc");
         assertThat(ts.getTaskStepType(), is(TaskStepType.DeveloperTaskStep.toString()));
     }
 
     @Test
-    public void testInformationTaskStep() throws Exception {
+    public void testInformationTaskStep_shouldAssertTaskStepType() throws Exception {
         WebTaskStep ts = new InformationTaskStep("name", "desc");
         assertThat(ts.getTaskStepType(), is("InformationTaskStep"));
     }
 
     @Test
-    public void testReviewerTaskStep() throws Exception {
+    public void testReviewerTaskStep_shouldAssertTaskStepType() throws Exception {
         WebTaskStep ts = new ReviewerTaskStep("name", "desc");
         System.out.println(ts.getTaskStepType());
         assertThat(ts.getTaskStepType(), is("ReviewerTaskStep"));
     }
 
     @Test
-    public void testTicketCurrentTaskStep() throws Exception {
+    public void testTicketCurrentTaskStep_shouldAssertTaskStepName() throws Exception {
         WebTaskStep test, ts = new DeveloperTaskStep("dev-name", "dev-desc");
         t.setCurrentTaskStep(ts);
         test = t.getCurrentTaskStep();
@@ -104,7 +104,7 @@ public class TaskboxModelTest {
     }
 
     @Test
-    public void testTicketHistoryTaskSteps() throws Exception {
+    public void testTicketHistoryTaskSteps_shouldAssert3HistoryTaskSteps() throws Exception {
         WebTaskStep ts = new ReviewerTaskStep("rev-name", "rev-desc");
         t.setCurrentTaskStep(ts);
         ts = new DeveloperTaskStep("dev-name", "dev-desc");
@@ -116,7 +116,7 @@ public class TaskboxModelTest {
     }
 
     @Test
-    public void testTicketFinishTaskSteps() throws Exception {
+    public void testTicketFinishTaskSteps_shouldAssertDoneFlagTrue() throws Exception {
         WebTaskStep ts = new ReviewerTaskStep("rev-name", "rev-desc");
         t.setCurrentTaskStep(ts);
         ts = t.finishCurrentTaskStep();
