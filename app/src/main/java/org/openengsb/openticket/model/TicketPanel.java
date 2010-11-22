@@ -50,7 +50,7 @@ public class TicketPanel extends Panel {
         add(new Label("tickettype", ticket.getType() != null ? ticket.getType(): "N/A"));
         add(new Label("ticketcreationTimestamp", ticket.getCreationTimestamp() != null ? ticket.getCreationTimestamp().toString(): "N/A"));
         add(new Label("ticketpriority", ticket.getPriority()!= null ? ticket.getPriority(): "N/A"));
-        add(new Label("ticketcustomer", ticket.getCustomer()!= null ? ticket.getPriority(): "N/A"));
+        add(new Label("ticketcustomer", ticket.getCustomer()!= null ? ticket.getCustomer(): "N/A"));
         add(new Label("ticketcontactEmailAddress", ticket.getContactEmailAddress()!= null ? ticket.getContactEmailAddress(): "N/A"));
         add(new Label("ticketdescription", ticket.getDescription()!= null ? ticket.getDescription(): "N/A"));
         
@@ -104,7 +104,5 @@ public class TicketPanel extends Panel {
             }
         });
         add(currentTaskPanel);
-        /*add(new Label("testoutput", "TicketId: "+ticket.getId()));
-        */
     }
 }

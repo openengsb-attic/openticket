@@ -30,7 +30,6 @@ import org.openengsb.openticket.model.DeveloperTaskStep;
 import org.openengsb.openticket.model.TestObject;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.model.TicketPriority;
-import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -43,9 +42,6 @@ import org.apache.wicket.model.ResourceModel;
 public class PanelDemo extends BasePage {
     @SpringBean
     private TaskboxService service;
-    
-    @SpringBean
-    private PersistenceGateway gateway;
 
     private TestObject value = new TestObject();
     private Panel panel;
@@ -75,6 +71,14 @@ public class PanelDemo extends BasePage {
                     Ticket t = new Ticket(value.getObjid());
                     t.setCurrentTaskStep(new DeveloperTaskStep("first", "first"));
                     t.finishCurrentTaskStep(new DeveloperTaskStep("second", "second"));
+                    t.addNoteEntry("first");
+                    t.addNoteEntry("second");
+                    t.setContactEmailAddress("test@test.test");
+                    t.setCreationTimestamp(new Date(System.currentTimeMillis()));
+                    t.setCustomer("Max Mustermann");
+                    t.setDescription("Test");
+                    t.setPriority(TicketPriority.Critical);
+                    t.setType("TestType");
                     Panel newPanel = t.getPanel("panel");
                     newPanel.setOutputMarkupId(true);
                     panel.replaceWith(newPanel);
@@ -95,7 +99,7 @@ public class PanelDemo extends BasePage {
         t.setContactEmailAddress("test@test.test");
         t.setCreationTimestamp(new Date(System.currentTimeMillis()));
         t.setCustomer("Max Mustermann");
-        t.setDescription("Test Description");
+        t.setDescription("Test");
         t.setPriority(TicketPriority.Critical);
         t.setType("TestType");
         panel = t.getPanel("panel");
