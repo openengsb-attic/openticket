@@ -28,4 +28,8 @@
   <bean id="gateway" class="org.openengsb.openticket.ui.web.gateway.PersistenceGateway">
     <property name="persistenceManager" ref="persistenceManager" />
   </bean>
+  
+  <bean class="org.openengsb.openticket.core.config.OpenTicketConfigurator" init-method="init">
+    <property name="ruleManager" ref="ruleManager" />
+  </bean>
 </beans>
