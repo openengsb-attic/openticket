@@ -20,12 +20,11 @@ public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilte
     final static int SIZE = 99;
     List<Ticket> list;
 
-    public TicketDataProvider(){
-        sortState=new SingleSortState();
+    public TicketDataProvider() {
+        sortState = new SingleSortState();
         sortState.setPropertySortOrder("id", ISortState.ASCENDING);
     }
-    
-    
+
     @Override
     public Object getFilterState() {
         return filter;
@@ -33,7 +32,7 @@ public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilte
 
     @Override
     public void setFilterState(Object state) {
-        filter=(TicketFilter)state;
+        filter = (TicketFilter) state;
     }
 
     @Override
@@ -43,8 +42,8 @@ public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilte
         List<Ticket> ret = list;
         if (ret.size() > (first + count)) {
             ret = ret.subList(first, first + count);
-        }else{
-            ret=ret.subList(first, ret.size());
+        } else {
+            ret = ret.subList(first, ret.size());
         }
         return ret.iterator();
     }
@@ -62,7 +61,7 @@ public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilte
 
     @Override
     public void detach() {
-        list=null;
+        list = null;
     }
 
     @Override
@@ -72,7 +71,7 @@ public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilte
 
     @Override
     public void setSortState(ISortState state) {
-        sortState=state;
+        sortState = state;
 
     }
 
