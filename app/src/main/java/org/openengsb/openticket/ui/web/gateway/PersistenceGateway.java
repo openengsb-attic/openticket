@@ -18,12 +18,12 @@ public class PersistenceGateway implements BundleContextAware {
         service = persistenceManager.getPersistenceForBundle(bundleContext.getBundle());
     }
 
-    public void saveTestObject(TestObject object) throws PersistenceException {
+    public void saveObject(Object object) throws PersistenceException {
         service.create(object);
     }
 
-    public TestObject readTestObject(TestObject object) throws IllegalStateException {
-        List<TestObject> objects = service.query(object);
+    public Object readObject(Object object) throws IllegalStateException {
+        List<Object> objects = service.query(object);
 
         if (objects.size() == 0) {
             throw new IllegalStateException();

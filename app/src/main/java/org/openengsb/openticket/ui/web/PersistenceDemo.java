@@ -65,7 +65,7 @@ public class PersistenceDemo extends BasePage {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 try {
-                    gateway.saveTestObject(value);
+                    gateway.saveObject(value);
                     info("Value successfully written.");
                     target.addComponent(feedback);
                 } catch (PersistenceException e) {
@@ -83,7 +83,7 @@ public class PersistenceDemo extends BasePage {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 try {
-                    info(gateway.readTestObject(new TestObject(value.getObjid())).getValue());
+                    info(((TestObject)gateway.readObject(new TestObject(value.getObjid()))).getValue());
                 }
                 catch (IllegalStateException e) {
                     error("No value for this ID found!");
