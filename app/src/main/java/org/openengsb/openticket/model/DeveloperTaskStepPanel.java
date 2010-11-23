@@ -72,7 +72,6 @@ public class DeveloperTaskStepPanel extends Panel {
         
         FormComponent<Integer> fcH = new TextField<Integer>("workingHours", Integer.class);
         fcH.setType(Integer.class);
-        //fcH.add(NumberValidator<String>.POSITIVE);
         fcH.setLabel(new ResourceModel("edit.label.h"));
         form.add(fcH);
         form.add(new SimpleFormComponentLabel("edit-label-h", fcH));
@@ -132,6 +131,13 @@ public class DeveloperTaskStepPanel extends Panel {
                     
                     this.setEnabled(false);
                     this.setVisible(false);
+                    target.addComponent(this);
+                    
+                    Label dfl = new Label("doneFlag-label", new ResourceModel("edit.label.doneFlag.closed"));
+                    form.remove("doneFlag-label");
+                    form.add(dfl);
+                    form.setOutputMarkupId(true);
+                    target.addComponent(form);
                     
                 } catch (PersistenceException e) {
                 }
@@ -148,19 +154,4 @@ public class DeveloperTaskStepPanel extends Panel {
         }
         form.add(closeButton);
     }
-    
-    /*
-    private Panel updatePanel() {
-        Panel newPanel = tempStep.getPanel("taskPanel");
-        newPanel.setOutputMarkupId(true);
-        replaceWith(newPanel);
-        return newPanel;
-    }
-    
-    private Panel resetPanel() {
-        Panel newPanel = origStep.getPanel("taskPanel");
-        newPanel.setOutputMarkupId(true);
-        replaceWith(newPanel);
-        return newPanel;
-    }*/
 }
