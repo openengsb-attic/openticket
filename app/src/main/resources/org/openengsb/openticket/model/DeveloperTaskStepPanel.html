@@ -24,7 +24,35 @@
   <body>
     <wicket:panel>
       <div id="panel">
-    	<span wicket:id="testoutput"></span>
+    	<label wicket:id="type-label"></label>
+    	<br/>
+    	<form wicket:id="editStep">
+          <label wicket:id="edit-label-name"></label>:
+          <input type="text" wicket:id="name" style="width: 120px;"/>
+          <br/>
+          <label wicket:id="edit-label-desc"></label>:
+          <input type="text" wicket:id="description" style="width: 240px;"/>
+          <br/>
+          <label wicket:id="edit-label-h"></label>:
+          <input type="text" wicket:id="workingHours" style="width: 30px;"/>
+          <br/>
+          <label wicket:id="edit-label-dc"></label>:
+          <input type="text" wicket:id="developerComment" style="width: 180px;"/>
+          <br/>
+          <label wicket:id="edit-label-po"></label>:
+          <input type="text" wicket:id="problemsOccurred" style="width: 180px;"/>
+          <br/>
+
+          <input type="submit" wicket:id="save" wicket:message="value:save.text,title:save.text" />
+          <input type="reset" wicket:id="reset" wicket:message="value:reset.text,title:reset.text" />
+          <br/>
+          
+          <label wicket:id="doneFlag-label"></label>
+          <input type="button" wicket:id="close" wicket:message="value:close.text,title:close.text" />
+    	</form>
+    	<p>
+          <span wicket:id="feedback"></span>
+        </p>
       </div>
     </wicket:panel>
   </body>
