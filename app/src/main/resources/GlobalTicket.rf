@@ -2,7 +2,7 @@
 <process xmlns="http://drools.org/drools-5.0/process"
          xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
          xs:schemaLocation="http://drools.org/drools-5.0/process drools-processes-5.0.xsd"
-         type="RuleFlow" name="Global Ticket" id="globalTicket" package-name="openticket" routerLayout="2" >
+         type="RuleFlow" name="Global Ticket" id="GlobalTicket" package-name="org.openengsb" routerLayout="2" >
 
   <header>
     <variables>
@@ -32,7 +32,7 @@
     <actionNode id="11" name="other" x="240" y="178" width="80" height="48" >
         <action type="expression" dialect="java" >taskbox.setWorkflowMessage("processing ticket with unknown type &lt;" + ticket.getType() + "&gt;");</action>
     </actionNode>
-    <subProcess id="12" name="Process DeveloperTaskStep" x="6" y="251" width="159" height="48" processId="developerTaskStep" >
+    <subProcess id="12" name="Process DeveloperTaskStep" x="6" y="251" width="159" height="48" processId="DeveloperTaskStep" >
       <mapping type="in" from="ticket" to="ticket" />
       <mapping type="out" from="ticket" to="ticket" />
     </subProcess>

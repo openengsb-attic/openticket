@@ -79,6 +79,13 @@ public class OpenTicketConfigurator {
             id = new RuleBaseElementId(RuleBaseElementType.Process, "GlobalTicket");
             ruleManager.add(id, testWorkflow);
             log.info("loaded workflow 'GlobalTicket'");
+            
+            log.info("about to load workflow 'DeveloperTaskStep'");
+            is = getClass().getClassLoader().getResourceAsStream("DeveloperTaskStep.rf");
+            testWorkflow = IOUtils.toString(is);
+            id = new RuleBaseElementId(RuleBaseElementType.Process, "DeveloperTaskStep");
+            ruleManager.add(id, testWorkflow);
+            log.info("loaded workflow 'DeveloperTaskStep'");
 
         } catch (RuleBaseException e) {
             log.error(e.getMessage(), e);

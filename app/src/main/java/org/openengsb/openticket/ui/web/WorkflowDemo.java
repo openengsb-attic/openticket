@@ -24,6 +24,8 @@ import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.taskbox.TaskboxService;
+import org.openengsb.openticket.core.TicketService;
+import org.openengsb.openticket.core.TicketServiceImpl;
 import org.openengsb.openticket.model.ReviewerTaskStep;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
@@ -49,10 +51,14 @@ public class WorkflowDemo extends BasePage {
             service.startWorkflow("tasktest", "ticket", ticket);
             add(new Label("testoutput", service.getWorkflowMessage()
                     + " - [current Task step: " + ticket.getCurrentTaskStep().getName() + "]"));
+            
             ticket = ticketService.createEmptyTicket();
             ticket.setType("developer");
-            service.startWorkflow("tasktest", "ticket", ticket);
-            add(new Label("testoutput2", service.getWorkflowMessage()));
+            service.startWorkflow("GlobalTicket", "ticket", ticket);
+            if(ticket.getHistoryTaskSteps()!=null)
+                add(new Label("testoutput2", service.getWorkflowMessage() + " " + ticket.getHistoryTaskSteps().size()));
+            else
+                add(new Label("testoutput2", service.getWorkflowMessage() + " no tasksteps"));
 
             ticket = ticketService.createEmptyTicket();
             ticket.setType("mail-incomplete");

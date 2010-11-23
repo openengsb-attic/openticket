@@ -26,6 +26,7 @@
   <osgi:service interface="org.openengsb.openticket.core.TicketService">
     <osgi:service-properties>
       <entry key="openengsb.workflow.globalid" value="ticketservice" />
+      <entry key="openengsb.service.type" value="workflow-service" />
     </osgi:service-properties>
     <bean class="org.openengsb.openticket.core.TicketServiceImpl" init-method="init">
     </bean>

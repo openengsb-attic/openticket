@@ -2,7 +2,7 @@
 <process xmlns="http://drools.org/drools-5.0/process"
          xmlns:xs="http://www.w3.org/2001/XMLSchema-instance"
          xs:schemaLocation="http://drools.org/drools-5.0/process drools-processes-5.0.xsd"
-         type="RuleFlow" name="Process DeveloperTaskStep" id="developerTaskStep" package-name="openticket" routerLayout="2" >
+         type="RuleFlow" name="Process DeveloperTaskStep" id="DeveloperTaskStep" package-name="org.openengsb" routerLayout="2" >
 
   <header>
     <variables>
@@ -21,11 +21,9 @@
       </eventFilters>
     </eventNode>
     <actionNode id="9" name="Create DeveloperTaskStep" x="70" y="100" width="194" height="48" >
-        <action type="expression" dialect="java" >ticket.setCurrentTaskStep(
-        		ticketService.createNewTaskStep(TaskStepType.DeveloperTaskStep, "DeveloperTaskStep1", "Description1")
-        		);</action>
+        <action type="expression" dialect="java" >ticket.setCurrentTaskStep(ticketService.createNewTaskStep(TaskStepType.DeveloperTaskStep, "DeveloperTaskStep1", "Description1"));</action>
     </actionNode>
-    <join id="10" name="Gateway" x="142" y="194" width="49" height="49" type="2" />
+    <join id="10" name="Gateway" x="142" y="194" width="49" height="49" type="1" />
     <actionNode id="11" name="TaskStep Finished" x="96" y="284" width="144" height="48" >
         <action type="expression" dialect="java" >taskbox.setWorkflowMessage("TaskStep &lt;" + ticket.getCurrentTaskStep().getName() + "&gt; finished successfully!");</action>
     </actionNode>
