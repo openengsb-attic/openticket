@@ -17,14 +17,13 @@
 package org.openengsb.openticket.model;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
@@ -70,18 +69,30 @@ public class TicketPanel extends Panel {
         });
         
         WebTaskStep currentStep = ticket.getCurrentTaskStep();
-        taskPanel = currentTaskPanel = currentStep.getPanel("taskPanel");
+        if(currentStep!=null){
+            taskPanel = currentTaskPanel = currentStep.getPanel("taskPanel");
+        }else{
+            taskPanel = currentTaskPanel = new EmptyPanel("taskPanel");
+        }
+        
         taskPanel.setOutputMarkupId(true);
         currentTaskPanel.setOutputMarkupId(true);
         stepList = ticket.getHistoryTaskSteps();
-        add(new Link<Object>("currentTask") {
+        Link currentStepLink = new Link<Object>("currentTask") {
             @Override
             public void onClick() {
                 taskPanel.replaceWith(currentTaskPanel);
                 taskPanel = currentTaskPanel;
             }
-        });
-        add(new Label("ticketcurrentTaskStep", currentStep.getName()));
+        };
+        if(currentStep!=null){
+            add(new Label("ticketcurrentTaskStep", currentStep.getName()));
+            
+        }else{
+            add(new Label("ticketcurrentTaskStep", "N/A"));
+            currentStepLink.setVisible(false);
+        }
+        add(currentStepLink);
         IModel<? extends List<? extends WebTaskStep>> stepModel = new LoadableDetachableModel<List<WebTaskStep>>() {
             @Override
             protected List<WebTaskStep> load() {
