@@ -53,16 +53,13 @@ public class Ticket implements WebTask, Serializable {
      * created out of a mail
      */
     private List<String> notes;
-    
-    private String note;
 
-    public String getNote() {
-        return note;
+    public void setHistoryTaskSteps(List<WebTaskStep> historyTaskSteps) {
+        this.historyTaskSteps = historyTaskSteps;
     }
 
-    public void setNote(String note) {
-        this.note = note;
-        this.notes.add(note);
+    public void setHistory(List<String> history) {
+        this.history = history;
     }
 
     public void setNotes(List<String> notes) {

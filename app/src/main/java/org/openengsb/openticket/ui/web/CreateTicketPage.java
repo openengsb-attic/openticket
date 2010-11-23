@@ -17,18 +17,23 @@
 package org.openengsb.openticket.ui.web;
 
 
+import java.util.Date;
+import java.util.List;
+import java.util.Arrays;
+
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
-import org.openengsb.core.common.context.ContextCurrentService;
 import org.openengsb.core.common.persistence.PersistenceException;
 import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.openticket.model.Ticket;
+import org.openengsb.openticket.model.TicketPriority;
 import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
+import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
@@ -48,14 +53,17 @@ public class CreateTicketPage extends BasePage {
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
         feedback.setOutputMarkupId(true);
         add(feedback);
-        
+        ticket.setPriority(TicketPriority.Low);
         CompoundPropertyModel<Ticket> ticketModel = new CompoundPropertyModel<Ticket>(ticket);
         Form<Ticket> form = new Form<Ticket>("inputForm", ticketModel);
         form.setOutputMarkupId(true);
 
-        form.add(new TextField<String>("id").setRequired(true).add(StringValidator.minimumLength(2)));
-        form.add(new TextField<String>("type").setRequired(true).add(StringValidator.minimumLength(2)));
-        form.add(new TextArea<String>("note").setRequired(true));
+        form.add(new TextField("ticketid", ticketModel.bind("id")).setRequired(true).add(StringValidator.minimumLength(2)));
+        form.add(new TextField("tickettype", ticketModel.bind("type")).setRequired(true).add(StringValidator.minimumLength(2)));
+        form.add(new TextField("ticketcustomer", ticketModel.bind("customer")));
+        form.add(new TextField("ticketcontactEmailAddress", ticketModel.bind("contactEmailAddress")));
+        form.add(new DropDownChoice("ticketpriority", ticketModel.bind("priority"),Arrays.asList(TicketPriority.values())));
+        form.add(new TextArea("ticketdescription", ticketModel.bind("description")).setRequired(true));
         
         
         form.add(new AjaxButton("submitButton", form)
@@ -65,7 +73,8 @@ public class CreateTicketPage extends BasePage {
                 try {
                     info("Ticket created");
                     target.addComponent(feedback);
-                    service.startWorkflow("", "ticket", ticket);
+                    service.startWorkflow("GlobalTicket", "ticket", ticket);
+                    ticket.setCreationTimestamp(new Date(System.currentTimeMillis()));
                     gateway.saveObject(ticket);
                 } catch (PersistenceException e) {
                     info(e.getMessage());
