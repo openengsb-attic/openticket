@@ -24,7 +24,64 @@
   <body>
     <wicket:panel>
       <div id="panel">
-    	<span wicket:id="testoutput"></span>
+        <label wicket:id="type-label">[Task Step Type]</label><br/>
+    	<form wicket:id="editStep">
+          <table class="infoTable">
+		    <tr style="height: 20px">
+		      <td style="text-align: right">
+			    <label wicket:id="edit-label-name">[Label name]</label>:
+		      </td>
+			  <td>
+			    <input type="text" wicket:id="name" style="width: 180px;"/>
+			  </td>
+		      <td style="text-align: right">
+			    <label wicket:id="edit-label-desc">[Label description]</label>:
+		      </td>
+			  <td>
+			    <input type="text" wicket:id="description" style="width: 240px;"/>
+			  </td>
+		    </tr>
+		    <tr style="height: 20px">
+		      <td style="text-align: right">
+                <label wicket:id="edit-label-dc">[Label developerComment]</label>:
+		      </td>
+			  <td>
+                <input type="text" wicket:id="developerComment" style="width: 180px;"/>
+			  </td>
+		      <td style="text-align: right">
+                <label wicket:id="edit-label-po">[Label problemsOccurred]</label>:
+		      </td>
+			  <td>
+                <input type="text" wicket:id="problemsOccurred" style="width: 240px;"/>
+			  </td>
+		    </tr>
+		    <tr style="height: 20px">
+		      <td style="text-align: right">
+ 		        <label wicket:id="edit-label-h">[Label workingHours]</label>:
+		      </td>
+			  <td>
+                <input type="text" wicket:id="workingHours" style="width: 30px;"/>
+			  </td>
+		      <td style="text-align: right">
+                <input type="submit" wicket:id="save" wicket:message="value:save.text,title:save.text" />
+		      </td>
+			  <td>
+                <input type="reset" wicket:id="reset" wicket:message="value:reset.text,title:reset.text" />
+			  </td>
+		    </tr>
+		    <tr style="height: 20px">
+		      <td colspan="2" style="text-align: center">
+		        <label wicket:id="doneFlag-label">[Label doneFlag]</label>
+		      </td>
+		      <td colspan="2" style="text-align: left">
+		        <input type="button" wicket:id="close" wicket:message="value:close.text,title:close.text" />
+		      </td>
+		    </tr>
+		  </table> 
+    	</form>
+    	<p>
+          <span wicket:id="feedback"></span>
+        </p>
       </div>
     </wicket:panel>
   </body>
