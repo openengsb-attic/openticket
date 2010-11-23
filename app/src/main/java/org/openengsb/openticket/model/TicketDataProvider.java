@@ -1,5 +1,6 @@
 package org.openengsb.openticket.model;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.Iterator;
@@ -11,14 +12,19 @@ import org.apache.wicket.extensions.markup.html.repeater.data.table.filter.IFilt
 import org.apache.wicket.extensions.markup.html.repeater.util.SingleSortState;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.Model;
+import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
 
 public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilterStateLocator {
 
     ISortState sortState;
     TicketFilter filter = new TicketFilter();
-
-    final static int SIZE = 99;
     List<Ticket> list;
+    
+    private PersistenceGateway gateway;
+
+    public void setGateway(PersistenceGateway gateway) {
+        this.gateway = gateway;
+    }
 
     public TicketDataProvider() {
         sortState = new SingleSortState();
@@ -91,17 +97,21 @@ public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilte
         }
     }
 
-    private List<Ticket> getSortedList(final int idSort, final int typeSort, TicketFilter filter2) {
-        List<Ticket> result = TicketGenerator.getBeans(SIZE, filter);
-        Collections.sort(result, new Comparator<Ticket>() {
+    private List<Ticket> getSortedList(final int idSort, final int typeSort, TicketFilter filter) {
 
-            @Override
-            public int compare(Ticket t1, Ticket t2) {
-                int compId = t1.getId().compareTo(t2.getId());
-                int compType = t1.getType().compareTo(t2.getType());
+        List<Ticket> result = gateway.readAllTickets();
 
-                switch (idSort) {
-                    case ISortState.NONE:
+        if (result != null) {
+            filterTickets(result, filter);
+            Collections.sort(result, new Comparator<Ticket>() {
+
+                @Override
+                public int compare(Ticket t1, Ticket t2) {
+                    int compId = t1.getId().compareTo(t2.getId());
+                    int compType = t1.getType().compareTo(t2.getType());
+
+                    switch (idSort) {
+                        case ISortState.NONE:
                        compId = 0;
                        break;
                    case ISortState.DESCENDING:
@@ -121,7 +131,21 @@ public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilte
                return compType;
            }
 
-        });
+            });
+        }else{
+            result = new ArrayList<Ticket>();
+        }
         return result;
+    }
+
+    private void filterTickets(List<Ticket> tickets, TicketFilter filter) {
+        List<Ticket> tmp = new ArrayList<Ticket>();
+        for (Iterator<Ticket> iterator = tickets.iterator(); iterator.hasNext();) {
+            Ticket ticket = iterator.next();
+            if (!filter.match(ticket)) {
+                tmp.add(ticket);
+            }
+        }
+        tickets.removeAll(tmp);
     }
 }

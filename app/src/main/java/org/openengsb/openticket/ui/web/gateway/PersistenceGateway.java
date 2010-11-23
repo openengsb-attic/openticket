@@ -6,6 +6,7 @@ import org.openengsb.core.common.persistence.PersistenceException;
 import org.openengsb.core.common.persistence.PersistenceManager;
 import org.openengsb.core.common.persistence.PersistenceService;
 import org.openengsb.openticket.model.TestObject;
+import org.openengsb.openticket.model.Ticket;
 import org.osgi.framework.BundleContext;
 import org.springframework.osgi.context.BundleContextAware;
 
@@ -33,5 +34,13 @@ public class PersistenceGateway implements BundleContextAware {
 
     public void setPersistenceManager(PersistenceManager persistenceManager) {
         this.persistenceManager = persistenceManager;
+    }
+    
+    public List<Ticket> readAllTickets(){
+        return service.query(new Ticket(null));
+    }
+    
+    public void saveTickets(List<Ticket> list) throws PersistenceException{
+        service.create(list);
     }
 }

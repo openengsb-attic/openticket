@@ -28,4 +28,7 @@
   <bean id="gateway" class="org.openengsb.openticket.ui.web.gateway.PersistenceGateway">
     <property name="persistenceManager" ref="persistenceManager" />
   </bean>
+  <bean id="dataProvider" class="org.openengsb.openticket.model.TicketDataProvider">
+  	<property name="gateway" ref="gateway" />
+  </bean>
 </beans>

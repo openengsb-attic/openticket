@@ -24,6 +24,9 @@ import org.openengsb.openticket.model.TicketDataProvider;
 @AuthorizeInstantiation("CASEWORKER")
 public class OverviewPanel extends BasePage {
 
+    @SpringBean
+    TicketDataProvider dataProvider;
+
     public OverviewPanel() {
         List<IColumn<Ticket>> columns = new ArrayList<IColumn<Ticket>>();
 
@@ -52,8 +55,6 @@ public class OverviewPanel extends BasePage {
 
         columns.add(new TextFilteredPropertyColumn<Ticket, String>(Model.of("Id"), "id", "id"));
         columns.add(new TextFilteredPropertyColumn<Ticket, String>(Model.of("Type"), "type", "type"));
-
-        TicketDataProvider dataProvider = new TicketDataProvider();
 
         FilterForm form = new FilterForm("form", dataProvider);
 
