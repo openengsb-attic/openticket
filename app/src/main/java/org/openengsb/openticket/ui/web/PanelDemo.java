@@ -16,17 +16,24 @@
 
 package org.openengsb.openticket.ui.web;
 
+import java.util.Date;
+
+import org.apache.wicket.PageParameters;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
+import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
+import org.openengsb.core.common.persistence.PersistenceException;
 import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.openticket.model.DeveloperTaskStep;
 import org.openengsb.openticket.model.TestObject;
 import org.openengsb.openticket.model.Ticket;
+import org.openengsb.openticket.model.TicketPriority;
+import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
 import org.apache.wicket.markup.html.basic.Label;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.FormComponent;
@@ -39,6 +46,9 @@ import org.apache.wicket.model.ResourceModel;
 public class PanelDemo extends BasePage {
     @SpringBean
     private TaskboxService service;
+    
+    @SpringBean
+    private PersistenceGateway gateway;
 
     private TestObject value = new TestObject();
     private Panel panel;
@@ -66,13 +76,14 @@ public class PanelDemo extends BasePage {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                     Ticket t = new Ticket(value.getObjid());
-                    t.setCurrentTaskStep(new DeveloperTaskStep("first", "first"));
-                    t.finishCurrentTaskStep(new DeveloperTaskStep("second", "second"));
+                    t.setPriority(TicketPriority.Low);
+                    t.setCreationTimestamp(new Date(System.currentTimeMillis()));
                     Panel newPanel = t.getPanel("panel");
                     newPanel.setOutputMarkupId(true);
                     panel.replaceWith(newPanel);
                     panel = newPanel;
                     target.addComponent(panel);
+                    
             }
 
             @Override
@@ -83,8 +94,27 @@ public class PanelDemo extends BasePage {
         Ticket t = new Ticket("test");
         t.setCurrentTaskStep(new DeveloperTaskStep("first", "first"));
         t.finishCurrentTaskStep(new DeveloperTaskStep("second", "second"));
+        t.addNoteEntry("first");
+        t.addNoteEntry("second");
+        t.setContactEmailAddress("test@test.test");
+        t.setCreationTimestamp(new Date(System.currentTimeMillis()));
+        t.setCustomer("Max Mustermann");
+        t.setDescription("Test");
+        t.setPriority(TicketPriority.Critical);
+        t.setType("TestType");
         panel = t.getPanel("panel");
         panel.setOutputMarkupId(true);
         add(panel);
+        try {
+            gateway.saveObject(t);
+        } catch (PersistenceException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        PageParameters parameters = new PageParameters();
+        parameters.put("ticket", t.getId());
+        BookmarkablePageLink link = new BookmarkablePageLink("ticketDetailLink", TicketDetailPage.class, parameters);
+        add(link);
+
     }
 }

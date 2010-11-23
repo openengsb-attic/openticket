@@ -80,6 +80,18 @@ public class Ticket implements WebTask, Serializable {
     public String getType() {
         return type;
     }
+    
+    public void setHistoryTaskSteps(List<WebTaskStep> historyTaskSteps) {
+        this.historyTaskSteps = historyTaskSteps;
+    }
+
+    public void setHistory(List<String> history) {
+        this.history = history;
+    }
+
+    public void setNotes(List<String> notes) {
+        this.notes = notes;
+    }
 
     @Override
     public void setType(String type) {
@@ -167,11 +179,6 @@ public class Ticket implements WebTask, Serializable {
     }
 
     public Panel getPanel(String id) {
-        if (currentTaskStep == null) {
-            this.setCurrentTaskStep(new DeveloperTaskStep("initial", "initial step"));
-            this.finishCurrentTaskStep(new DeveloperTaskStep("first", "first step"));
-            this.finishCurrentTaskStep(new DeveloperTaskStep("second", "second step"));
-        }
         Panel panel = new TicketPanel(id, this);
         return panel;
     }

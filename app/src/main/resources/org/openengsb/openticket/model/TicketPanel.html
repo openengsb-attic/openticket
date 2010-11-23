@@ -18,27 +18,89 @@
 -->
 
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
-      xml:lang="en" lang="en">
+	xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+	xml:lang="en" lang="en">
 
-  <body>
-    <wicket:panel>
-      <div id="panel">
-    	<span wicket:id="testoutput"></span>
-    	<br />
-    	<wicket:message key="currenttask">[currenttask]</wicket:message>
-    	<a href="" wicket:id="currentTask"><wicket:message key="taskshow">[taskshow]</wicket:message></a>
-    	<br />
-    	<wicket:message key="taskhistory">[taskhistory]</wicket:message><br />
-    	<ul>
-    	  <li wicket:id="taskItems">
-    	  	<span wicket:id="taskLabel"></span><a href="" wicket:id="taskStep"><wicket:message key="taskshow">[taskshow]</wicket:message></a>
-    	  </li>
-    	</ul>
-    	<br />
-    	<wicket:message key="steppanel">[steppanel]</wicket:message><br />
-    	<span wicket:id="taskPanel">taskPanel</span>
-      </div>
-    </wicket:panel>
-  </body>
+<body>
+<wicket:panel>
+	<div id="panel">
+	<p><span wicket:id="feedback"></span></p>
+	<fieldset>
+		<legend><wicket:message key="legend.info">[Ticket Info]</wicket:message></legend>
+		<table class="infoTable">
+			<tr>
+				<td style="text-align: right">
+					<label for="ticketid"><wicket:message key="ticket.label.id">[ID Label]</wicket:message></label>
+				</td>
+				<td><label wicket:id="ticketid">[ID]</label></td>
+			</tr>
+			<tr>
+				<td style="text-align: right">
+					<label for="tickettype"><wicket:message key="ticket.label.type">[Type Label]</wicket:message></label>
+				</td>
+				<td><label wicket:id="tickettype">[Type]</label></td>
+			</tr>
+			<tr>
+				<td style="text-align: right">
+					<label for="ticketcreationTimestamp"><wicket:message key="ticket.label.creationTimestamp">[creationTimestamp Label]</wicket:message></label>
+				</td>
+				<td><label wicket:id="ticketcreationTimestamp">[creationTimestamp]</label></td>
+			</tr>
+			<tr>
+				<td style="text-align: right">
+					<label for="ticketpriority"><wicket:message key="ticket.label.priority">[priority Label]</wicket:message></label>
+				</td>
+				<td><label wicket:id="ticketpriority">[priority]</label></td>
+			</tr>
+			<tr>
+				<td style="text-align: right">
+					<label for="ticketcustomer"><wicket:message key="ticket.label.customer">[customer Label]</wicket:message></label>
+				</td>
+				<td><label wicket:id="ticketcustomer">[customer]</label></td>
+			</tr>
+			<tr>
+				<td style="text-align: right">
+					<label for="ticketcontactEmailAddress"><wicket:message key="ticket.label.contactEmailAddress">[contactEmailAddress Label]</wicket:message></label>
+				</td>
+				<td><label wicket:id="ticketcontactEmailAddress">[contactEmailAddress]</label></td>
+			</tr>
+			<tr>
+				<td style="text-align: right">
+					<label for="ticketdescription"><wicket:message key="ticket.label.description">[description Label]</wicket:message></label>
+				</td>
+				<td><label wicket:id="ticketdescription">[description]</label></td>
+			</tr>
+		</table>
+	</fieldset>
+	<fieldset>
+		<legend><wicket:message key="legend.notes">[Ticket Notes]</wicket:message></legend>
+		<span wicket:id="notesList">
+			<label wicket:id="notesLabel"></label><hr />
+		</span>
+	</fieldset>
+	<fieldset>
+		<legend><wicket:message key="legend.history">[Ticket History]</wicket:message></legend>
+		<span wicket:id="historyList">
+			<label wicket:id="historyLabel"></label><hr />
+		</span>
+	</fieldset>
+	
+	<fieldset>
+		<legend><wicket:message key="legend.tasksteps">[Ticket Tasksteps]</wicket:message></legend>
+		<label for="ticketcurrentTaskStep"><wicket:message key="ticket.label.currentTaskStep">[currentStep Label]</wicket:message></label><br />
+		<label wicket:id="ticketcurrentTaskStep">[currentStep]</label>
+		<a href="" wicket:id="currentTask"><wicket:message key="taskshow">[taskshow]</wicket:message></a><br /><hr />
+		<label><wicket:message key="ticket.label.historyTaskStep">[historyStep Label]</wicket:message></label><br />
+		<span wicket:id="historyStepList">
+			<label wicket:id="tickethistoryTaskStep">[currentStep]</label>
+			<a href="" wicket:id="taskStepLink"><wicket:message key="taskshow">[taskshow]</wicket:message></a><br />
+		</span>
+	</fieldset>
+	<fieldset>
+		<legend><wicket:message key="legend.step">[Ticket Taskstep]</wicket:message></legend>
+		<span wicket:id="taskPanel">taskPanel</span>
+	</fieldset>
+	</div>
+</wicket:panel>
+</body>
 </html>
