@@ -40,11 +40,12 @@ public class OpenTicketConfigurator {
 
     private void addGlobalsAndImports() {
         try {
-            ruleManager.addGlobal(TaskboxService.class.getCanonicalName(), "taskbox");
-            ruleManager.addGlobal(TicketService.class.getCanonicalName(), "ticketService");
             ruleManager.addImport("org.openengsb.openticket.model.Ticket");
             ruleManager.addImport("org.openengsb.ui.taskbox.model.WebTaskStep");
             ruleManager.addImport("org.openengsb.openticket.model.TaskStepType");
+            
+            ruleManager.addGlobal(TaskboxService.class.getCanonicalName(), "taskbox");
+            ruleManager.addGlobal(TicketService.class.getCanonicalName(), "ticketService");
         } catch (RuleBaseException e) {
             throw new RuntimeException(e);
         }

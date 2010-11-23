@@ -27,6 +27,7 @@ import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.openticket.core.TicketService;
 import org.openengsb.openticket.core.TicketServiceImpl;
 import org.openengsb.openticket.model.ReviewerTaskStep;
+import org.openengsb.openticket.model.TaskStepType;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
@@ -40,7 +41,9 @@ public class WorkflowDemo extends BasePage {
             TicketService ticketService = new TicketServiceImpl();
 
             Ticket ticket = ticketService.createEmptyTicket();
-            ticket.setType("reviewer");
+            ticket.setType("developer");
+            
+            /*
             // TaskStep...
             ticket.setCurrentTaskStep(new ReviewerTaskStep("Review-1", "...for your information!"));
             WebTaskStep curTS = ((ReviewerTaskStep) ticket.getCurrentTaskStep());
@@ -48,9 +51,14 @@ public class WorkflowDemo extends BasePage {
             ((ReviewerTaskStep) curTS).setReviewStatus(true);
             ticket.setCurrentTaskStep(curTS);
             // TaskStep END...
-            service.startWorkflow("tasktest", "ticket", ticket);
-            add(new Label("testoutput", service.getWorkflowMessage()
-                    + " - [current Task step: " + ticket.getCurrentTaskStep().getName() + "]"));
+            */
+            service.startWorkflow("GlobalTicket", "ticket", ticket);
+            if(ticket.getHistoryTaskSteps()!=null)
+                add(new Label("testoutput", service.getWorkflowMessage() + " " + ticket.getHistoryTaskSteps().size()));
+            else
+                add(new Label("testoutput", service.getWorkflowMessage() + " no tasksteps"));
+                    
+                    //+ " - [current Task step: " + ticket.getCurrentTaskStep().getName() + "]"));
             
             ticket = ticketService.createEmptyTicket();
             ticket.setType("developer");
@@ -62,7 +70,7 @@ public class WorkflowDemo extends BasePage {
 
             ticket = ticketService.createEmptyTicket();
             ticket.setType("mail-incomplete");
-            service.startWorkflow("tasktest", "ticket", ticket);
+            service.startWorkflow("GlobalTicket", "ticket", ticket);
             add(new Label("testoutput3", service.getWorkflowMessage()));
 
         } catch (Exception e) {
