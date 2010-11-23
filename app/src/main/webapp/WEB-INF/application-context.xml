@@ -31,5 +31,8 @@
   
   <bean class="org.openengsb.openticket.core.config.OpenTicketConfigurator" init-method="init">
     <property name="ruleManager" ref="ruleManager" />
+	
+  <bean id="dataProvider" class="org.openengsb.openticket.model.TicketDataProvider">
+  	<property name="gateway" ref="gateway" />
   </bean>
 </beans>
