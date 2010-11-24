@@ -16,8 +16,6 @@
 
 package org.openengsb.openticket.ui.web;
 
-import java.util.Date;
-
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.panel.EmptyPanel;
@@ -28,14 +26,14 @@ import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class TicketDetailPage extends BasePage {
-    private Panel panel= new EmptyPanel("panel");
-    
+    private Panel panel = new EmptyPanel("panel");
+
     @SpringBean
     private PersistenceGateway gateway;
 
     public TicketDetailPage(PageParameters parameters) {
-        Ticket t=null;
-        t =new Ticket(parameters.getString("ticket"));
+        Ticket t = null;
+        t = new Ticket(parameters.getString("ticket"));
         t.setContactEmailAddress(null);
         t.setCreationTimestamp(null);
         t.setCurrentTaskStep(null);
@@ -46,12 +44,12 @@ public class TicketDetailPage extends BasePage {
         t.setHistory(null);
         t.setHistoryTaskSteps(null);
         t.setNotes(null);
-        try{
-            
+        try {
+
             t = (Ticket) gateway.readObject(t);
             panel = t.getPanel("panel");
             panel.setOutputMarkupId(true);
-        }catch(IllegalStateException e){
+        } catch (IllegalStateException e) {
             e.printStackTrace();
         }
         add(panel);

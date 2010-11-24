@@ -49,8 +49,7 @@ public class Ticket implements WebTask, Serializable {
     private List<String> history;
 
     /*
-     * stores general info about the Ticket e.g. mailtext if the ticket was
-     * created out of a mail
+     * stores general info about the Ticket e.g. mailtext if the ticket was created out of a mail
      */
     private List<String> notes;
 
@@ -80,7 +79,7 @@ public class Ticket implements WebTask, Serializable {
     public String getType() {
         return type;
     }
-    
+
     public void setHistoryTaskSteps(List<WebTaskStep> historyTaskSteps) {
         this.historyTaskSteps = historyTaskSteps;
     }

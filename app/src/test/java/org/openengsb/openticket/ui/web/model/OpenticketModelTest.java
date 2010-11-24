@@ -18,8 +18,6 @@ package org.openengsb.openticket.ui.web.model;
 
 import static org.hamcrest.CoreMatchers.is;
 import static org.junit.Assert.assertThat;
-import static org.junit.Assert.fail;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.openengsb.openticket.model.CompleteTicketInformationStep;
@@ -40,10 +38,7 @@ public class OpenticketModelTest {
 
     @Test
     public void testCreateNewTicket_shouldNotFail() throws Exception {
-        Ticket nt = new Ticket("nt1");
-        if (nt == null)
-            fail();
-        assertThat(nt.getId(), is("nt1"));
+        new Ticket("nt1");
     }
 
     @Test

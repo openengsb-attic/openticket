@@ -33,7 +33,7 @@ public abstract class PageTest {
         contextService = mock(ContextCurrentService.class);
         when(contextService.getAvailableContexts()).thenReturn(Arrays.asList(new String[]{ "foo", "bar" }));
         appContext.putBean(contextService);
-        
+
         mockAuthentication();
     }
 

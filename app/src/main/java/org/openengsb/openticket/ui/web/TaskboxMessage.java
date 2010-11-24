@@ -11,8 +11,8 @@ public class TaskboxMessage extends BasePage {
 
     @SpringBean
     private TaskboxService service;
-    
-    public TaskboxMessage(){
+
+    public TaskboxMessage() {
         try {
             add(new Label("output", service.getWorkflowMessage()));
         } catch (TaskboxException e) {

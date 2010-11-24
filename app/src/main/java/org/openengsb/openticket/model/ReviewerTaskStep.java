@@ -30,8 +30,7 @@ public class ReviewerTaskStep implements WebTaskStep {
     private String description;
 
     /*
-     * Specific DeveloperTaskStep properties: reviewStatus (OK=true, NOK=false),
-     * feedback message
+     * Specific DeveloperTaskStep properties: reviewStatus (OK=true, NOK=false), feedback message
      */
     private boolean reviewStatus;
     private String feedback;

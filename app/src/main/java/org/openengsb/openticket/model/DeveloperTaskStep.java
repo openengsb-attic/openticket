@@ -23,6 +23,7 @@ import java.io.Serializable;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
+@SuppressWarnings("serial")
 public class DeveloperTaskStep implements WebTaskStep, Serializable {
 
     /**
@@ -36,8 +37,7 @@ public class DeveloperTaskStep implements WebTaskStep, Serializable {
     private String description;
 
     /**
-     * Specific DeveloperTaskStep properties: attended working hours, comments
-     * of the developer, occurred problems
+     * Specific DeveloperTaskStep properties: attended working hours, comments of the developer, occurred problems
      */
     private Integer workingHours;
     private String developerComment;

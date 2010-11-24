@@ -18,7 +18,6 @@ package org.openengsb.openticket.ui.web;
 
 
 import java.util.Date;
-import java.util.List;
 import java.util.Arrays;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
@@ -28,12 +27,10 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
 import org.openengsb.core.common.persistence.PersistenceException;
-import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.model.TicketPriority;
 import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
-import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
@@ -84,8 +81,7 @@ public class CreateTicketPage extends BasePage {
             }
 
             @Override
-            protected void onError(AjaxRequestTarget target, Form<?> form) {
-                
+            protected void onError(AjaxRequestTarget target, Form<?> form) {                
                 target.addComponent(feedback);
             }
         });

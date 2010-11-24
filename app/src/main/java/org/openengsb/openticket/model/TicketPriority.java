@@ -20,5 +20,5 @@ package org.openengsb.openticket.model;
  * Enum to describe the Priority of a Ticket
  */
 public enum TicketPriority {
-    Critical, High, Medium, Low;
+        Critical, High, Medium, Low;
 }

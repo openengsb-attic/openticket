@@ -20,5 +20,5 @@ package org.openengsb.openticket.model;
  * The different TaskStep types/shapes
  **/
 public enum TaskStepType {
-    CompleteTicketInformationStep, InformationTaskStep, DeveloperTaskStep, ReviewerTaskStep;
+        CompleteTicketInformationStep, InformationTaskStep, DeveloperTaskStep, ReviewerTaskStep;
 }

@@ -6,7 +6,6 @@ import org.openengsb.core.common.persistence.PersistenceException;
 import org.openengsb.core.common.persistence.PersistenceManager;
 import org.openengsb.core.common.persistence.PersistenceService;
 import org.openengsb.openticket.model.DeveloperTaskStep;
-import org.openengsb.openticket.model.TestObject;
 import org.openengsb.openticket.model.Ticket;
 import org.osgi.framework.BundleContext;
 import org.springframework.osgi.context.BundleContextAware;
@@ -32,7 +31,7 @@ public class PersistenceGateway implements BundleContextAware {
         }
         return objects.get(objects.size() - 1);
     }
-    
+
     public void saveDeveloperTaskStep(DeveloperTaskStep object) throws PersistenceException {
         service.create(object);
     }
@@ -49,8 +48,8 @@ public class PersistenceGateway implements BundleContextAware {
     public void setPersistenceManager(PersistenceManager persistenceManager) {
         this.persistenceManager = persistenceManager;
     }
-    
-    public List<Ticket> readAllTickets(){
+
+    public List<Ticket> readAllTickets() {
         Ticket t = new Ticket(null);
         t.setContactEmailAddress(null);
         t.setCreationTimestamp(null);
@@ -64,8 +63,8 @@ public class PersistenceGateway implements BundleContextAware {
         t.setNotes(null);
         return service.query(t);
     }
-    
-    public void saveTickets(List<Ticket> list) throws PersistenceException{
+
+    public void saveTickets(List<Ticket> list) throws PersistenceException {
         service.create(list);
     }
 }

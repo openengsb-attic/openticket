@@ -39,9 +39,9 @@ import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
 public class DeveloperTaskStepPanel extends Panel {
     @SpringBean
     private PersistenceGateway gateway;
-    
+
     private DeveloperTaskStep tempStep, origStep;
-    
+
     public DeveloperTaskStepPanel(String id, DeveloperTaskStep step) {
         super(id);
         this.origStep = step;
@@ -49,10 +49,11 @@ public class DeveloperTaskStepPanel extends Panel {
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
         feedback.setOutputMarkupId(true);
         add(feedback);
-        
+
         add(new Label("type-label", "Developer Task Step"));
-        
-        Form<DeveloperTaskStep> form = new Form<DeveloperTaskStep>("editStep", new CompoundPropertyModel<DeveloperTaskStep>(tempStep));
+
+        Form<DeveloperTaskStep> form =
+            new Form<DeveloperTaskStep>("editStep", new CompoundPropertyModel<DeveloperTaskStep>(tempStep));
         form.setOutputMarkupId(true);
         add(form);
 
@@ -62,32 +63,32 @@ public class DeveloperTaskStepPanel extends Panel {
         fcName.setLabel(new ResourceModel("edit.label.name"));
         form.add(fcName);
         form.add(new SimpleFormComponentLabel("edit-label-name", fcName));
-        
+
         FormComponent<String> fcDesc = new RequiredTextField<String>("description");
         fcDesc.add(StringValidator.maximumLength(120));
         fcDesc.setRequired(true);
         fcDesc.setLabel(new ResourceModel("edit.label.desc"));
         form.add(fcDesc);
         form.add(new SimpleFormComponentLabel("edit-label-desc", fcDesc));
-        
+
         FormComponent<Integer> fcH = new TextField<Integer>("workingHours", Integer.class);
         fcH.setType(Integer.class);
         fcH.setLabel(new ResourceModel("edit.label.h"));
         form.add(fcH);
         form.add(new SimpleFormComponentLabel("edit-label-h", fcH));
-        
+
         FormComponent<String> fcDC = new TextField<String>("developerComment");
         fcDC.add(StringValidator.maximumLength(100));
         fcDC.setLabel(new ResourceModel("edit.label.dc"));
         form.add(fcDC);
         form.add(new SimpleFormComponentLabel("edit-label-dc", fcDC));
-        
+
         FormComponent<String> fcPO = new TextField<String>("problemsOccurred");
         fcPO.add(StringValidator.maximumLength(100));
         fcPO.setLabel(new ResourceModel("edit.label.po"));
         form.add(fcPO);
         form.add(new SimpleFormComponentLabel("edit-label-po", fcPO));
-        
+
         AjaxButton saveButton = new AjaxButton("save", form)
         {
             @Override
@@ -108,16 +109,15 @@ public class DeveloperTaskStepPanel extends Panel {
             }
         };
         form.add(saveButton);
-        
+
         form.add(new Button("reset"));
-        
-        if(tempStep.getDoneFlag()) {
+
+        if (tempStep.getDoneFlag()) {
             form.add(new Label("doneFlag-label", new ResourceModel("edit.label.doneFlag.closed")));
-        }
-        else {
+        } else {
             form.add(new Label("doneFlag-label", new ResourceModel("edit.label.doneFlag.open")));
         }
-        
+
         AjaxButton closeButton = new AjaxButton("close", form)
         {
             @Override
@@ -128,17 +128,17 @@ public class DeveloperTaskStepPanel extends Panel {
                     origStep = tempStep;
                     info("This step is now closed");
                     target.addComponent(feedback);
-                    
+
                     this.setEnabled(false);
                     this.setVisible(false);
                     target.addComponent(this);
-                    
+
                     Label dfl = new Label("doneFlag-label", new ResourceModel("edit.label.doneFlag.closed"));
                     form.remove("doneFlag-label");
                     form.add(dfl);
                     form.setOutputMarkupId(true);
                     target.addComponent(form);
-                    
+
                 } catch (PersistenceException e) {
                 }
             }
@@ -148,7 +148,7 @@ public class DeveloperTaskStepPanel extends Panel {
                 target.addComponent(feedback);
             }
         };
-        if(tempStep.getDoneFlag()) {
+        if (tempStep.getDoneFlag()) {
             closeButton.setEnabled(false);
             closeButton.setVisible(false);
         }

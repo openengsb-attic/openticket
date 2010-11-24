@@ -29,32 +29,32 @@ import org.openengsb.openticket.model.Ticket;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class TicketServiceImpl implements TicketService {
-	
-	@Override
-	public Ticket createEmptyTicket() {
-		UUID uuid = UUID.randomUUID();
-    	Ticket ticket = new Ticket("ID-" + uuid.toString());
-    	
-    	return ticket;
-	}
 
-	@Override
-	public WebTaskStep createNewTaskStep(TaskStepType taskStepType, String taskStepName, String taskStepDescription) {
-	    WebTaskStep newTaskStep = null;
-		switch(taskStepType) {
-		case CompleteTicketInformationStep:
-			newTaskStep = new CompleteTicketInformationStep(taskStepName, taskStepDescription);
-			break;
-		case DeveloperTaskStep:
-			newTaskStep = new DeveloperTaskStep(taskStepName, taskStepDescription);
-			break;
-		case InformationTaskStep:
-			newTaskStep = new InformationTaskStep(taskStepName, taskStepDescription);
-			break;
-		case ReviewerTaskStep:
-			newTaskStep = new ReviewerTaskStep(taskStepName, taskStepDescription);
-			break;
-		}
-		return newTaskStep;
-	}
+    @Override
+    public Ticket createEmptyTicket() {
+        UUID uuid = UUID.randomUUID();
+        Ticket ticket = new Ticket("ID-" + uuid.toString());
+
+        return ticket;
+    }
+
+    @Override
+    public WebTaskStep createNewTaskStep(TaskStepType taskStepType, String taskStepName, String taskStepDescription) {
+        WebTaskStep newTaskStep = null;
+        switch (taskStepType) {
+            case CompleteTicketInformationStep:
+                newTaskStep = new CompleteTicketInformationStep(taskStepName, taskStepDescription);
+                break;
+            case DeveloperTaskStep:
+                newTaskStep = new DeveloperTaskStep(taskStepName, taskStepDescription);
+                break;
+            case InformationTaskStep:
+                newTaskStep = new InformationTaskStep(taskStepName, taskStepDescription);
+                break;
+            case ReviewerTaskStep:
+                newTaskStep = new ReviewerTaskStep(taskStepName, taskStepDescription);
+                break;
+        }
+        return newTaskStep;
+    }
 }

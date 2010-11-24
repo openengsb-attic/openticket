@@ -19,7 +19,7 @@ public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilte
     ISortState sortState;
     TicketFilter filter = new TicketFilter();
     List<Ticket> list;
-    
+
     private PersistenceGateway gateway;
 
     public void setGateway(PersistenceGateway gateway) {
@@ -132,7 +132,7 @@ public class TicketDataProvider implements ISortableDataProvider<Ticket>, IFilte
            }
 
             });
-        }else{
+        } else {
             result = new ArrayList<Ticket>();
         }
         return result;

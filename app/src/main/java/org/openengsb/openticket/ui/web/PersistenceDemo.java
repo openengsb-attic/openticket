@@ -83,7 +83,7 @@ public class PersistenceDemo extends BasePage {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 try {
-                    info(((TestObject)gateway.readObject(new TestObject(value.getObjid()))).getValue());
+                    info(((TestObject) gateway.readObject(new TestObject(value.getObjid()))).getValue());
                 }
                 catch (IllegalStateException e) {
                     error("No value for this ID found!");

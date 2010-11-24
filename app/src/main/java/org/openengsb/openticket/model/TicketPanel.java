@@ -34,15 +34,14 @@ import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class TicketPanel extends Panel {
 
-  
-     private Panel taskPanel; private Panel currentTaskPanel; 
-     private List<Link> list = new ArrayList<Link>();
-     private List<WebTaskStep> stepList = new ArrayList<WebTaskStep>();
-     private Ticket ticket;
-     
-     @SpringBean
-     private TaskboxService service;
-  
+    private Panel taskPanel;
+    private Panel currentTaskPanel;
+    private List<Link> list = new ArrayList<Link>();
+    private List<WebTaskStep> stepList = new ArrayList<WebTaskStep>();
+    private Ticket ticket;
+
+    @SpringBean
+    private TaskboxService service;
 
     public TicketPanel(String id, Ticket t) {
         super(id);
@@ -50,37 +49,38 @@ public class TicketPanel extends Panel {
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
         feedback.setOutputMarkupId(true);
         add(feedback);
-        
+
         add(new Label("ticketid", ticket.getId()));
-        add(new Label("tickettype", ticket.getType() != null ? ticket.getType(): "N/A"));
-        add(new Label("ticketcreationTimestamp", ticket.getCreationTimestamp() != null ? ticket.getCreationTimestamp().toString(): "N/A"));
-        add(new Label("ticketpriority", ticket.getPriority()!= null ? ticket.getPriority(): "N/A"));
-        add(new Label("ticketcustomer", ticket.getCustomer()!= null ? ticket.getCustomer(): "N/A"));
-        add(new Label("ticketcontactEmailAddress", ticket.getContactEmailAddress()!= null ? ticket.getContactEmailAddress(): "N/A"));
-        add(new Label("ticketdescription", ticket.getDescription()!= null ? ticket.getDescription(): "N/A"));
-        
-        
-        add(new ListView("notesList", ticket.getNotes()){
+        add(new Label("tickettype", ticket.getType() != null ? ticket.getType() : "N/A"));
+        add(new Label("ticketcreationTimestamp", ticket.getCreationTimestamp() != null ? ticket.getCreationTimestamp()
+            .toString() : "N/A"));
+        add(new Label("ticketpriority", ticket.getPriority() != null ? ticket.getPriority() : "N/A"));
+        add(new Label("ticketcustomer", ticket.getCustomer() != null ? ticket.getCustomer() : "N/A"));
+        add(new Label("ticketcontactEmailAddress",
+            ticket.getContactEmailAddress() != null ? ticket.getContactEmailAddress() : "N/A"));
+        add(new Label("ticketdescription", ticket.getDescription() != null ? ticket.getDescription() : "N/A"));
+
+        add(new ListView("notesList", ticket.getNotes()) {
             @Override
             protected void populateItem(ListItem item) {
-                item.add(new Label("notesLabel",item.getModel()));
+                item.add(new Label("notesLabel", item.getModel()));
             }
         });
-        
-        add(new ListView("historyList", ticket.getHistory()){
+
+        add(new ListView("historyList", ticket.getHistory()) {
             @Override
             protected void populateItem(ListItem item) {
-                item.add(new Label("historyLabel",item.getModel()));
+                item.add(new Label("historyLabel", item.getModel()));
             }
         });
-        
+
         WebTaskStep currentStep = ticket.getCurrentTaskStep();
-        if(currentStep!=null){
+        if (currentStep != null) {
             taskPanel = currentTaskPanel = currentStep.getPanel("taskPanel");
-        }else{
+        } else {
             taskPanel = currentTaskPanel = new EmptyPanel("taskPanel");
         }
-        
+
         taskPanel.setOutputMarkupId(true);
         currentTaskPanel.setOutputMarkupId(true);
         stepList = ticket.getHistoryTaskSteps();
@@ -91,10 +91,10 @@ public class TicketPanel extends Panel {
                 taskPanel = currentTaskPanel;
             }
         };
-        if(currentStep!=null){
+        if (currentStep != null) {
             add(new Label("ticketcurrentTaskStep", currentStep.getName()));
-            
-        }else{
+
+        } else {
             add(new Label("ticketcurrentTaskStep", "N/A"));
             currentStepLink.setVisible(false);
         }
@@ -121,14 +121,14 @@ public class TicketPanel extends Panel {
             }
         });
         add(currentTaskPanel);
-        Link link = new Link("finishCurrentTask"){
+        Link link = new Link("finishCurrentTask") {
             @Override
             public void onClick() {
                 ticket.finishCurrentTaskStep();
-                //TODO: Process event
+                // TODO: Process event
             }
         };
-        if(currentStep==null){
+        if (currentStep == null) {
             link.setVisible(false);
         }
         add(link);

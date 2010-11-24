@@ -66,9 +66,9 @@ public class CompleteTicketInformationStep implements WebTaskStep {
     }
 
     @Override
-	public Panel getPanel(String id) {
-	    // TODO Auto-generated method stub
-	    return new Panel("null");
+    public Panel getPanel(String id) {
+        // TODO Auto-generated method stub
+        return new Panel("null");
     }
 
     @Override
