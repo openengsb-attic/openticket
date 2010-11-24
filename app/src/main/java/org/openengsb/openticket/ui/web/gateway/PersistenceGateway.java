@@ -51,7 +51,18 @@ public class PersistenceGateway implements BundleContextAware {
     }
     
     public List<Ticket> readAllTickets(){
-        return service.query(new Ticket(null));
+        Ticket t = new Ticket(null);
+        t.setContactEmailAddress(null);
+        t.setCreationTimestamp(null);
+        t.setCurrentTaskStep(null);
+        t.setCustomer(null);
+        t.setDescription(null);
+        t.setPriority(null);
+        t.setType(null);
+        t.setHistory(null);
+        t.setHistoryTaskSteps(null);
+        t.setNotes(null);
+        return service.query(t);
     }
     
     public void saveTickets(List<Ticket> list) throws PersistenceException{

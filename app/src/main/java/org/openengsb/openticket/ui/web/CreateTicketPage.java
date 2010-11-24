@@ -33,6 +33,7 @@ import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.model.TicketPriority;
 import org.openengsb.openticket.ui.web.gateway.PersistenceGateway;
+import org.apache.wicket.markup.html.form.ChoiceRenderer;
 import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
@@ -62,7 +63,7 @@ public class CreateTicketPage extends BasePage {
         form.add(new TextField("tickettype", ticketModel.bind("type")).setRequired(true).add(StringValidator.minimumLength(2)));
         form.add(new TextField("ticketcustomer", ticketModel.bind("customer")));
         form.add(new TextField("ticketcontactEmailAddress", ticketModel.bind("contactEmailAddress")));
-        form.add(new DropDownChoice("ticketpriority", ticketModel.bind("priority"),Arrays.asList(TicketPriority.values())));
+        form.add(new DropDownChoice("ticketpriority", ticketModel.bind("priority"),Arrays.asList(TicketPriority.values())).setRequired(true));
         form.add(new TextArea("ticketdescription", ticketModel.bind("description")).setRequired(true));
         
         
@@ -73,12 +74,11 @@ public class CreateTicketPage extends BasePage {
                 try {
                     info("Ticket created");
                     target.addComponent(feedback);
-                    service.startWorkflow("GlobalTicket", "ticket", ticket);
+                    //service.startWorkflow("GlobalTicket", "ticket", ticket);
                     ticket.setCreationTimestamp(new Date(System.currentTimeMillis()));
                     gateway.saveObject(ticket);
+                    setResponsePage(OverviewPanel.class);
                 } catch (PersistenceException e) {
-                    info(e.getMessage());
-                } catch (TaskboxException e) {
                     info(e.getMessage());
                 }
             }

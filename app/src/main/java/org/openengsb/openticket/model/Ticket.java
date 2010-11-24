@@ -54,18 +54,6 @@ public class Ticket implements WebTask, Serializable {
      */
     private List<String> notes;
 
-    public void setHistoryTaskSteps(List<WebTaskStep> historyTaskSteps) {
-        this.historyTaskSteps = historyTaskSteps;
-    }
-
-    public void setHistory(List<String> history) {
-        this.history = history;
-    }
-
-    public void setNotes(List<String> notes) {
-        this.notes = notes;
-    }
-
     public Ticket(String id) {
         super();
         this.id = id;

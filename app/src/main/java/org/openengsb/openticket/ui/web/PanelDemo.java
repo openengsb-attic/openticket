@@ -23,6 +23,7 @@ import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
+import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
@@ -76,9 +77,24 @@ public class PanelDemo extends BasePage {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                     Ticket t = new Ticket(value.getObjid());
-                    t.setPriority(TicketPriority.Low);
-                    t.setCreationTimestamp(new Date(System.currentTimeMillis()));
-                    Panel newPanel = t.getPanel("panel");
+                    t.setContactEmailAddress(null);
+                    t.setCreationTimestamp(null);
+                    t.setCurrentTaskStep(null);
+                    t.setCustomer(null);
+                    t.setDescription(null);
+                    t.setPriority(null);
+                    t.setType(null);
+                    t.setHistory(null);
+                    t.setHistoryTaskSteps(null);
+                    t.setNotes(null);
+                    Panel newPanel = new EmptyPanel("panel");
+                    
+                    try{
+                        t = (Ticket)gateway.readObject(t);
+                        newPanel = t.getPanel("panel");
+                    }catch(IllegalStateException e){
+                        e.printStackTrace();
+                    }
                     newPanel.setOutputMarkupId(true);
                     panel.replaceWith(newPanel);
                     panel = newPanel;
