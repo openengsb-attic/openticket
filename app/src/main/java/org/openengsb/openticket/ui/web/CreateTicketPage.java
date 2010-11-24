@@ -16,7 +16,6 @@
 
 package org.openengsb.openticket.ui.web;
 
-
 import java.util.Date;
 import java.util.Arrays;
 
@@ -27,6 +26,7 @@ import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
 import org.openengsb.core.common.persistence.PersistenceException;
+import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.model.TicketPriority;
@@ -41,10 +41,10 @@ import org.apache.wicket.model.CompoundPropertyModel;
 public class CreateTicketPage extends BasePage {
     @SpringBean
     private TaskboxService service;
-    
+
     @SpringBean
     private PersistenceGateway gateway;
-    
+
     private Ticket ticket = new Ticket("");
 
     public CreateTicketPage() {
@@ -56,14 +56,16 @@ public class CreateTicketPage extends BasePage {
         Form<Ticket> form = new Form<Ticket>("inputForm", ticketModel);
         form.setOutputMarkupId(true);
 
-        form.add(new TextField("ticketid", ticketModel.bind("id")).setRequired(true).add(StringValidator.minimumLength(2)));
-        form.add(new TextField("tickettype", ticketModel.bind("type")).setRequired(true).add(StringValidator.minimumLength(2)));
+        form.add(new TextField("ticketid", ticketModel.bind("id")).setRequired(true).add(
+            StringValidator.minimumLength(2)));
+        form.add(new TextField("tickettype", ticketModel.bind("type")).setRequired(true).add(
+            StringValidator.minimumLength(2)));
         form.add(new TextField("ticketcustomer", ticketModel.bind("customer")));
         form.add(new TextField("ticketcontactEmailAddress", ticketModel.bind("contactEmailAddress")));
-        form.add(new DropDownChoice("ticketpriority", ticketModel.bind("priority"),Arrays.asList(TicketPriority.values())).setRequired(true));
+        form.add(new DropDownChoice("ticketpriority", ticketModel.bind("priority"), Arrays.asList(TicketPriority
+            .values())).setRequired(true));
         form.add(new TextArea("ticketdescription", ticketModel.bind("description")).setRequired(true));
-        
-        
+
         form.add(new AjaxButton("submitButton", form)
         {
             @Override
@@ -71,17 +73,19 @@ public class CreateTicketPage extends BasePage {
                 try {
                     info("Ticket created");
                     target.addComponent(feedback);
-                    //service.startWorkflow("GlobalTicket", "ticket", ticket);
+                    service.startWorkflow("GlobalTicket", "ticket", ticket);
                     ticket.setCreationTimestamp(new Date(System.currentTimeMillis()));
                     gateway.saveObject(ticket);
                     setResponsePage(OverviewPanel.class);
+                } catch (TaskboxException e) {
+                    info(e.getMessage());
                 } catch (PersistenceException e) {
                     info(e.getMessage());
                 }
             }
 
             @Override
-            protected void onError(AjaxRequestTarget target, Form<?> form) {                
+            protected void onError(AjaxRequestTarget target, Form<?> form) {
                 target.addComponent(feedback);
             }
         });

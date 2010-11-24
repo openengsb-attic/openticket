@@ -29,7 +29,9 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.openengsb.core.common.Event;
 import org.openengsb.core.common.taskbox.TaskboxService;
+import org.openengsb.core.common.workflow.WorkflowException;
 import org.openengsb.ui.taskbox.model.WebTaskStep;
 
 public class TicketPanel extends Panel {
@@ -125,7 +127,16 @@ public class TicketPanel extends Panel {
             @Override
             public void onClick() {
                 ticket.finishCurrentTaskStep();
-                // TODO: Process event
+                try {
+                    service.processEvent(new Event() {
+                        @Override
+                        public String getType() {
+                            return "TaskStepFinished";
+                        }
+                    });
+                } catch (WorkflowException e) {
+                    info(e.getMessage());
+                }
             }
         };
         if (currentStep == null) {
