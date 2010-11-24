@@ -23,12 +23,12 @@
   <parent>
     <groupId>org.openengsb.openticket.integrationtest</groupId>
     <artifactId>openticket-integrationtest-parent</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0.M2</version>
   </parent>
 
   <groupId>org.openengsb.openticket.integrationtest</groupId>
   <artifactId>openticket-integrationtest-test</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1.0.0.M2</version>
   <name>OpenTicket :: Integration Tests :: Tests</name>
 
   <dependencies>
