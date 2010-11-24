@@ -63,7 +63,6 @@ public class OpenTicketConfigurator {
             id = new RuleBaseElementId(RuleBaseElementType.Process, "tasktest");
             ruleManager.add(id, testWorkflow);
             log.info("loaded workflow 'tasktest'");
-
             
             // TODO: refactor the copy.
             log.info("about to load workflow 'eventtest'");
@@ -72,7 +71,6 @@ public class OpenTicketConfigurator {
             id = new RuleBaseElementId(RuleBaseElementType.Process, "eventtest");
             ruleManager.add(id, testWorkflow);
             log.info("loaded workflow 'eventtest'");
-            
             
             log.info("about to load workflow 'GlobalTicket'");
             is = getClass().getClassLoader().getResourceAsStream("GlobalTicket.rf");
