@@ -24,8 +24,7 @@
 
   <feature name="client-core" version="${project.version}" >
     <feature version="${openengsb.version}">openengsb-core</feature>
-    <bundle dependency="true">mvn:groupId/artifactId/${version}</bundle>
-    <bundle>mvn:groupId/artifactId/${version}</bundle>
+    <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-servlet_2.5_spec/${geronimo.servlet.version}</bundle>
   </feature>
 
 </features>

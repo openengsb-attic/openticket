@@ -7,6 +7,8 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 
 import org.apache.wicket.spring.test.ApplicationContextMock;
 import org.apache.wicket.util.tester.WicketTester;
@@ -14,6 +16,8 @@ import org.junit.Before;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
 import org.openengsb.core.common.context.ContextCurrentService;
+import org.openengsb.core.common.service.DomainService;
+import org.osgi.framework.ServiceReference;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -29,12 +33,24 @@ public abstract class PageTest {
     @Before
     public void baseSetup() {
         appContext = new ApplicationContextMock();
+        
+        mockAuthentication();
+        mockIndex();
 
         contextService = mock(ContextCurrentService.class);
         when(contextService.getAvailableContexts()).thenReturn(Arrays.asList(new String[]{ "foo", "bar" }));
         appContext.putBean(contextService);
+    }
 
-        mockAuthentication();
+    private void mockIndex() {
+        DomainService managedServicesMock = mock(DomainService.class);
+        when(managedServicesMock.getAllServiceInstances()).thenAnswer(new Answer<List<ServiceReference>>() {
+            @Override
+            public List<ServiceReference> answer(InvocationOnMock invocation) {
+                return Collections.emptyList();
+            }
+        });
+        appContext.putBean(managedServicesMock);
     }
 
     private void mockAuthentication() {
