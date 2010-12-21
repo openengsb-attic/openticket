@@ -98,19 +98,10 @@ public class HeaderTemplate extends Panel {
             for (String role : roles) {
                 if (role.equals("CASEWORKER")) {
                     addHeaderMenuItem("WorkflowDemo", WorkflowDemo.class, "workflowdemo.title");
-                    addHeaderMenuItem("PersistenceDemo", PersistenceDemo.class, "persistencedemo.title");
-                    addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title");
-                    addHeaderMenuItem("EventDemo", EventDemo.class, "eventdemo.title");
-                    addHeaderMenuItem("TaskboxMessage", TaskboxMessage.class, "taskboxmessage.title");
-                    addHeaderMenuItem("OverviewPanel", OverviewPanel.class, "overviewpanel.title");
                 }
             }
         } catch (ClassCastException e) {
             addHeaderMenuItem("WorkflowDemo", WorkflowDemo.class, "workflowdemo.title");
-            addHeaderMenuItem("PersistenceDemo", PersistenceDemo.class, "persistencedemo.title");
-            addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title");
-            addHeaderMenuItem("EventDemo", EventDemo.class, "eventdemo.title");
-            addHeaderMenuItem("TaskboxMessage", TaskboxMessage.class, "taskboxmessage.title");
         }
     }
 

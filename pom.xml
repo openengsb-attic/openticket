@@ -16,6 +16,7 @@
    limitations under the License.
 
 -->
+
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
@@ -28,26 +29,41 @@
   <description>Help desk workflow application using OpenEngSB</description>
 
   <properties>
-    <openticket.version.number>${project.version}</openticket.version.number>
-    <org.osgi.service.http.port>8090</org.osgi.service.http.port>
-    <org.osgi.service.http.port.secure>8091</org.osgi.service.http.port.secure>
-    <openengsb.version>1.1.0-SNAPSHOT</openengsb.version>
-    <plugin.assembly.version>2.2-beta-5</plugin.assembly.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <!-- Environment Versions -->
     <jdk.version>1.6</jdk.version>
-    <plugin.pax.version>1.4</plugin.pax.version>
+    <mvn.version>3.0</mvn.version>
+    <!-- Plugin Version -->
+    <maven.plugin.eclipse.version>2.8</maven.plugin.eclipse.version>
+    <maven.plugin.surefire.version>2.6</maven.plugin.surefire.version>
+    <maven.plugin.surefire.report.version>2.6</maven.plugin.surefire.report.version>
+    <maven.plugin.release.version>3.0-beta-2</maven.plugin.release.version>
+    <maven.plugin.compiler.version>2.3.2</maven.plugin.compiler.version>
+    <maven.plugin.clean.version>2.4.1</maven.plugin.clean.version>
+    <maven.plugin.jar.version>2.3.1</maven.plugin.jar.version>
+    <maven.plugin.deploy.version>2.5</maven.plugin.deploy.version>
+    <maven.plugin.release.version>2.0</maven.plugin.release.version>
+    <maven.plugin.site.version>3.0-beta-3</maven.plugin.site.version>
+    <maven.plugin.source.version>2.1.2</maven.plugin.source.version>
+    <maven.plugin.mvn.license>1.8.0</maven.plugin.mvn.license>
+    <maven.plugin.javadoc.version>2.7</maven.plugin.javadoc.version>
+    <maven.plugin.helper.version>1.5</maven.plugin.helper.version>
+    <maven.plugin.resources.version>2.4.3</maven.plugin.resources.version>
+    <maven.plugin.install.version>2.3.1</maven.plugin.install.version>
+    <javax.xml.soap>1.3.0</javax.xml.soap>
     <plugin.wagon.webdav.version>1.0-beta-2</plugin.wagon.webdav.version>
     <plugin.wagon.ssh.version>1.0-beta-6</plugin.wagon.ssh.version>
-    <plugin.surefire.version>2.5</plugin.surefire.version>
+    <wicket.version>1.4.13</wicket.version>
+    <maven.war.plugin.version>2.1.1</maven.war.plugin.version>
   </properties>
 
   <packaging>pom</packaging>
 
   <modules>
     <module>poms</module>
-    <module>provision</module>
     <module>doc</module>
     <module>app</module>
-    <module>integrationtest</module>
+    <!-- module>integrationtest</module -->
     <module>assembly</module>
   </modules>
   
@@ -195,39 +211,6 @@
 
   <profiles>
     <profile>
-      <id>run</id>
-      <activation>
-        <activeByDefault>true</activeByDefault>
-        <property>
-          <name>run</name>
-        </property>
-      </activation>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.ops4j</groupId>
-            <artifactId>maven-pax-plugin</artifactId>
-            <version>${plugin.pax.version}</version>
-            <configuration>
-              <runner>1.5.0</runner>
-              <framework>felix</framework>
-              <noDependencies>true</noDependencies>
-              <provision>
-                <param>--platform=felix</param>
-                <param>--console=false</param>
-                <param>--vmOptions=-Xdebug -Xrunjdwp:transport=dt_socket,server=y,suspend=n,address=5005</param>
-                <param>scan-composite:file:assembly/target/classes/karaf.composite</param>
-                <param>scan-composite:file:assembly/target/classes/settings.debug.composite</param>
-                <param>--ee=J2SE-1.6</param>
-                <param>--definitionURL=file:assembly/target/classes/felix.xml</param>
-                <param>scan-pom:file:assembly/target/provision-provision.xml</param>
-              </provision>
-            </configuration>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
-    <profile>
       <id>integration-test</id>
       <build>
         <plugins>
@@ -252,13 +235,125 @@
 
   <repositories>
     <repository>
-      <id>sonatype.repository</id>
-      <url>https://oss.sonatype.org/content/groups/public/</url>
+      <id>central</id>
+      <name>Maven Central</name>
+      <url>http://repo1.maven.org/maven2/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
     </repository>
-    <repository>
+    <repository> <!-- for jboss-drools and its dependencies -->
+      <id>jboss</id>
+      <url>https://repository.jboss.org/nexus/content/groups/public/</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository> <!-- various prewrapped -->
+      <id>com.springsource.repository.bundles.external</id>
+      <name>SpringSource Enterprise Bundle Repository - External Bundle Releases</name>
+      <url>http://repository.springsource.com/maven/bundles/external</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository> <!-- org.springframework.osgi:jetty.start.osgi -->
+      <id>i21-s3-osgi-repo</id>
+      <name>i21 osgi artifacts repo</name>
+      <url>http://maven.springframework.org/osgi</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository> <!-- spring-osgi-m1 -->
+      <id>spring-maven-milestone</id>
+      <name>Springframework Maven Repository</name>
+      <url>http://maven.springframework.org/milestone</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository> <!-- manually wrapped jaxb and latest version of neodatis -->
       <id>thirdparty</id>
       <name>OpenEngSB 3rd Party Repository</name>
-      <url>http://maven.openengsb.org/nexus/content/repositories/thirdparty</url>      
+      <url>http://maven.openengsb.org/nexus/content/repositories/thirdparty/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository>
+      <!-- required for maven-default-skin/1.0/maven-default-skin-1.0.jar
+        cd docs; mvn -Pdocs clean install site:run
+        does not work without
+      -->
+      <id>apache.releases</id>
+      <name>Apache Public Repository</name>
+      <url>https://repository.apache.org/content/groups/public/</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository> <!-- required for karaf snapshot builds -->
+      <id>apache.snapshots</id>
+      <name>Apache Public Repository</name>
+      <url>https://repository.apache.org/content/repositories/snapshots/</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository> <!-- Additional Repositories for Karaf -->
+      <id>servicemix</id>
+      <name>Apache ServiceMix Repository</name>
+      <url>http://svn.apache.org/repos/asf/servicemix/m2-repo</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository> <!-- Additional Repositories for Karaf -->
+      <id>fusesource.snapshots</id>
+      <name>FuseSource snapshot repository</name>
+      <url>http://repo.fusesource.com/nexus/content/repositories/releases</url>
+      <releases>
+        <enabled>true</enabled>
+      </releases>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository> <!-- Additional Repositories for Karaf -->
+      <id>sonatype</id>
+      <name>sonatype</name>
+      <url>http://repository.sonatype.org/content/groups/sonatype-public-grid</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+      <snapshots>
+        <enabled>true</enabled>
+      </snapshots>
+    </repository>
+    <repository> <!-- JGIT  -->
+      <id>jgit</id>
+      <url>http://download.eclipse.org/jgit/maven</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+    <repository> <!-- Latest PAX artifacts as long as not in central -->
+      <id>sonatype.pax</id>
+      <url>https://oss.sonatype.org/content/groups/ops4j-with-staging/</url>
     </repository>
   </repositories>
+
 </project>

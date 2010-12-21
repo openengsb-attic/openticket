@@ -1,22 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!--
+<!-- Copyright 2010 OpenEngSB Division, Vienna University of Technology Licensed under the Apache License, Version 2.0 (the 
+  "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at http://www.apache.org/licenses/LICENSE-2.0 
+  Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS 
+  IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language 
+  governing permissions and limitations under the License. -->
 
-   Copyright 2010 OpenEngSB Division, Vienna University of Technology
-
-   Licensed under the Apache License, Version 2.0 (the "License");
-   you may not use this file except in compliance with the License.
-   You may obtain a copy of the License at
-
-       http://www.apache.org/licenses/LICENSE-2.0
-
-   Unless required by applicable law or agreed to in writing, software
-   distributed under the License is distributed on an "AS IS" BASIS,
-   WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-   See the License for the specific language governing permissions and
-   limitations under the License.
-
--->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 
   <modelVersion>4.0.0</modelVersion>
 
@@ -32,65 +22,43 @@
   <packaging>pom</packaging>
   <name>OpenTicket :: Assembly</name>
 
-  <properties>
-    <!-- platform/felix.xml -->
-    <!-- The platform does not required any additional configuration (only felix.version) --> 
-    
-    <!-- platform/karaf.composite -->
-    <felix.log.level>1</felix.log.level>
-    <settings.karaf.home>.</settings.karaf.home>
-    <settings.karaf.base>.</settings.karaf.base>
-    <settings.karaf.data>${settings.karaf.base}/data</settings.karaf.data>
-    <org.osgi.service.http.port>8090</org.osgi.service.http.port>
-    <org.osgi.service.http.port.secure>8091</org.osgi.service.http.port.secure>
-
-    <!-- platform/settings.debug.composite -->
-    <debug.felix.fileinstall.dir>../assembly/target/openticket-${project.version}-config/openticket-${project.version}/config</debug.felix.fileinstall.dir>
-    <debug.felix.fileinstall.filter>.*\.cfg</debug.felix.fileinstall.filter>
-    <debug.felix.fileinstall.poll>1000</debug.felix.fileinstall.poll>
-    <debug.felix.fileinstall.noInitialDelay>true</debug.felix.fileinstall.noInitialDelay>
-
-    <!-- platform/settings.release.composite -->
-    <release.felix.fileinstall.dir>config</release.felix.fileinstall.dir>
-    <release.felix.fileinstall.filter>.*\\.cfg</release.felix.fileinstall.filter>
-    <release.felix.fileinstall.poll>1000</release.felix.fileinstall.poll>
-    <release.felix.fileinstall.noInitialDelay>true</release.felix.fileinstall.noInitialDelay>
-
-    <!-- Specific Debug Settings -->
-    <client.debug.properties />
-
-    <!-- run/karaf.sh -->
-    <client.properties.linux />
-
-    <!-- run/karaf.bat -->
-    <client.properties.windows />
-
-    <!-- config/* -->   
-    <!-- To be extended, currently no properties required here -->
-
-    <!-- log settings -->
-    <logging.level>INFO</logging.level>
-
-  </properties>
+  <dependencies>
+    <!-- OpenEngSB Binary Base Windows -->
+    <dependency>
+      <groupId>org.openengsb</groupId>
+      <artifactId>openengsb</artifactId>
+      <version>${openengsb.version}</version>
+      <type>zip</type>
+    </dependency>
+    <!-- OpenEngSB Binary Base Unix -->
+    <dependency>
+      <groupId>org.openengsb</groupId>
+      <artifactId>openengsb</artifactId>
+      <version>${openengsb.version}</version>
+      <type>tar.gz</type>
+    </dependency>
+    <!-- OpenEngSB Feature Definition -->
+    <dependency>
+      <groupId>org.openengsb</groupId>
+      <artifactId>openengsb</artifactId>
+      <version>${openengsb.version}</version>
+      <type>xml</type>
+      <classifier>features</classifier>
+    </dependency>
+    <!-- Karaf Feature Definition -->
+    <dependency>
+      <groupId>org.apache.karaf</groupId>
+      <artifactId>apache-karaf</artifactId>
+      <version>${karaf.version}</version>
+      <type>xml</type>
+      <classifier>features</classifier>
+    </dependency>
+  </dependencies>
 
   <build>
     <resources>
       <resource>
-        <directory>${project.basedir}/target/openengsb-config-client-${openengsb.version}/platform</directory>
-        <filtering>true</filtering>
-        <includes>
-          <include>**/*</include>
-        </includes>
-      </resource>
-      <resource>
-        <directory>${project.basedir}/target/openengsb-config-client-${openengsb.version}/config</directory>
-        <filtering>true</filtering>
-        <includes>
-          <include>**/*</include>
-        </includes>
-      </resource>
-      <resource>
-        <directory>${project.basedir}/target/openengsb-config-client-${openengsb.version}/run</directory>
+        <directory>${project.basedir}/src/main/filtered-resources</directory>
         <filtering>true</filtering>
         <includes>
           <include>**/*</include>
@@ -100,77 +68,14 @@
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>unpack</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.openengsb.config</groupId>
-                  <artifactId>openengsb-config-client</artifactId>
-                  <version>${openengsb.version}</version>
-                  <type>zip</type>
-                  <classifier>platform</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.openengsb.config</groupId>
-                  <artifactId>openengsb-config-client</artifactId>
-                  <version>${openengsb.version}</version>
-                  <type>zip</type>
-                  <classifier>config</classifier>
-                </artifactItem>
-                <artifactItem>
-                  <groupId>org.openengsb.config</groupId>
-                  <artifactId>openengsb-config-client</artifactId>
-                  <version>${openengsb.version}</version>
-                  <type>zip</type>
-                  <classifier>run</classifier>
-                </artifactItem>
-              </artifactItems>
-              <outputDirectory>${project.build.directory}</outputDirectory>
-              <overWriteReleases>true</overWriteReleases>
-              <overWriteSnapshots>true</overWriteSnapshots>
-              <stripVersion>true</stripVersion>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin> 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-dependency-plugin</artifactId>
-        <executions>
-          <execution>
-            <id>copy</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>copy</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.openengsb.build</groupId>
-                  <artifactId>provision</artifactId>
-                  <version>${openengsb.version}</version>
-                  <classifier>provision</classifier>
-                  <type>xml</type>
-                </artifactItem>
-              </artifactItems>
-              <outputDirectory>${project.build.directory}</outputDirectory>
-              <overWriteReleases>true</overWriteReleases>
-              <overWriteSnapshots>true</overWriteSnapshots>
-              <stripVersion>true</stripVersion>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin> 
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-resources-plugin</artifactId>
+        <version>${maven.plugin.resources.version}</version>
+        <configuration>
+          <useDefaultDelimiters>false</useDefaultDelimiters>
+          <delimiters>
+            <delimiter>${*}</delimiter>
+          </delimiters>
+        </configuration>
         <executions>
           <execution>
             <id>filter</id>
@@ -181,80 +86,85 @@
           </execution>
         </executions>
       </plugin>
-      <plugin>
-        <artifactId>maven-assembly-plugin</artifactId>
-        <version>${plugin.assembly.version}</version>
-        <configuration>
-          <appendAssemblyId>true</appendAssemblyId>
-          <descriptors>
-            <descriptor>${project.basedir}/src/main/descriptors/config.xml</descriptor>
-          </descriptors>
-        </configuration>
-        <executions>
-          <execution>
-            <id>make-assembly</id> 
-            <phase>package</phase>
-            <goals>
-              <goal>single</goal> 
-            </goals>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-    <profiles>
-    <profile>
-      <id>release</id>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.ops4j</groupId>
-            <artifactId>maven-pax-plugin</artifactId>
-            <version>${plugin.pax.version}</version>
-            <configuration>
-              <runner>${plugin.paxrunner.version}</runner>
-              <framework>felix</framework>
-              <noDependencies>true</noDependencies>
-              <deployPoms>${project.basedir}/../assembly/provision/pom.xml</deployPoms>
-              <deployURLs>
-                scan-bundle:mvn:org.openengsb.openticket/openticket-app/${project.version}/war,
-              </deployURLs>
-              <provision>
-                <param>--platform=felix</param>
-                <param>--executor=script</param>
-                <param>--workingDirectory=${project.basedir}/target/all/openticket</param>
-                <param>--console=false</param>
-                <param>--ee=J2SE-1.6</param>
-                <param>scan-composite:file:${project.basedir}/target/classes/karaf.composite</param>
-                <param>scan-composite:file:${project.basedir}/target/classes/settings.debug.composite</param>
-                <param>--definitionURL=file:${project.basedir}/target/classes/felix.xml</param>
-                <param>scan-pom:file:${project.basedir}/target/provision-provision.xml</param>
-                <param>--clean</param>
-              </provision>
-            </configuration>
+            <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-dependency-plugin</artifactId>
             <executions>
               <execution>
-                <id>prepare-openticket</id>
-                <phase>package</phase>
+                <id>unpack-unix</id>
+                <phase>generate-resources</phase>
                 <goals>
-                  <goal>provision</goal>
+                  <goal>unpack</goal>
                 </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>org.openengsb</groupId>
+                      <artifactId>openengsb</artifactId>
+                      <type>tar.gz</type>
+                      <outputDirectory>target/dependencies/unix</outputDirectory>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
               </execution>
+              <execution>
+                <id>unpack-win</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>unpack</goal>
+                </goals>
+                <configuration>
+                  <artifactItems>
+                    <artifactItem>
+                      <groupId>org.openengsb</groupId>
+                      <artifactId>openengsb</artifactId>
+                      <type>zip</type>
+                      <outputDirectory>target/dependencies/win</outputDirectory>
+                    </artifactItem>
+                  </artifactItems>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+          <plugin>
+            <groupId>org.apache.karaf.tooling</groupId>
+            <artifactId>features-maven-plugin</artifactId>
+            <version>${karaf.version}</version>
+            <executions>
+              <execution>
+                <id>collect-features-for-all</id>
+                <phase>generate-resources</phase>
+                <goals>
+                  <goal>add-features-to-repo</goal>
+                </goals>
+                <configuration>
+                  <descriptors>
+                    <descriptor>file:${basedir}/target/classes/features.xml</descriptor>
+                    <descriptor>mvn:org.apache.karaf/apache-karaf/${karaf.version}/xml/features</descriptor>
+                    <descriptor>mvn:org.openengsb/openengsb/${openengsb.version}/xml/features</descriptor>
+                  </descriptors>
+                  <features>
+                    <!--<feature>myfeature</feature>-->
+                  </features>
+                  <repository>target/features-repo</repository>
+                </configuration>
+              </execution>
+              <!-- Further, different distributions -->
             </executions>
           </plugin>
           <plugin>
             <artifactId>maven-assembly-plugin</artifactId>
             <version>${maven.plugin.assembly.version}</version>
             <configuration>
-              <appendAssemblyId>false</appendAssemblyId>
               <descriptors>
-                <descriptor>${project.basedir}/src/main/descriptors/config.xml</descriptor>
-                <descriptor>${project.basedir}/src/main/descriptors/openticket.xml</descriptor>
+                <descriptor>${project.basedir}/src/main/descriptors/unix-all.xml</descriptor>
+                <descriptor>${project.basedir}/src/main/descriptors/windows-all.xml</descriptor>
+                <!-- Further Descriptors -->
               </descriptors>
             </configuration>
             <executions>
               <execution>
-                <id>assembly-openticket</id>
+                <id>assembly-openengsb</id>
                 <phase>package</phase>
                 <goals>
                   <goal>single</goal>
@@ -263,29 +173,16 @@
             </executions>
           </plugin>
           <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>attach-artifacts</id>
-                <phase>package</phase>
-                <goals>
-                  <goal>attach-artifact</goal>
-                </goals>
-                <configuration>
-                  <artifacts>
-                    <artifact>
-                      <file>${project.basedir}/target/openticket-${project.version}.zip</file>
-                      <type>zip</type>
-                    </artifact>
-                  </artifacts>
-                </configuration>
-              </execution>
-            </executions>
+            <groupId>org.openengsb.tooling.pluginsuite</groupId>
+            <artifactId>maven-openengsb-plugin</artifactId>
+            <version>${project.version}</version>
+            <configuration>
+              <provisionPathUnix>${project.basedir}/target/openticket-${project.version}-unix-all/openticket-${project.version}/bin/openticket</provisionPathUnix>
+              <provisionPathWindows>${project.basedir}/target/openticket-${project.version}-windows-all/openticket-${project.version}/bin/openticket.bat</provisionPathWindows>
+            </configuration>
           </plugin>
         </plugins>
       </build>
-    </profile>
-  </profiles>
 
 </project>
+
