@@ -22,7 +22,7 @@
   <repository>mvn:org.apache.karaf/apache-karaf/${karaf.version}/xml/features</repository>
   <repository>mvn:org.openengsb/openengsb/${openengsb.version}/xml/features</repository>
 
-  <feature name="client-core" version="${project.version}" >
+  <feature name="openticket-core" version="${project.version}" >
     <feature version="${openengsb.version}">openengsb-core</feature>
     <bundle dependency='true'>mvn:org.apache.geronimo.specs/geronimo-servlet_2.5_spec/${geronimo.servlet.version}</bundle>
   </feature>
