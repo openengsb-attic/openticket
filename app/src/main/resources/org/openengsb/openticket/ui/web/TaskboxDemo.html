@@ -24,6 +24,14 @@
     <wicket:extend>
       <wicket:message key="text"></wicket:message>:
       <span wicket:id="amount"></span>
+      
+      <p>
+        <span wicket:id="feedback"></span>
+      </p>
+      <form wicket:id="form">
+        <input type="submit" wicket:id="startFlow" wicket:message="value:startflow,title:startflow" />
+        <input type="submit" wicket:id="finishFlow" wicket:message="value:finishflow,title:finishflow" />
+      </form>
     </wicket:extend>
   </body>
 </html>
