@@ -63,7 +63,7 @@
     <module>poms</module>
     <module>doc</module>
     <module>app</module>
-    <!-- module>integrationtest</module -->
+    <module>itests</module>
     <module>assembly</module>
   </modules>
   
