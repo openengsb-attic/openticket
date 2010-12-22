@@ -61,7 +61,7 @@
 
   <modules>
     <module>poms</module>
-    <module>doc</module>
+    <module>docs</module>
     <module>app</module>
     <module>itests</module>
     <module>assembly</module>

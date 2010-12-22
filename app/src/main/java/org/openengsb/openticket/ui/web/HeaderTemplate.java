@@ -97,11 +97,11 @@ public class HeaderTemplate extends Panel {
             Roles roles = ((WicketSession) WebSession.get()).getRoles();
             for (String role : roles) {
                 if (role.equals("CASEWORKER")) {
-                    addHeaderMenuItem("WorkflowDemo", WorkflowDemo.class, "workflowdemo.title");
+                    addHeaderMenuItem("TaskboxDemo", TaskboxDemo.class, "taskboxdemo.title");
                 }
             }
         } catch (ClassCastException e) {
-            addHeaderMenuItem("WorkflowDemo", WorkflowDemo.class, "workflowdemo.title");
+            addHeaderMenuItem("TasboxDemo", TaskboxDemo.class, "taskboxdemo.title");
         }
     }
 

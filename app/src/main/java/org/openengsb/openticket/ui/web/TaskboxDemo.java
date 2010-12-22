@@ -14,19 +14,14 @@
  * limitations under the License.
  */
 
-package org.openengsb.openticket.integrationtest.util;
+package org.openengsb.openticket.ui.web;
 
-import org.ops4j.pax.exam.options.MavenUrlReference.VersionResolver;
+import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
+import org.apache.wicket.markup.html.basic.Label;
 
-public class OpenEngSBVersionResolver implements VersionResolver {
-    private static String openengsbVersion;
-
-    @Override
-    public String getVersion(String arg0, String arg1) {
-        if (openengsbVersion == null) {
-            openengsbVersion = BaseExamConfiguration.extractAllPropertiesFromPom("../../pom.xml").get("openengsb.version");
-        }
-        return openengsbVersion;
+@AuthorizeInstantiation("CASEWORKER")
+public class TaskboxDemo extends BasePage {
+    public TaskboxDemo() {
+        add(new Label("testoutput", ""));
     }
-
 }

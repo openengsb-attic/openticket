@@ -18,6 +18,11 @@ package org.openengsb.openticket.integrationtest.htmlunit;
 
 import static org.junit.Assert.assertTrue;
 
+import java.io.File;
+
+import org.apache.commons.io.FileUtils;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openengsb.openticket.integrationtest.util.AbstractExamTestHelper;
@@ -30,27 +35,30 @@ import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 
 @RunWith(JUnit4TestRunner.class)
 public class BaseUiInfrastructureIT extends AbstractExamTestHelper {
+    private WebClient webClient;
+    private String loginPageEntryUrl
+        = "http://localhost:8090/openticket/?wicket:bookmarkablePage=:org.openengsb.openticket.ui.web.LoginPage";
+
+    @Before
+    public void setUp() throws Exception {
+        webClient = new WebClient();
+    }
+
+    @After
+    public void tearDown() throws Exception {
+        webClient.closeAllWindows();
+        FileUtils.deleteDirectory(new File(getWorkingDirectory()));
+    }
+
     @Test
     public void testIfAllMainNavigationLinksWork() throws Exception {
-        final WebClient webClient = new WebClient();
-        String loginPageEntryUrl =
-            "http://localhost:8090/openticket/?wicket:bookmarkablePage=:org.openengsb.openticket.ui.web.LoginPage";
         final HtmlPage page = webClient.getPage(loginPageEntryUrl);
         HtmlForm form = page.getForms().get(0);
         HtmlSubmitInput loginButton = form.getInputByValue("Login");
         form.getInputByName("username").setValueAttribute("user");
         form.getInputByName("password").setValueAttribute("password");
         HtmlPage indexPage = loginButton.click();
-        assertTrue(indexPage.asText().contains("This page represents"));
-        HtmlPage testClient = indexPage.getAnchorByText("Test Client").click();
-        assertTrue(testClient.asText().contains("Current Project"));
-        HtmlPage sendEventpage = testClient.getAnchorByText("Send Event Page").click();
-        assertTrue(sendEventpage.asText().contains("Current Project"));
-        HtmlPage contextPage = testClient.getAnchorByText("Context").click();
-        assertTrue(contextPage.asText().contains("Current Project"));
-        HtmlPage servicePage = testClient.getAnchorByText("Services").click();
-        assertTrue(servicePage.asText().contains("Services with state = Connecting"));
-        webClient.closeAllWindows();
-    }
 
+        assertTrue(indexPage.asText().contains("OpenTicket is a solution based "));
+    }
 }

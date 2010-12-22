@@ -21,7 +21,7 @@ public abstract class NonAuthenticatedPageTest extends PageTest {
 
             @Override
             public Class<? extends Page> getHomePage() {
-                return WorkflowDemo.class;
+                return TaskboxDemo.class;
             }
 
             @Override

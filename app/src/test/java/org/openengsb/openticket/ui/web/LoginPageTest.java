@@ -35,7 +35,7 @@ public class LoginPageTest extends AuthenticatedPageTest {
 
     @Test
     public void testRedirectToLogin() {
-        tester.startPage(WorkflowDemo.class);
+        tester.startPage(TaskboxDemo.class);
         tester.assertRenderedPage(LoginPage.class);
     }
 
