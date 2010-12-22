@@ -16,8 +16,8 @@
 
 Welcome to Open Ticket!
 
-  The Open Ticket project is a reference implementation of the taskbox. It is based
-  on the OpenEngSB and shows what can be done with its taskbox component.
+  The Open Ticket project shows how the taskbox component of the OpenEngSB
+  can be used to handle human interaction in normal workflows.
   
   Interested? Read on ... or directly join the community!
 

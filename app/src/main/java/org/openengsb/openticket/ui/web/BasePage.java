@@ -46,6 +46,7 @@ public class BasePage extends WebPage {
         } catch (IllegalArgumentException e) {
             contextService.createContext(sessionContextId);
             contextService.setThreadLocalContext(sessionContextId);
+            contextService.putValue("domain/AuditingDomain/defaultConnector/id", "auditing");
         }
     }
 

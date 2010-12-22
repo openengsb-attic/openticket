@@ -87,6 +87,16 @@
   
   <developers>
     <developer>
+      <id>mhe</id>
+      <name>Michael Heil</name>
+      <email>michael.heil [at] chello.at</email>
+      <timezone>+1</timezone>
+      <roles>
+        <role>Project Lead</role>
+        <role>Developer</role>
+      </roles>
+    </developer>
+    <developer>
       <id>dd</id>
       <name>Daniel Driza</name>
       <email>e0825495 [at] student.tuwien.ac.at</email>
@@ -122,16 +132,16 @@
         <role>Developer</role>
       </roles>
     </developer>
-    <developer>
-      <id>mh</id>
-      <name>Michael Heil</name>
-      <email>e0826358 [at] student.tuwien.ac.at</email>
-      <timezone>+1</timezone>
-      <roles>
-        <role>Developer</role>
-      </roles>
-    </developer>
   </developers>
+
+  <contributors>
+    <contributor>
+      <name>Andreas Pieber</name>
+      <email>andreas.pieber [at] ifs.tuwien.ac.at</email>
+      <timezone>+1</timezone>
+    </contributor>
+  </contributors>
+
 
   <build>
     <finalName>openticket-${version}</finalName>

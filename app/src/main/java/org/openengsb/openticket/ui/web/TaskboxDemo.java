@@ -18,10 +18,15 @@ package org.openengsb.openticket.ui.web;
 
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.basic.Label;
+import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.openengsb.core.common.taskbox.TaskboxService;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class TaskboxDemo extends BasePage {
+    @SpringBean
+    private TaskboxService service;
+
     public TaskboxDemo() {
-        add(new Label("testoutput", ""));
+        add(new Label("amount", "" + service.getOpenTasks().size()));
     }
 }
