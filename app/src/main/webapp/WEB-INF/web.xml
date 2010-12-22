@@ -26,9 +26,9 @@
   <context-param>
     <param-name>contextConfigLocation</param-name>
     <param-value>
-      classpath:/WEB-INF/application-context.xml classpath:/WEB-INF/osgi-context.xml
+      classpath:/WEB-INF/application-context.xml
+      classpath:/WEB-INF/osgi-context.xml
       classpath:/WEB-INF/security-context.xml
-      classpath:/META-INF/spring/ticketservice-context.xml
     </param-value>
   </context-param>
 
