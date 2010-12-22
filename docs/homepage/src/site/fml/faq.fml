@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+
+    Copyright 2010 OpenEngSB Division, Vienna University of Technology
+
+    Licensed under the Apache License, Version 2.0 (the "License");
+    you may not use this file except in compliance with the License.
+    You may obtain a copy of the License at
+
+      http://www.apache.org/licenses/LICENSE-2.0
+
+    Unless required by applicable law or agreed to in writing, software
+    distributed under the License is distributed on an "AS IS" BASIS,
+    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+    See the License for the specific language governing permissions and
+    limitations under the License.
+
+-->
+
+<faqs id="General FAQ">
+  <part id="General">
+    <title>General questions about OpenTicket</title>
+    <faq id="What">
+      <question>What is OpenTicket</question>
+      <answer>
+        A short introduction can be found <a href="http://openticket.openengsb.org/about.html">here</a>.
+      </answer>
+    </faq>
+    <faq id="license">
+      <question>What is the license?</question>
+      <answer>
+        <p>
+          The OpenCIT is licensed under the business friendly Apache License, Version 2.0.
+        </p>
+      </answer>
+    </faq>
+    <faq id="source">
+      <question>Where can I find the source code?</question>
+      <answer>
+        <p>
+          The source code is available at <a href="http://github.com/openengsb/openticket">http://github.com/openengsb/openticket</a>.
+        </p>
+      </answer>
+    </faq>
+  </part>
+  <part id="Development">
+    <title>Development</title>
+    <faq id="contribute">
+      <question>How can I contribute to the OpenTicket project?</question>
+      <answer>
+        <p>
+          If you have an idea how the OpenTicket can be improved please contact us on the developer <a href="http://openticket.openengsb.org/community/mailinglists.html">mailing list</a>.
+          Further information can be found <a href="http://openticket.openengsb.org/contribution.html">here</a>.
+        </p>
+      </answer>
+    </faq>
+  </part>
+</faqs>
