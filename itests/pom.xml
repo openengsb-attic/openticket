@@ -45,9 +45,9 @@
   </licenses>
 
   <scm>
-    <connection>scm:git:git://github.com/openengsb/openengsb.git</connection>
-    <developerConnection>scm:git:git@github.com:openengsb/openengsb.git</developerConnection>
-    <url>http://github.com/openengsb/openengsb</url>
+    <connection>scm:git:git://github.com/openengsb/openticket.git</connection>
+    <developerConnection>scm:git:git@github.com:openengsb/openticket.git</developerConnection>
+    <url>http://github.com/openengsb/openticket</url>
   </scm>
 
   <build>
