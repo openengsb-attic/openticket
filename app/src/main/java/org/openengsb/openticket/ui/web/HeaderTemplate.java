@@ -98,10 +98,12 @@ public class HeaderTemplate extends Panel {
             for (String role : roles) {
                 if (role.equals("CASEWORKER")) {
                     addHeaderMenuItem("TaskboxDemo", TaskboxDemo.class, "taskboxdemo.title");
+                    addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title");
                 }
             }
         } catch (ClassCastException e) {
             addHeaderMenuItem("TasboxDemo", TaskboxDemo.class, "taskboxdemo.title");
+            addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title");
         }
     }
 
