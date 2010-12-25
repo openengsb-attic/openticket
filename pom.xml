@@ -63,8 +63,8 @@
     <module>poms</module>
     <module>docs</module>
     <module>app</module>
-    <module>itests</module>
     <module>assembly</module>
+    <module>itests</module>
   </modules>
   
   <url>http://openticket.openengsb.org</url>
