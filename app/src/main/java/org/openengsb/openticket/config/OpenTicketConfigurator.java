@@ -32,7 +32,9 @@ public class OpenTicketConfigurator {
     private RuleManager ruleManager;
 
     public void init() {
-        addWorkflows();
+        if (ruleManager.get(new RuleBaseElementId(RuleBaseElementType.Process, "TaskDemoWorkflow")) == null) {
+            addWorkflows();
+        }
     }
 
     private void addWorkflows() {

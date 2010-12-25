@@ -26,7 +26,7 @@ import org.openengsb.openticket.integrationtest.util.AbstractExamTestHelper;
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
 @RunWith(JUnit4TestRunner.class)
-public class TaskboxIT extends AbstractExamTestHelper {
+public class OpenticketIT extends AbstractExamTestHelper {
     private TaskboxService taskboxService;
     private RuleManager ruleManager;
 
