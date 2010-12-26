@@ -19,7 +19,10 @@ package org.openengsb.openticket.ui.web;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
+import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.core.common.taskbox.WebTaskboxService;
+import org.openengsb.core.common.taskbox.model.Task;
+import org.openengsb.openticket.ui.web.panel.CustomTaskPanel;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class PanelDemo extends BasePage {
@@ -28,10 +31,20 @@ public class PanelDemo extends BasePage {
     private WebTaskboxService taskboxService;
     
     public PanelDemo() {
-        System.out.println("lets begin OVERVIEWPANEL!");
-        Panel panel= taskboxService.getTaskPanel("panel", "TestType");
-        System.out.println("I RETRIEVED A PANEL WHO WOULD BELIEVE IT!!");
-        this.add(panel);
-        System.out.println("lets end OVERVIEWPANEL!");
+        Task t = new Task();
+        Panel p;
+        
+        try {
+            t.setTaskType("type1");
+            p = taskboxService.getTaskPanel(t, "panel");
+            this.add(p);
+            
+            t.setTaskType("type2");
+            taskboxService.registerTaskPanel(t.getTaskType(), CustomTaskPanel.class);
+            p = taskboxService.getTaskPanel(t, "panel2");
+            this.add(p);
+        } catch (TaskboxException e) {
+            e.printStackTrace();
+        }
     }
 }
