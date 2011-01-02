@@ -99,6 +99,7 @@ public class HeaderTemplate extends Panel {
                 if (role.equals("CASEWORKER")) {
                     addHeaderMenuItem("TaskboxDemo", TaskboxDemo.class, "taskboxdemo.title");
                     addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title");
+                    addHeaderMenuItem("OverviewDemo", OverviewDemo.class, "overviewdemo.title");
                 }
             }
         } catch (ClassCastException e) {

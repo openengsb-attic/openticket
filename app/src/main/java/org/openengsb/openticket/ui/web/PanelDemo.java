@@ -26,19 +26,19 @@ import org.openengsb.openticket.ui.web.panel.CustomTaskPanel;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class PanelDemo extends BasePage {
-    
+
     @SpringBean
     private WebTaskboxService taskboxService;
-    
+
     public PanelDemo() {
         Task t = new Task();
         Panel p;
-        
+
         try {
             t.setTaskType("type1");
             p = taskboxService.getTaskPanel(t, "panel");
             this.add(p);
-            
+
             t.setTaskType("type2");
             taskboxService.registerTaskPanel(t.getTaskType(), CustomTaskPanel.class);
             p = taskboxService.getTaskPanel(t, "panel2");

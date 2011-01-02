@@ -38,7 +38,7 @@ public class TaskboxDemo extends BasePage {
     public int getAmount() {
         return taskboxService.getOpenTasks().size();
     }
-    
+
     public TaskboxDemo() {
         final Label amount = new Label("amount", new PropertyModel<Integer>(this, "amount"));
         amount.setOutputMarkupId(true);
