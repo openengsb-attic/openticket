@@ -17,14 +17,10 @@
 package org.openengsb.openticket.ui.web.panel;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Date;
-import java.util.List;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.DropDownChoice;
 import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.form.TextArea;
 import org.apache.wicket.markup.html.form.TextField;
@@ -35,13 +31,9 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
-import org.openengsb.core.common.persistence.PersistenceException;
-import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.core.common.taskbox.model.Task;
 import org.openengsb.core.common.workflow.WorkflowException;
-import org.openengsb.ui.taskbox.TaskOverviewPanel;
-import org.openengsb.ui.taskbox.model.WebTask;
 
 public class CustomTaskPanel extends Panel {
 
