@@ -30,7 +30,7 @@ import org.openengsb.core.common.workflow.WorkflowService;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class TaskboxDemo extends BasePage {
-    @SpringBean
+    @SpringBean(name = "taskboxService")
     private TaskboxService taskboxService;
     @SpringBean
     private WorkflowService workflowService;
