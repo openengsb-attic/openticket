@@ -30,7 +30,7 @@ import org.openengsb.core.common.workflow.WorkflowService;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class TaskboxDemo extends BasePage {
-    @SpringBean
+    @SpringBean(name = "taskboxService")
     private TaskboxService taskboxService;
     @SpringBean
     private WorkflowService workflowService;
@@ -38,7 +38,7 @@ public class TaskboxDemo extends BasePage {
     public int getAmount() {
         return taskboxService.getOpenTasks().size();
     }
-    
+
     public TaskboxDemo() {
         final Label amount = new Label("amount", new PropertyModel<Integer>(this, "amount"));
         amount.setOutputMarkupId(true);

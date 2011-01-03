@@ -29,4 +29,5 @@
   <osgi:reference id="taskboxService" interface="org.openengsb.core.common.taskbox.TaskboxService" />
   <osgi:reference id="ruleManager" interface="org.openengsb.core.common.workflow.RuleManager" />
   <osgi:reference id="workflowService" interface="org.openengsb.core.common.workflow.WorkflowService" />
+  <osgi:reference id="webtaskboxService" interface="org.openengsb.core.common.taskbox.WebTaskboxService" />
 </beans>
