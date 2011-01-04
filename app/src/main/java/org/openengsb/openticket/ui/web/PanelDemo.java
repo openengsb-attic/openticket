@@ -20,7 +20,7 @@ import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInst
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.taskbox.TaskboxException;
-import org.openengsb.core.common.taskbox.WebTaskboxService;
+import org.openengsb.ui.taskbox.WebTaskboxService;
 import org.openengsb.core.common.taskbox.model.Task;
 import org.openengsb.openticket.ui.web.panel.CustomTaskPanel;
 
