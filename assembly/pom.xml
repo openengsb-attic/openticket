@@ -208,8 +208,10 @@
         <artifactId>maven-openengsb-plugin</artifactId>
         <version>${project.version}</version>
         <configuration>
-          <provisionPathUnix>${project.basedir}/target/openticket-${project.version}-unix-all/openticket-${project.version}/bin/openticket</provisionPathUnix>
-          <provisionPathWindows>${project.basedir}/target/openticket-${project.version}-windows-all/openticket-${project.version}/bin/openticket.bat</provisionPathWindows>
+          <provisionArchivePathUnix>${project.basedir}/target/openticket-${project.version}-unix-all.tar.gz</provisionArchivePathUnix>
+          <provisionExecutionPathUnix>bin/openticket</provisionExecutionPathUnix>
+          <provisionArchivePathWindows>${project.basedir}/target/openticket-${project.version}-windows-all.zip</provisionArchivePathWindows>
+          <provisionExecutionPathWindows>bin/openticket.bat</provisionExecutionPathWindows>
         </configuration>
       </plugin>
     </plugins>
