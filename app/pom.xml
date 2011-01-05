@@ -78,11 +78,6 @@
 
   <dependencies>
     <dependency>
-      <groupId>org.openengsb.wrapped</groupId>
-      <artifactId>org.apache.wicket-all</artifactId>
-      <version>${openengsb.version}</version>
-    </dependency>
-    <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-common</artifactId>
       <version>${openengsb.version}</version>
@@ -176,3 +171,4 @@
   </dependencies>
 
 </project>
+
