@@ -23,13 +23,13 @@
   <parent>
     <groupId>org.openengsb.openticket.build</groupId>
     <artifactId>non-osgi-settings</artifactId>
-    <version>1.0.0.RC</version>
+    <version>1.0.0-SNAPSHOT</version>
     <relativePath>../poms/nonosgi</relativePath>
   </parent>
 
   <groupId>org.openengsb.openticket.itests</groupId>
   <artifactId>openticket-itests</artifactId>
-  <version>1.0.0.RC</version>
+  <version>1.0.0-SNAPSHOT</version>
   <name>OpenTicket :: Integration Tests</name>
 
   <packaging>jar</packaging>
