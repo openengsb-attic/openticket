@@ -16,19 +16,13 @@
 
 package org.openengsb.openticket.model;
 
+import org.openengsb.core.common.taskbox.model.Task;
 import org.openengsb.core.common.workflow.model.ProcessBag;
-import org.openengsb.ui.taskbox.model.WebTask;
 
-/*
- * when or if WebTask is deleted:
- */
-//public class Ticket extends Task {
-
-public class Ticket extends WebTask {
+public class Ticket extends Task {
 
     public Ticket() {
         super();
-        // this.setPanelClass(TicketPanel);
     }
 
     public static Ticket createTicketWithAllValuesSetToNull() {
@@ -40,7 +34,6 @@ public class Ticket extends WebTask {
 
     public Ticket(ProcessBag bag) {
         super(bag);
-        // this.setPanelClass(TicketPanel);
     }
 
     public void setPriority(TicketPriority priority) {
