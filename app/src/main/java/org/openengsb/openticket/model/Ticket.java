@@ -19,6 +19,11 @@ package org.openengsb.openticket.model;
 import org.openengsb.core.common.workflow.model.ProcessBag;
 import org.openengsb.ui.taskbox.model.WebTask;
 
+/*
+ * when or if WebTask is deleted:
+ */
+//public class Ticket extends Task {
+
 public class Ticket extends WebTask {
 
     public Ticket() {
