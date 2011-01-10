@@ -23,11 +23,13 @@ import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.ui.common.wicket.taskbox.WebTaskboxService;
 import org.openengsb.core.common.taskbox.model.Task;
 import org.openengsb.openticket.ui.web.panel.CustomTaskPanel;
+import org.openengsb.openticket.ui.web.panel.TicketPanel;
+import org.openengsb.openticket.model.Ticket;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class PanelDemo extends BasePage {
 
-    @SpringBean
+    @SpringBean(name="webtaskboxService")
     private WebTaskboxService taskboxService;
 
     public PanelDemo() {
@@ -42,6 +44,7 @@ public class PanelDemo extends BasePage {
             t.setTaskType("type2");
             taskboxService.registerTaskPanel(t.getTaskType(), CustomTaskPanel.class);
             p = taskboxService.getTaskPanel(t, "panel2");
+            p = new TicketPanel("panel2",new Ticket());
             this.add(p);
         } catch (TaskboxException e) {
             e.printStackTrace();

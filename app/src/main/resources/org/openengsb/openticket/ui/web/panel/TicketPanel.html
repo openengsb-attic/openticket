@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+
+Copyright 2010 OpenEngSB Division, Vienna University of Technology
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+-->
+
+<html xmlns="http://www.w3.org/1999/xhtml"
+xmlns:wicket="http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd"
+xml:lang="en" lang="en">
+
+<body>
+	<wicket:panel>
+		<div id="panel">
+			<p><span wicket:id="feedback"></span></p>
+			<fieldset>
+				<legend><wicket:message key="legend.info">[Ticket Info]</wicket:message></legend>
+				<table class="infoTable">
+					<tr>
+						<td style="text-align: right">
+						<label for="ticketid"><wicket:message key="ticket.label.id">[ID Label]</wicket:message></label>
+						</td>
+						<td><label wicket:id="ticketid">[ID]</label></td>
+					</tr>
+					<tr>
+						<td style="text-align: right">
+						<label for="tickettype"><wicket:message key="ticket.label.type">[Type Label]</wicket:message></label>
+						</td>
+						<td><label wicket:id="tickettype">[Type]</label></td>
+					</tr>
+					<tr>
+						<td style="text-align: right">
+						<label for="ticketcreationTimestamp"><wicket:message key="ticket.label.creationTimestamp">[creationTimestamp Label]</wicket:message></label>
+						</td>
+						<td><label wicket:id="ticketcreationTimestamp">[creationTimestamp]</label></td>
+					</tr>
+					<tr>
+						<td style="text-align: right">
+						<label for="ticketpriority"><wicket:message key="ticket.label.priority">[priority Label]</wicket:message></label>
+						</td>
+						<td><label wicket:id="ticketpriority">[priority]</label></td>
+					</tr>
+					<tr>
+						<td style="text-align: right">
+						<label for="ticketcustomer"><wicket:message key="ticket.label.customer">[customer Label]</wicket:message></label>
+						</td>
+						<td><label wicket:id="ticketcustomer">[customer]</label></td>
+					</tr>
+					<tr>
+						<td style="text-align: right">
+						<label for="ticketcontactEmailAddress"><wicket:message key="ticket.label.contactEmailAddress">[contactEmailAddress Label]</wicket:message></label>
+						</td>
+						<td><label wicket:id="ticketcontactEmailAddress">[contactEmailAddress]</label></td>
+					</tr>
+					<tr>
+						<td style="text-align: right">
+						<label for="ticketdescription"><wicket:message key="ticket.label.description">[description Label]</wicket:message></label>
+						</td>
+						<td><label wicket:id="ticketdescription">[description]</label></td>
+					</tr>
+				</table>
+			</fieldset>
+			<a href="" wicket:id="finishCurrentTask"><wicket:message key="taskfinish">[taskfinish]</wicket:message></a>
+		</div>
+	</wicket:panel>
+</body>
+</html>
