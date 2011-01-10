@@ -39,6 +39,10 @@ public class Ticket extends Task {
     public void setPriority(TicketPriority priority) {
         addOrReplaceProperty("priority", priority.toString());
     }
+    
+    public void setPriority(String priority) {
+        addOrReplaceProperty("priority", priority);
+    }
 
     public String getPriority() {
         return (String) getProperty("priority");
