@@ -25,13 +25,6 @@ public class Ticket extends Task {
         super();
     }
 
-    public static Ticket createTicketWithAllValuesSetToNull() {
-        Ticket emptyTicket = new Ticket();
-        emptyTicket.removeAllProperties();
-        emptyTicket.setEmpty();
-        return emptyTicket;
-    }
-
     public Ticket(ProcessBag bag) {
         super(bag);
     }
