@@ -36,6 +36,7 @@ import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.ResourceModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.apache.wicket.validation.validator.StringValidator;
+import org.openengsb.core.common.persistence.PersistenceException;
 import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.core.common.taskbox.model.Task;
 import org.openengsb.core.common.workflow.WorkflowException;
@@ -43,11 +44,7 @@ import org.openengsb.openticket.model.DeveloperTicket;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class DeveloperTicketPanel extends Panel {
-
-    /*
-    @SpringBean
-    private PersistenceGateway gateway;
-    */
+    
     @SpringBean(name="taskboxService")
     private TaskboxService service;
     
@@ -55,8 +52,10 @@ public class DeveloperTicketPanel extends Panel {
 
     public DeveloperTicketPanel(String id, Task task) {
         super(id);
+        
         orig = new DeveloperTicket(task);
         temp = new DeveloperTicket(orig);
+        
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
         feedback.setOutputMarkupId(true);
         add(feedback);
@@ -66,21 +65,61 @@ public class DeveloperTicketPanel extends Panel {
         form.setOutputMarkupId(true);
         add(form);
         
+        /*
+         * Read-only fields:
+         */
+        
+        FormComponent<String> fcId = new TextField<String>("taskId");
+        fcId.setEnabled(false);
+        fcId.setLabel(new ResourceModel("edit.label.id"));
+        form.add(fcId);
+        form.add(new SimpleFormComponentLabel("edit-label-id", fcId));
+        
+        FormComponent<String> fcTime = new TextField<String>("taskCreationTimestamp");
+        fcTime.setEnabled(false);
+        fcTime.setLabel(new ResourceModel("edit.label.time"));
+        form.add(fcTime);
+        form.add(new SimpleFormComponentLabel("edit-label-time", fcTime));
         
         FormComponent<String> fcName = new TextField<String>("name");
-        fcName.add(StringValidator.lengthBetween(3, 15));
         fcName.setEnabled(false);
         fcName.setLabel(new ResourceModel("edit.label.name"));
         form.add(fcName);
         form.add(new SimpleFormComponentLabel("edit-label-name", fcName));
         
         FormComponent<String> fcDesc = new TextField<String>("description");
-        fcDesc.add(StringValidator.maximumLength(120));
         fcDesc.setEnabled(false);
         fcDesc.setLabel(new ResourceModel("edit.label.desc"));
         form.add(fcDesc);
         form.add(new SimpleFormComponentLabel("edit-label-desc", fcDesc));
         
+        FormComponent<String> fcType = new TextField<String>("taskType");
+        fcType.setEnabled(false);
+        fcType.setLabel(new ResourceModel("edit.label.type"));
+        form.add(fcType);
+        form.add(new SimpleFormComponentLabel("edit-label-type", fcType));
+        
+        FormComponent<String> fcPriority = new TextField<String>("priority");
+        fcPriority.setEnabled(false);
+        fcPriority.setLabel(new ResourceModel("edit.label.priority"));
+        form.add(fcPriority);
+        form.add(new SimpleFormComponentLabel("edit-label-priority", fcPriority));
+        
+        FormComponent<String> fcCust = new TextField<String>("customer");
+        fcCust.setEnabled(false);
+        fcCust.setLabel(new ResourceModel("edit.label.customer"));
+        form.add(fcCust);
+        form.add(new SimpleFormComponentLabel("edit-label-customer", fcCust));
+        
+        FormComponent<String> fcEmail = new TextField<String>("contactEmailAddress");
+        fcEmail.setEnabled(false);
+        fcEmail.setLabel(new ResourceModel("edit.label.email"));
+        form.add(fcEmail);
+        form.add(new SimpleFormComponentLabel("edit-label-email", fcEmail));
+        
+        /*
+         * Editing Fields:
+         */
         
         FormComponent<Integer> fcH = new TextField<Integer>("workingHours", Integer.class);
         fcH.setType(Integer.class);
@@ -104,7 +143,6 @@ public class DeveloperTicketPanel extends Panel {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 try {
-                    //gateway.saveDeveloperTaskStep(temp);
                     orig = temp;
                     
                     form.remove("listContainer");
@@ -130,14 +168,7 @@ public class DeveloperTicketPanel extends Panel {
         form.add(saveButton);
         
         form.add(new Button("reset"));
-        
-        /*
-        if (temp.getDoneFlag()) {
-            form.add(new Label("doneFlag-label", new ResourceModel("edit.label.doneFlag.closed")));
-        } else {
-            form.add(new Label("doneFlag-label", new ResourceModel("edit.label.doneFlag.open")));
-        }
-        */
+
         form.add(new Label("finished-label", new ResourceModel("edit.label.finished.false")));
         
         AjaxButton closeButton = new AjaxButton("close", form) {
@@ -146,7 +177,6 @@ public class DeveloperTicketPanel extends Panel {
                 try {
                     service.finishTask(temp);
                     
-                    //gateway.saveDeveloperTaskStep(temp);
                     orig = temp;
                     info("This Ticket is now closed");
                     target.addComponent(feedback);
