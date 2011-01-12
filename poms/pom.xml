@@ -64,7 +64,7 @@
     <htmlunit.version>2.8</htmlunit.version>
 
     <!-- Provided Framework Versions -->
-    <karaf.version>2.1.3-SNAPSHOT</karaf.version>
+    <karaf.version>2.1.3</karaf.version>
     <openengsb.version>1.1.0-SNAPSHOT</openengsb.version>
   </properties>
 
