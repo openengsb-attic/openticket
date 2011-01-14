@@ -17,7 +17,6 @@
 package org.openengsb.openticket.ui.web;
 
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
-import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.taskbox.TaskboxException;
@@ -26,7 +25,6 @@ import org.openengsb.core.common.taskbox.model.Task;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.model.TicketPriority;
 import org.openengsb.openticket.model.TicketType;
-import org.openengsb.openticket.ui.web.panel.CustomTaskPanel;
 import org.openengsb.openticket.ui.web.panel.DeveloperTicketPanel;
 
 @AuthorizeInstantiation("CASEWORKER")
@@ -43,13 +41,6 @@ public class PanelDemo extends BasePage {
             t.setTaskType("type1");
             p = taskboxService.getTaskPanel(t, "panel");
             this.add(p);
-
-            /*
-             * t.setTaskType("type2");
-             * taskboxService.registerTaskPanel(t.getTaskType(),
-             * CustomTaskPanel.class); p = taskboxService.getTaskPanel(t,
-             * "panel2"); this.add(p);
-             */
 
             Ticket tt = new Ticket();
             tt.setTaskType(TicketType.DeveloperTicket.toString());

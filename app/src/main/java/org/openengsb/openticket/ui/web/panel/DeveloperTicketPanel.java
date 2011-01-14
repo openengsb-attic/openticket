@@ -68,81 +68,8 @@ public class DeveloperTicketPanel extends Panel {
         form.add(new Label("header-label-ticket", new ResourceModel("header.label.ticket")));
         form.add(new Label("header-label-developerticket", new ResourceModel("header.label.developerticket")));
 
-        /*
-         * Read-only fields:
-         */
-
-        FormComponent<String> fcId = new TextField<String>("taskId");
-        fcId.setEnabled(false);
-        fcId.setLabel(new ResourceModel("edit.label.id"));
-        form.add(fcId);
-        form.add(new SimpleFormComponentLabel("edit-label-id", fcId));
-
-        FormComponent<String> fcTime = new TextField<String>("taskCreationTimestamp");
-        fcTime.setEnabled(false);
-        fcTime.setLabel(new ResourceModel("edit.label.time"));
-        form.add(fcTime);
-        form.add(new SimpleFormComponentLabel("edit-label-time", fcTime));
-
-        FormComponent<String> fcName = new TextField<String>("name");
-        fcName.setEnabled(false);
-        fcName.setLabel(new ResourceModel("edit.label.name"));
-        form.add(fcName);
-        form.add(new SimpleFormComponentLabel("edit-label-name", fcName));
-
-        FormComponent<String> fcDesc = new TextField<String>("description");
-        fcDesc.setEnabled(false);
-        fcDesc.setLabel(new ResourceModel("edit.label.desc"));
-        form.add(fcDesc);
-        form.add(new SimpleFormComponentLabel("edit-label-desc", fcDesc));
-
-        FormComponent<String> fcType = new TextField<String>("taskType");
-        fcType.setEnabled(false);
-        fcType.setLabel(new ResourceModel("edit.label.type"));
-        form.add(fcType);
-        form.add(new SimpleFormComponentLabel("edit-label-type", fcType));
-
-        FormComponent<String> fcPriority = new TextField<String>("priority");
-        fcPriority.setEnabled(false);
-        fcPriority.setLabel(new ResourceModel("edit.label.priority"));
-        form.add(fcPriority);
-        form.add(new SimpleFormComponentLabel("edit-label-priority", fcPriority));
-
-        FormComponent<String> fcCust = new TextField<String>("customer");
-        fcCust.setEnabled(false);
-        fcCust.setLabel(new ResourceModel("edit.label.customer"));
-        form.add(fcCust);
-        form.add(new SimpleFormComponentLabel("edit-label-customer", fcCust));
-
-        FormComponent<String> fcEmail = new TextField<String>("contactEmailAddress");
-        fcEmail.setEnabled(false);
-        fcEmail.setLabel(new ResourceModel("edit.label.email"));
-        form.add(fcEmail);
-        form.add(new SimpleFormComponentLabel("edit-label-email", fcEmail));
-
-        /*
-         * Editing Fields:
-         */
-
-        FormComponent<Integer> fcH = new RequiredTextField<Integer>("workingHours", Integer.class);
-        fcH.setType(Integer.class);
-        fcH.setRequired(true);
-        fcH.setLabel(new ResourceModel("edit.label.h"));
-        form.add(fcH);
-        form.add(new SimpleFormComponentLabel("edit-label-h", fcH));
-
-        FormComponent<String> fcDC = new RequiredTextField<String>("developerComment");
-        fcDC.add(StringValidator.maximumLength(100));
-        fcDC.setRequired(true);
-        fcDC.setLabel(new ResourceModel("edit.label.dc"));
-        form.add(fcDC);
-        form.add(new SimpleFormComponentLabel("edit-label-dc", fcDC));
-
-        FormComponent<String> fcPO = new TextField<String>("problemsOccurred");
-        fcPO.add(StringValidator.maximumLength(100));
-        fcPO.setLabel(new ResourceModel("edit.label.po"));
-        form.add(fcPO);
-        form.add(new SimpleFormComponentLabel("edit-label-po", fcPO));
+        form = constituteReadOnlyFields(form);
+        form = constituteEditableFields(form);
 
         AjaxButton saveButton = new AjaxButton("save", form) {
             @Override
@@ -214,7 +141,7 @@ public class DeveloperTicketPanel extends Panel {
     }
 
     @SuppressWarnings("unchecked")
-    public WebMarkupContainer printTicketProperties() {
+    private WebMarkupContainer printTicketProperties() {
         ArrayList<String> ticket_properties = new ArrayList<String>();
         String propertyName;
         for (int i = 0; i < temp.propertyCount(); i++) {
@@ -234,5 +161,83 @@ public class DeveloperTicketPanel extends Panel {
         listContainer.add(lv);
 
         return listContainer;
+    }
+
+    private Form<DeveloperTicket> constituteReadOnlyFields(Form<DeveloperTicket> form) {
+
+        FormComponent<String> fcId = new TextField<String>("taskId");
+        fcId.setEnabled(false);
+        fcId.setLabel(new ResourceModel("edit.label.id"));
+        form.add(fcId);
+        form.add(new SimpleFormComponentLabel("edit-label-id", fcId));
+
+        FormComponent<String> fcTime = new TextField<String>("taskCreationTimestamp");
+        fcTime.setEnabled(false);
+        fcTime.setLabel(new ResourceModel("edit.label.time"));
+        form.add(fcTime);
+        form.add(new SimpleFormComponentLabel("edit-label-time", fcTime));
+
+        FormComponent<String> fcName = new TextField<String>("name");
+        fcName.setEnabled(false);
+        fcName.setLabel(new ResourceModel("edit.label.name"));
+        form.add(fcName);
+        form.add(new SimpleFormComponentLabel("edit-label-name", fcName));
+
+        FormComponent<String> fcDesc = new TextField<String>("description");
+        fcDesc.setEnabled(false);
+        fcDesc.setLabel(new ResourceModel("edit.label.desc"));
+        form.add(fcDesc);
+        form.add(new SimpleFormComponentLabel("edit-label-desc", fcDesc));
+
+        FormComponent<String> fcType = new TextField<String>("taskType");
+        fcType.setEnabled(false);
+        fcType.setLabel(new ResourceModel("edit.label.type"));
+        form.add(fcType);
+        form.add(new SimpleFormComponentLabel("edit-label-type", fcType));
+
+        FormComponent<String> fcPriority = new TextField<String>("priority");
+        fcPriority.setEnabled(false);
+        fcPriority.setLabel(new ResourceModel("edit.label.priority"));
+        form.add(fcPriority);
+        form.add(new SimpleFormComponentLabel("edit-label-priority", fcPriority));
+
+        FormComponent<String> fcCust = new TextField<String>("customer");
+        fcCust.setEnabled(false);
+        fcCust.setLabel(new ResourceModel("edit.label.customer"));
+        form.add(fcCust);
+        form.add(new SimpleFormComponentLabel("edit-label-customer", fcCust));
+
+        FormComponent<String> fcEmail = new TextField<String>("contactEmailAddress");
+        fcEmail.setEnabled(false);
+        fcEmail.setLabel(new ResourceModel("edit.label.email"));
+        form.add(fcEmail);
+        form.add(new SimpleFormComponentLabel("edit-label-email", fcEmail));
+
+        return form;
+    }
+
+    private Form<DeveloperTicket> constituteEditableFields(Form<DeveloperTicket> form) {
+
+        FormComponent<Integer> fcH = new RequiredTextField<Integer>("workingHours", Integer.class);
+        fcH.setType(Integer.class);
+        fcH.setRequired(true);
+        fcH.setLabel(new ResourceModel("edit.label.h"));
+        form.add(fcH);
+        form.add(new SimpleFormComponentLabel("edit-label-h", fcH));
+
+        FormComponent<String> fcDC = new RequiredTextField<String>("developerComment");
+        fcDC.add(StringValidator.maximumLength(100));
+        fcDC.setRequired(true);
+        fcDC.setLabel(new ResourceModel("edit.label.dc"));
+        form.add(fcDC);
+        form.add(new SimpleFormComponentLabel("edit-label-dc", fcDC));
+
+        FormComponent<String> fcPO = new TextField<String>("problemsOccurred");
+        fcPO.add(StringValidator.maximumLength(100));
+        fcPO.setLabel(new ResourceModel("edit.label.po"));
+        form.add(fcPO);
+        form.add(new SimpleFormComponentLabel("edit-label-po", fcPO));
+
+        return form;
     }
 }
