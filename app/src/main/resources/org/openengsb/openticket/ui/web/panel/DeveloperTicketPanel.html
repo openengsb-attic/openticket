@@ -17,124 +17,105 @@
 
 -->
 
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:wicket=http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd xml:lang="en" lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:wicket=http://wicket.apache.org/dtds.data/wicket-xhtml1.4-strict.dtd
+	xml:lang="en" lang="en">
 <body>
-  <wicket:panel>
-  <fieldset>
-  <legend><wicket:message key="type-info">[Ticket Type]</wicket:message></legend>
-    <div id="panel">
-    
-    <!--  <label wicket:id="type-label">[Ticket Type]</label><br/> -->
-    
-    <form wicket:id="editTicket">
-    <table class="infoTable">
-      <tr style="height: 20px">
-        <td style="text-align: right">
-              <label wicket:id="edit-label-id">[Label id]</label>:
-        </td>
-        <td>
-              <input type="text" wicket:id="taskId" style="width: 180px;"/>
-        </td>
-        <td style="text-align: right">
-              <label wicket:id="edit-label-time">[Label time]</label>:
-        </td>
-        <td>
-              <input type="text" wicket:id="taskCreationTimestamp" style="width: 240px;"/>
-        </td>
-      </tr>
-      <tr style="height: 20px">
-        <td style="text-align: right">
-              <label wicket:id="edit-label-name">[Label name]</label>:
-        </td>
-        <td>
-              <input type="text" wicket:id="name" style="width: 180px;"/>
-        </td>
-        <td style="text-align: right">
-              <label wicket:id="edit-label-desc">[Label description]</label>:
-        </td>
-        <td>
-              <input type="text" wicket:id="description" style="width: 240px;"/>
-        </td>
-      </tr>
-      <tr style="height: 20px">
-        <td style="text-align: right">
-              <label wicket:id="edit-label-type">[Label type]</label>:
-        </td>
-        <td>
-              <input type="text" wicket:id="taskType" style="width: 180px;"/>
-        </td>
-        <td style="text-align: right">
-              <label wicket:id="edit-label-priority">[Label priority]</label>:
-        </td>
-        <td>
-              <input type="text" wicket:id="priority" style="width: 240px;"/>
-        </td>
-      </tr>
-      <tr style="height: 20px">
-        <td style="text-align: right">
-              <label wicket:id="edit-label-customer">[Label customer]</label>:
-        </td>
-        <td>
-              <input type="text" wicket:id="customer" style="width: 180px;"/>
-        </td>
-        <td style="text-align: right">
-              <label wicket:id="edit-label-email">[Label email]</label>:
-        </td>
-        <td>
-              <input type="text" wicket:id="contactEmailAddress" style="width: 240px;"/>
-        </td>
-      </tr>
-      <tr style="height: 20px">
-        <td style="text-align: right">
-              <label wicket:id="edit-label-dc">[Label developerComment]</label>:
-        </td>
-        <td>
-              <input type="text" wicket:id="developerComment" style="width: 180px;"/>
-        </td>
-        <td style="text-align: right">
-              <label wicket:id="edit-label-po">[Label problemsOccurred]</label>:
-        </td>
-        <td>
-              <input type="text" wicket:id="problemsOccurred" style="width: 240px;"/>
-        </td>
-      </tr>
-      <tr style="height: 20px">
-        <td style="text-align: right">
-           <label wicket:id="edit-label-h">[Label workingHours]</label>:
-        </td>
-        <td>
-              <input type="text" wicket:id="workingHours" style="width: 30px;"/>
-        </td>
-        <td style="text-align: right">
-              <input type="submit" wicket:id="save" wicket:message="value:save.text,title:save.text" />
-        </td>
-        <td>
-              <input type="reset" wicket:id="reset" wicket:message="value:reset.text,title:reset.text" />
-        </td>
-      </tr>
-      <tr style="height: 20px">
-        <td colspan="2" style="text-align: center">
-          <label wicket:id="finished-label">[Label finished]</label>
-        </td>
-        <td colspan="2" style="text-align: left">
-          <input type="button" wicket:id="close" wicket:message="value:close.text,title:close.text" />
-        </td>
-      </tr>
-    </table>
-    <fieldset>
-    	<legend><wicket:message key="properties">[Ticket Properties]</wicket:message></legend>
-    	<table wicket:id="listContainer">
-    		<tr wicket:id="propertiesList">
-				<td><label wicket:id="propertiesLabel"></label></td>
-			</tr>
-    	</table>
-    </fieldset>
-    </form>
-    <p>
-      <span wicket:id="feedback"></span>
-    </p>
-    </div>
-    </fieldset>
-  </wicket:panel>
-</body> 
+<wicket:panel>
+	<fieldset><legend><wicket:message key="type-info">[Ticket Type]</wicket:message></legend>
+	<div id="panel">
+	<form wicket:id="editTicket">
+	<table class="infoTable">
+		<tr style="height: 30px">
+			<td colspan="4" style="text-align: center"><label
+				wicket:id="header-label-ticket">[General Ticket Information]</label>
+			</td>
+		</tr>
+		<tr style="height: 20px">
+			<td style="text-align: right"><label wicket:id="edit-label-id">[Label
+			id]</label>:</td>
+			<td><input type="text" wicket:id="taskId" style="width: 180px;" />
+			</td>
+			<td style="text-align: right"><label wicket:id="edit-label-time">[Label
+			time]</label>:</td>
+			<td><input type="text" wicket:id="taskCreationTimestamp"
+				style="width: 240px;" /></td>
+		</tr>
+		<tr style="height: 20px">
+			<td style="text-align: right"><label wicket:id="edit-label-name">[Label
+			name]</label>:</td>
+			<td><input type="text" wicket:id="name" style="width: 180px;" />
+			</td>
+			<td style="text-align: right"><label wicket:id="edit-label-desc">[Label
+			description]</label>:</td>
+			<td><input type="text" wicket:id="description"
+				style="width: 240px;" /></td>
+		</tr>
+		<tr style="height: 20px">
+			<td style="text-align: right"><label wicket:id="edit-label-type">[Label
+			type]</label>:</td>
+			<td><input type="text" wicket:id="taskType"
+				style="width: 180px;" /></td>
+			<td style="text-align: right"><label
+				wicket:id="edit-label-priority">[Label priority]</label>:</td>
+			<td><input type="text" wicket:id="priority"
+				style="width: 240px;" /></td>
+		</tr>
+		<tr style="height: 20px">
+			<td style="text-align: right"><label
+				wicket:id="edit-label-customer">[Label customer]</label>:</td>
+			<td><input type="text" wicket:id="customer"
+				style="width: 180px;" /></td>
+			<td style="text-align: right"><label
+				wicket:id="edit-label-email">[Label email]</label>:</td>
+			<td><input type="text" wicket:id="contactEmailAddress"
+				style="width: 240px;" /></td>
+		</tr>
+		<tr style="height: 50px">
+			<td colspan="4" style="text-align: center"><label
+				wicket:id="header-label-developerticket">[Specific Developer
+			Ticket Information]</label></td>
+		</tr>
+		<tr style="height: 20px">
+			<td style="text-align: right"><label wicket:id="edit-label-dc">[Label
+			developerComment]</label>:</td>
+			<td><input type="text" wicket:id="developerComment"
+				style="width: 180px;" /></td>
+			<td style="text-align: right"><label wicket:id="edit-label-po">[Label
+			problemsOccurred]</label>:</td>
+			<td><input type="text" wicket:id="problemsOccurred"
+				style="width: 240px;" /></td>
+		</tr>
+		<tr style="height: 20px">
+			<td style="text-align: right"><label wicket:id="edit-label-h">[Label
+			workingHours]</label>:</td>
+			<td><input type="text" wicket:id="workingHours"
+				style="width: 30px;" /></td>
+			<td style="text-align: right"><input type="submit"
+				wicket:id="save" wicket:message="value:save.text,title:save.text" />
+			</td>
+			<td><input type="reset" wicket:id="reset"
+				wicket:message="value:reset.text,title:reset.text" /></td>
+		</tr>
+		<tr style="height: 20px">
+			<td colspan="2" style="text-align: center"><label
+				wicket:id="finished-label">[Label finished]</label></td>
+			<td colspan="2" style="text-align: left"><input type="button"
+				wicket:id="close" wicket:message="value:close.text,title:close.text" />
+			</td>
+		</tr>
+	</table>
+	<fieldset><legend><wicket:message key="properties">[Ticket Properties]</wicket:message></legend>
+	<table wicket:id="listContainer">
+		<tr wicket:id="propertiesList">
+			<td><label wicket:id="propertiesLabel"></label></td>
+		</tr>
+	</table>
+	</fieldset>
+	</form>
+	<p><span wicket:id="feedback"></span></p>
+	</div>
+	</fieldset>
+</wicket:panel>
+</body>
 </html>
