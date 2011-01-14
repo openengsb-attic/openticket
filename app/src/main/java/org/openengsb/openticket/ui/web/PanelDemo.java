@@ -22,7 +22,10 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.ui.common.wicket.taskbox.WebTaskboxService;
 import org.openengsb.core.common.taskbox.model.Task;
-import org.openengsb.openticket.ui.web.panel.CustomTaskPanel;
+import org.openengsb.openticket.model.Ticket;
+import org.openengsb.openticket.model.TicketPriority;
+import org.openengsb.openticket.model.TicketType;
+import org.openengsb.openticket.ui.web.panel.DeveloperTicketPanel;
 
 @AuthorizeInstantiation("CASEWORKER")
 public class PanelDemo extends BasePage {
@@ -39,10 +42,19 @@ public class PanelDemo extends BasePage {
             p = taskboxService.getTaskPanel(t, "panel");
             this.add(p);
 
-            t.setTaskType("type2");
-            taskboxService.registerTaskPanel(t.getTaskType(), CustomTaskPanel.class);
+            Ticket tt = new Ticket();
+            tt.setTaskType(TicketType.DeveloperTicket.toString());
+            taskboxService.registerTaskPanel(tt.getTaskType(), DeveloperTicketPanel.class);
+
+            tt.setName("Ticket name");
+            tt.setContactEmailAddress("test@test.at");
+            tt.setDescription("blabla");
+            tt.setPriority(TicketPriority.High);
+            t = new Task(tt);
+
             p = taskboxService.getTaskPanel(t, "panel2");
             this.add(p);
+
         } catch (TaskboxException e) {
             e.printStackTrace();
         }
