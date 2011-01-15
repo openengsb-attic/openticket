@@ -58,7 +58,7 @@
     </menu>
 
     <menu name="Documentation" >
-      <item name="FAQ" href="reference/faq.html" />
+      <item name="FAQ" href="faq.html" />
     </menu>
 
     <menu name="Community" >
