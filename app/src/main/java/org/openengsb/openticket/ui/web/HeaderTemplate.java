@@ -101,6 +101,7 @@ public class HeaderTemplate extends Panel {
                     addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title");
                     addHeaderMenuItem("OverviewDemo", OverviewDemo.class, "overviewdemo.title");
                     addHeaderMenuItem("CreateTicket", CreateTicketPage.class, "createticket.title");
+                    addHeaderMenuItem("OpenTicketOverview", OverviewTicketPage.class, "overviewticket.title");
                 }
             }
         } catch (ClassCastException e) {
