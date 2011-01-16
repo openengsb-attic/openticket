@@ -91,7 +91,7 @@ public class OverviewTicketPanel extends Panel {
                         }
                     }
                 };
-                link.add(new Label("linkLabel", item.getModelObject().getTaskType()));
+                link.add(new Label("linkLabel", (item.getModelObject().getName()+"("+item.getModelObject().getTaskType()+")")));
                 item.add(link);
                 
             }
