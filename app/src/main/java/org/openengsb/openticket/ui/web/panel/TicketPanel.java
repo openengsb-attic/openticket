@@ -74,6 +74,7 @@ public class TicketPanel extends Panel {
         form.setOutputMarkupId(true);
         ticket.setPriority(TicketPriority.High);
         form.add(new Label("ticketid", ticket.getTaskId()));
+        form.add(new TextField("ticketname", ticketModel.bind("name")));
         form.add(new DropDownChoice("tickettype", ticketModel.bind("taskType"),Arrays.asList(TicketType.values())));
         form.add(new TextField("ticketcustomer", ticketModel.bind("customer")));
         form.add(new TextField("ticketcontactEmailAddress", ticketModel.bind("contactEmailAddress")));
