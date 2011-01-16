@@ -22,43 +22,17 @@ import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.ui.common.wicket.taskbox.WebTaskboxService;
 import org.openengsb.core.common.taskbox.model.Task;
-import org.openengsb.openticket.model.Ticket;
-import org.openengsb.openticket.model.TicketPriority;
-import org.openengsb.openticket.model.TicketType;
-import org.openengsb.openticket.ui.web.panel.DeveloperTicketPanel;
+import org.openengsb.openticket.ui.web.panel.CustomTaskPanel;
 import org.openengsb.openticket.ui.web.panel.TicketPanel;
+import org.openengsb.openticket.model.Ticket;
 
 @AuthorizeInstantiation("CASEWORKER")
-public class PanelDemo extends BasePage {
+public class CreateTicketPage extends BasePage {
 
-    @SpringBean(name="webtaskboxService")
-    private WebTaskboxService taskboxService;
-
-    public PanelDemo() {
+    public CreateTicketPage() {
         Task t = new Task();
         Panel p;
-
-        try {
-            t.setTaskType("type1");
-            p = taskboxService.getTaskPanel(t, "panel");
-            this.add(p);
-
-            Ticket tt = new Ticket();
-            tt.setTaskType(TicketType.DeveloperTicket.toString());
-            taskboxService.registerTaskPanel(tt.getTaskType(), DeveloperTicketPanel.class);
-
-            tt.setName("Ticket name");
-            tt.setContactEmailAddress("test@test.at");
-            tt.setDescription("blabla");
-            tt.setPriority(TicketPriority.High);
-            t = new Task(tt);
-
-            p = taskboxService.getTaskPanel(t, "panel2");
-            p = new TicketPanel("panel2",new Ticket());
-            this.add(p);
-
-        } catch (TaskboxException e) {
-            e.printStackTrace();
-        }
+        p = new TicketPanel("panel",t);
+        this.add(p);
     }
 }
