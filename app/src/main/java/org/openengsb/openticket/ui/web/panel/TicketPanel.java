@@ -18,7 +18,9 @@ package org.openengsb.openticket.ui.web.panel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
@@ -42,8 +44,11 @@ import org.openengsb.core.common.persistence.PersistenceException;
 import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.core.common.taskbox.model.Task;
 import org.openengsb.core.common.workflow.WorkflowException;
+import org.openengsb.core.common.workflow.WorkflowService;
+import org.openengsb.core.common.workflow.model.ProcessBag;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.model.TicketPriority;
+import org.openengsb.openticket.model.TicketType;
 import org.openengsb.ui.common.wicket.taskbox.WebTaskboxService;
 
 public class TicketPanel extends Panel {
@@ -52,11 +57,14 @@ public class TicketPanel extends Panel {
      
      @SpringBean(name="webtaskboxService")
      private WebTaskboxService taskboxService;
+     
+     @SpringBean
+     private WorkflowService workflowService;
   
 
     public TicketPanel(String id, Task t) {
         super(id);
-        this.ticket = (Ticket) t;
+        this.ticket = new Ticket(t);
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
         feedback.setOutputMarkupId(true);
         add(feedback);
@@ -66,7 +74,7 @@ public class TicketPanel extends Panel {
         form.setOutputMarkupId(true);
         ticket.setPriority(TicketPriority.High);
         form.add(new Label("ticketid", ticket.getTaskId()));
-        form.add(new TextField("tickettype", ticketModel.bind("taskType")).setRequired(true).add(StringValidator.minimumLength(2)));
+        form.add(new DropDownChoice("tickettype", ticketModel.bind("taskType"),Arrays.asList(TicketType.values())));
         form.add(new TextField("ticketcustomer", ticketModel.bind("customer")));
         form.add(new TextField("ticketcontactEmailAddress", ticketModel.bind("contactEmailAddress")));
         form.add(new DropDownChoice("ticketpriority", ticketModel.bind("priority"),Arrays.asList(TicketPriority.values())).setRequired(true));
@@ -77,14 +85,16 @@ public class TicketPanel extends Panel {
         {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                info("Ticket finished");
-                target.addComponent(feedback);
                 try {
-                    taskboxService.finishTask(ticket);
+                    ProcessBag bag = new ProcessBag(ticket);
+                    Map<String, Object> map = new HashMap<String,Object>();
+                    map.put("processBag", bag);
+                    workflowService.startFlow("TaskDemoWorkflow",map);
+                    info("Workflow started!");
                 } catch (WorkflowException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
+                    info(e.getMessage());
                 }
+                target.addComponent(feedback);
             }
 
             @Override
