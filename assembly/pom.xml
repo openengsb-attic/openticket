@@ -205,8 +205,8 @@
       </plugin>
       <plugin>
         <groupId>org.openengsb.tooling.pluginsuite</groupId>
-        <artifactId>maven-openengsb-plugin</artifactId>
-        <version>${project.version}</version>
+        <artifactId>openengsb-maven-plugin</artifactId>
+        <version>${openengsb.version}</version>
         <configuration>
           <provisionArchivePathUnix>${project.basedir}/target/openticket-${project.version}-unix-all.tar.gz</provisionArchivePathUnix>
           <provisionExecutionPathUnix>bin/openticket</provisionExecutionPathUnix>
