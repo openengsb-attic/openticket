@@ -26,6 +26,8 @@ import org.junit.Test;
 public class TicketTest {
     private Ticket ticket;
     private DeveloperTicket devTicket;
+    private ReviewerTicket revTicket;
+    private InformationTicket infTicket;
 
     @Before
     public void init() throws Exception {
@@ -34,6 +36,11 @@ public class TicketTest {
         ticket.setContactEmailAddress("test@domain.at");
         devTicket = new DeveloperTicket();
         devTicket.setWorkingHours(27);
+        revTicket = new ReviewerTicket();
+        revTicket.setTicketResolved(true);
+        revTicket.setFeedback("some feedback");
+        infTicket = new InformationTicket();
+        infTicket.setInformation("42");
     }
 
     @Test
@@ -49,5 +56,20 @@ public class TicketTest {
         assertTrue(devTicket.getTaskId().length() > 0);
         assertTrue(devTicket.getTaskCreationTimestamp().before(new Date(System.currentTimeMillis() + 10)));
         assertTrue(devTicket.getWorkingHours().equals(new Integer(27)));
+    }
+
+    @Test
+    public void initReviewerTicket_shouldInitializeProperties() throws Exception {
+        assertTrue(revTicket.getTaskId().length() > 0);
+        assertTrue(revTicket.getTaskCreationTimestamp().before(new Date(System.currentTimeMillis() + 10)));
+        assertTrue(revTicket.getTicketResolved());
+        assertTrue(revTicket.getFeedback().equals(new String("some feedback")));
+    }
+
+    @Test
+    public void initInformationTicket_shouldInitializeProperties() throws Exception {
+        assertTrue(infTicket.getTaskId().length() > 0);
+        assertTrue(infTicket.getTaskCreationTimestamp().before(new Date(System.currentTimeMillis() + 10)));
+        assertTrue(infTicket.getInformation().equals(new String("42")));
     }
 }
