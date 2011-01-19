@@ -22,9 +22,9 @@
 
   <parent>
     <groupId>org.openengsb.openticket.build</groupId>
-    <artifactId>non-osgi-settings</artifactId>
+    <artifactId>shared-plugin-settings</artifactId>
     <version>1.0.0-SNAPSHOT</version>
-    <relativePath>../poms/nonosgi</relativePath>
+    <relativePath>../poms/</relativePath>
   </parent>
 
   <groupId>org.openengsb.openticket.itests</groupId>
