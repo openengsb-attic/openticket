@@ -23,14 +23,14 @@
     <faq id="What">
       <question>What is OpenTicket</question>
       <answer>
-        A short introduction can be found <a href="http://openticket.openengsb.org/about.html">here</a>.
+        A short introduction can be found <a href="about.html">here</a>.
       </answer>
     </faq>
     <faq id="license">
       <question>What is the license?</question>
       <answer>
         <p>
-          The OpenCIT is licensed under the business friendly Apache License, Version 2.0.
+          The OpenTicket is licensed under the business friendly Apache License, Version 2.0.
         </p>
       </answer>
     </faq>
@@ -49,8 +49,8 @@
       <question>How can I contribute to the OpenTicket project?</question>
       <answer>
         <p>
-          If you have an idea how the OpenTicket can be improved please contact us on the developer <a href="http://openticket.openengsb.org/community/mailinglists.html">mailing list</a>.
-          Further information can be found <a href="http://openticket.openengsb.org/contribution.html">here</a>.
+          If you have an idea how the OpenTicket can be improved please contact us on the developer <a href="community/mailinglists.html">mailing list</a>.
+          Further information can be found <a href="contribution.html">here</a>.
         </p>
       </answer>
     </faq>

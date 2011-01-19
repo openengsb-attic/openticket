@@ -16,4 +16,17 @@
 
 About OpenTicket
 
-  TBW
+  The OpenTicket Project exemplifies usage of the Taskbox/Workflow Component of the OpenEngSB.
+  OpenTicket is a Helpdesk-Application which enables the User to process Tickets via predefined Workflows.
+  A Ticket is created and handed over to the OpenTicket Workflow that reasons over it.
+  When the Workflow reaches some state where Human Interaction is neccessary a webmask is presented to the user.
+  He enters the questioned Data and hands the control back over to the workflow.
+  
+  By relying heavily on the OpenEngSB functionality it was possible to keep the OpenTicket Framework very generic.
+  Concrete Domain needs are modeled by workflows and the according webmasks. 
+  E.g.: If the need for a new kind of Ticket arises you just have to extend the existing workflow for the new Business Needs and provide one or more webmasks,
+  if the Human Interaction isn't covered by the existing ones.
+
+Further Information
+
+  Don't hesitate to inspect the Source Code.
