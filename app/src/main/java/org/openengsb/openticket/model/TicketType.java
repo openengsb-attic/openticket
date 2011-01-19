@@ -17,5 +17,5 @@
 package org.openengsb.openticket.model;
 
 public enum TicketType {
-    CompleteInformationTicket, InformationTicket, DeveloperTicket, ReviewerTicket;
+    InformationTicket, DeveloperTicket, ReviewerTicket;
 }

@@ -79,6 +79,7 @@ public class CustomTaskPanel extends Panel {
                 } catch (WorkflowException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();
+                    error("Error: "+e);
                 }
             }
 

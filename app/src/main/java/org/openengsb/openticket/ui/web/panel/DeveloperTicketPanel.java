@@ -48,12 +48,14 @@ public class DeveloperTicketPanel extends Panel {
     @SpringBean(name = "taskboxService")
     private TaskboxService service;
 
-    private DeveloperTicket orig, temp;
+    private Task orig;
+    private DeveloperTicket temp;
 
     public DeveloperTicketPanel(String id, Task task) {
         super(id);
 
-        orig = new DeveloperTicket(task);
+        orig = task;
+        //temp = (DeveloperTicket) orig;
         temp = new DeveloperTicket(orig);
 
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
@@ -74,7 +76,8 @@ public class DeveloperTicketPanel extends Panel {
         AjaxButton saveButton = new AjaxButton("save", form) {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
-                orig = temp;
+                //Save temorary - NOT persist
+                //orig = temp;
 
                 form.remove("listContainer");
                 form.add(printTicketProperties());
@@ -103,7 +106,7 @@ public class DeveloperTicketPanel extends Panel {
                 try {
                     service.finishTask(temp);
 
-                    orig = temp;
+                    //orig = temp;
 
                     info(getLocalizer().getString("info.finished", this));
                     target.addComponent(feedback);

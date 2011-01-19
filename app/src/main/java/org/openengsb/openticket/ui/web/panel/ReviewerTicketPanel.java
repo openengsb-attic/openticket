@@ -52,6 +52,7 @@ public class ReviewerTicketPanel extends Panel {
     public ReviewerTicketPanel(String id, Task task) {
         super(id);
 
+        //temp = (ReviewerTicket) task;
         temp = new ReviewerTicket(task);
 
         final FeedbackPanel feedback = new FeedbackPanel("feedback");

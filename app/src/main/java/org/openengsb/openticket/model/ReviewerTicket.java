@@ -22,10 +22,16 @@ public class ReviewerTicket extends Ticket {
 
     public ReviewerTicket() {
         super();
+        init();
     }
 
     public ReviewerTicket(ProcessBag bag) {
         super(bag);
+        init();
+    }
+    
+    private void init() {
+        setTicketResolved(false);
     }
 
     public void setTicketResolved(boolean ticketResolved) {
