@@ -75,103 +75,99 @@
       </plugin>
     </plugins>
   </build>
+  
+  <dependencyManagement>
+    <dependencies>
+         <dependency>
+           <groupId>org.openengsb.build</groupId>
+           <artifactId>shared-plugin-settings</artifactId>
+           <version>Version of OPENENGSB you use</version>
+           <type>pom</type>
+           <scope>import</scope>
+         </dependency>
+       </dependencies>
+   </dependencyManagement>
 
   <dependencies>
     <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-common</artifactId>
-      <version>${openengsb.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.openengsb.ui.common</groupId>
       <artifactId>openengsb-ui-common-wicket</artifactId>
-      <version>${openengsb.version}</version>
       <scope>provided</scope>
     </dependency>
 
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket</artifactId>
-      <version>${wicket.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket-datetime</artifactId>
-      <version>${wicket.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket-devutils</artifactId>
-      <version>${wicket.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket-extensions</artifactId>
-      <version>${wicket.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket-ioc</artifactId>
-      <version>${wicket.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket-spring</artifactId>
-      <version>${wicket.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket-jmx</artifactId>
-      <version>${wicket.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket-velocity</artifactId>
-      <version>${wicket.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.wicket</groupId>
       <artifactId>wicket-auth-roles</artifactId>
-      <version>${wicket.version}</version>
       <scope>provided</scope>
     </dependency>
     <dependency>
       <groupId>org.apache.geronimo.specs</groupId>
       <artifactId>geronimo-servlet_2.5_spec</artifactId>
-      <version>${geronimo.servlet.version}</version>
     </dependency>
 
     <dependency>
       <groupId>junit</groupId>
       <artifactId>junit</artifactId>
-      <version>${junit.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.hamcrest</groupId>
       <artifactId>hamcrest-all</artifactId>
-      <version>${hamcrest.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
-      <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
     <dependency>
       <groupId>org.drools</groupId>
       <artifactId>drools-api</artifactId>
-      <version>5.1.1</version>
     </dependency>
   </dependencies>
 
