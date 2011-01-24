@@ -36,20 +36,20 @@ public class TaskFinalViewPanel extends Panel {
 
     @SpringBean(name = "taskboxService")
     private TaskboxService service;
-    
+
     private Task task;
 
     public TaskFinalViewPanel(String id, Task t) {
         super(id);
-        
+
         this.task = t;
 
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
         feedback.setOutputMarkupId(true);
         add(feedback);
-        
+
         add(printTicketProperties(task));
-        
+
         CompoundPropertyModel<Task> tm = new CompoundPropertyModel<Task>(task);
         Form<Task> form = new Form<Task>("taskForm", tm);
         form.setOutputMarkupId(true);

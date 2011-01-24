@@ -28,7 +28,6 @@ import org.openengsb.openticket.model.TicketType;
 import org.openengsb.openticket.ui.web.panel.DeveloperTicketPanel;
 import org.openengsb.openticket.ui.web.panel.ReviewerTicketPanel;
 import org.openengsb.openticket.ui.web.panel.TaskFinalViewPanel;
-import org.openengsb.openticket.ui.web.panel.TicketPanel;
 
 @AuthorizeInstantiation("ROLE_USER")
 public class PanelDemo extends BasePage {
@@ -45,7 +44,7 @@ public class PanelDemo extends BasePage {
             p = taskboxService.getTaskPanel(t, "panel");
             this.add(p);
 
-            /*Ticket tt = new Ticket();
+            Ticket tt = new Ticket();
             tt.setTaskType(TicketType.DeveloperTicket.toString());
             taskboxService.registerTaskPanel(tt.getTaskType(), DeveloperTicketPanel.class);
 
@@ -55,13 +54,13 @@ public class PanelDemo extends BasePage {
             tt.setPriority(TicketPriority.High);
             t = new Task(tt);
 
-            p = taskboxService.getTaskPanel(t, "panel2");*/
-            
-            p = new TaskFinalViewPanel("panel2", t);
+            p = taskboxService.getTaskPanel(t, "panel2");
             this.add(p);
             
             
-            //Register Panels
+            /*
+             * Registering Panels for the Demo
+             */
             taskboxService.registerTaskPanel(TicketType.DeveloperTicket.toString(), DeveloperTicketPanel.class);
             taskboxService.registerTaskPanel(TicketType.ReviewerTicket.toString(), ReviewerTicketPanel.class);
             taskboxService.registerTaskPanel("TaskFinalView", TaskFinalViewPanel.class);

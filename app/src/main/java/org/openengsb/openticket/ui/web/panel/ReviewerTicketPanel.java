@@ -52,7 +52,6 @@ public class ReviewerTicketPanel extends Panel {
     public ReviewerTicketPanel(String id, Task task) {
         super(id);
 
-        //temp = (ReviewerTicket) task;
         temp = new ReviewerTicket(task);
 
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
@@ -213,8 +212,7 @@ public class ReviewerTicketPanel extends Panel {
 
     private Form<ReviewerTicket> constituteEditableFields(Form<ReviewerTicket> form) {
 
-        CheckBox fcTR = new CheckBox("ticketResolved"); 
-        //, new PropertyModel(wrapper, "selected"));
+        CheckBox fcTR = new CheckBox("ticketResolved");
         fcTR.setLabel(new ResourceModel("edit.label.tr"));
         form.add(fcTR);
         form.add(new SimpleFormComponentLabel("edit-label-tr", fcTR));
