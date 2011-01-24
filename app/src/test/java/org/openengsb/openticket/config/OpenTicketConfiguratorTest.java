@@ -24,19 +24,23 @@ import org.openengsb.core.common.workflow.RuleManager;
 import org.openengsb.core.common.workflow.model.RuleBaseElementId;
 import org.openengsb.core.common.workflow.model.RuleBaseElementType;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.openengsb.ui.common.wicket.taskbox.WebTaskboxService;
 
 public class OpenTicketConfiguratorTest {
     private OpenTicketConfigurator configurator;
     private RuleManager ruleManager;
+    private WebTaskboxService webtaskboxService;
     private AuthenticationManager authenticationManager;
     
     @Before
     public void setUp() {
         ruleManager = Mockito.mock(RuleManager.class);
         authenticationManager=Mockito.mock(AuthenticationManager.class);
+        webtaskboxService = Mockito.mock(WebTaskboxService.class);
         configurator = new OpenTicketConfigurator();
         configurator.setRuleManager(ruleManager);
         configurator.setAuthenticationManager(authenticationManager);
+        configurator.setWebtaskboxService(webtaskboxService);
     }
 
     @Test

@@ -32,7 +32,7 @@ import org.openengsb.openticket.ui.web.panel.TaskFinalViewPanel;
 @AuthorizeInstantiation("ROLE_USER")
 public class PanelDemo extends BasePage {
 
-    @SpringBean(name="webtaskboxService")
+    @SpringBean(name = "webtaskboxService")
     private WebTaskboxService taskboxService;
 
     public PanelDemo() {
@@ -46,7 +46,6 @@ public class PanelDemo extends BasePage {
 
             Ticket tt = new Ticket();
             tt.setTaskType(TicketType.DeveloperTicket.toString());
-            taskboxService.registerTaskPanel(tt.getTaskType(), DeveloperTicketPanel.class);
 
             tt.setName("Ticket name");
             tt.setContactEmailAddress("test@test.at");
@@ -56,14 +55,6 @@ public class PanelDemo extends BasePage {
 
             p = taskboxService.getTaskPanel(t, "panel2");
             this.add(p);
-            
-            
-            /*
-             * Registering Panels for the Demo
-             */
-            taskboxService.registerTaskPanel(TicketType.DeveloperTicket.toString(), DeveloperTicketPanel.class);
-            taskboxService.registerTaskPanel(TicketType.ReviewerTicket.toString(), ReviewerTicketPanel.class);
-            taskboxService.registerTaskPanel("TaskFinalView", TaskFinalViewPanel.class);
 
         } catch (TaskboxException e) {
             e.printStackTrace();

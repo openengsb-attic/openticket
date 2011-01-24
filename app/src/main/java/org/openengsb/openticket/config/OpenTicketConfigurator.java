@@ -21,6 +21,7 @@ import java.io.InputStream;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.core.common.workflow.RuleBaseException;
 import org.openengsb.core.common.workflow.RuleManager;
 import org.openengsb.core.common.workflow.model.RuleBaseElementId;
@@ -29,11 +30,17 @@ import org.openengsb.core.security.BundleAuthenticationToken;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.openengsb.openticket.model.TicketType;
+import org.openengsb.openticket.ui.web.panel.DeveloperTicketPanel;
+import org.openengsb.openticket.ui.web.panel.ReviewerTicketPanel;
+import org.openengsb.openticket.ui.web.panel.TaskFinalViewPanel;
+import org.openengsb.ui.common.wicket.taskbox.WebTaskboxService;
 
 public class OpenTicketConfigurator {
     private Log log = LogFactory.getLog(getClass());
     private AuthenticationManager authenticationManager;
     private RuleManager ruleManager;
+    private WebTaskboxService webtaskboxService;
 
     public void init() {
         Authentication authentication = authenticationManager.authenticate(new BundleAuthenticationToken("openticket-app", ""));
@@ -41,6 +48,7 @@ public class OpenTicketConfigurator {
         
         if (ruleManager.get(new RuleBaseElementId(RuleBaseElementType.Process, "TaskDemoWorkflow")) == null) {
             addWorkflows();
+            registerPanels();
         }
     }
 
@@ -69,7 +77,21 @@ public class OpenTicketConfigurator {
         }
     }
 
+    private void registerPanels() {
+        try {
+            webtaskboxService.registerTaskPanel(TicketType.DeveloperTicket.toString(), DeveloperTicketPanel.class);
+            webtaskboxService.registerTaskPanel(TicketType.ReviewerTicket.toString(), ReviewerTicketPanel.class);
+            webtaskboxService.registerTaskPanel("TaskFinalView", TaskFinalViewPanel.class);
+        } catch (TaskboxException e) {
+            log.error(e.getMessage(), e);
+        }
+    }
+
     public void setRuleManager(RuleManager ruleManager) {
         this.ruleManager = ruleManager;
+    }
+
+    public void setWebtaskboxService(WebTaskboxService webtaskboxService) {
+        this.webtaskboxService = webtaskboxService;
     }
 }

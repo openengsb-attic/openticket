@@ -28,5 +28,6 @@
   <bean class="org.openengsb.openticket.config.OpenTicketConfigurator" init-method="init">
     <property name="ruleManager" ref="ruleManager" />
     <property name="authenticationManager" ref="osgiAuthenticationManager" />
+    <property name="webtaskboxService" ref="webtaskboxService" />
   </bean>   
 </beans>
