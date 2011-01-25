@@ -28,13 +28,7 @@
       </eventFilters>
     </eventNode>
     <join id="6" name="Gateway" x="146" y="86" width="49" height="49" type="1" />
-    <eventNode id="7" name="TaskFinished" x="251" y="239" width="48" height="48" >
-      <eventFilters>
-        <eventFilter type="eventType" eventType="TaskFinished" />
-      </eventFilters>
-    </eventNode>
-    <join id="8" name="Gateway" x="145" y="243" width="49" height="49" type="1" />
-    <subProcess id="9" name="Human interaction" x="94" y="319" width="159" height="48" processId="humantask" >
+    <subProcess id="7" name="Human interaction" x="94" y="319" width="159" height="48" processId="humantask" >
       <mapping type="in" from="processBag" to="processBag" />
       <mapping type="out" from="processBag" to="processBag" />
       <onEntry>
@@ -44,13 +38,11 @@
   </nodes>
 
   <connections>
-    <connection from="9" to="2" />
+    <connection from="7" to="2" />
     <connection from="6" to="3" />
     <connection from="1" to="6" />
     <connection from="5" to="6" />
-    <connection from="3" to="8" />
-    <connection from="7" to="8" />
-    <connection from="8" to="9" />
+    <connection from="3" to="7" />
   </connections>
 
 </process>
