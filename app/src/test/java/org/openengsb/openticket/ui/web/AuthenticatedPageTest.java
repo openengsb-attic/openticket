@@ -7,6 +7,7 @@ import org.apache.wicket.Session;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
+import org.openengsb.ui.common.wicket.OpenEngSBWebSession;
 
 public abstract class AuthenticatedPageTest extends PageTest {
     @Before
@@ -25,7 +26,7 @@ public abstract class AuthenticatedPageTest extends PageTest {
 
             @Override
             public Session newSession(Request request, Response response) {
-                return new WicketSession(request);
+                return new OpenEngSBWebSession(request);
             }
 
             @Override

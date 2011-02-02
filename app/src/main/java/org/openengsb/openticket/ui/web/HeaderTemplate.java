@@ -33,6 +33,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.protocol.http.WebSession;
+import org.openengsb.ui.common.wicket.OpenEngSBWebSession;
 
 public class HeaderTemplate extends Panel {
     private final ArrayList<HeaderMenuItem> menuItems = new ArrayList<HeaderMenuItem>();
@@ -64,7 +65,7 @@ public class HeaderTemplate extends Panel {
         Link<Object> link = new Link<Object>("logout") {
             @Override
             public void onClick() {
-                boolean signedIn = ((WicketSession) WebSession.get()).isSignedIn();
+                boolean signedIn = ((OpenEngSBWebSession) WebSession.get()).isSignedIn();
                 if (signedIn) {
                     ((AuthenticatedWebSession) this.getSession()).signOut();
                 }
@@ -76,13 +77,13 @@ public class HeaderTemplate extends Panel {
         WebMarkupContainer container = new WebMarkupContainer("logintext");
         link.add(container);
         try {
-            container.setVisible(!((WicketSession) WebSession.get()).isSignedIn());
+            container.setVisible(!((OpenEngSBWebSession) WebSession.get()).isSignedIn());
         } catch (ClassCastException e) {
         }
         container = new WebMarkupContainer("logouttext");
         link.add(container);
         try {
-            container.setVisible(((WicketSession) WebSession.get()).isSignedIn());
+            container.setVisible(((OpenEngSBWebSession) WebSession.get()).isSignedIn());
         } catch (ClassCastException e) {
         }
 
@@ -94,7 +95,7 @@ public class HeaderTemplate extends Panel {
         addHeaderMenuItem("Home", Welcome.class, "index.title");
 
         try {
-            Roles roles = ((WicketSession) WebSession.get()).getRoles();
+            Roles roles = ((OpenEngSBWebSession) WebSession.get()).getRoles();
             for (String role : roles) {
                 if (role.equals("CASEWORKER")) {
                     addHeaderMenuItem("TaskboxDemo", TaskboxDemo.class, "taskboxdemo.title");

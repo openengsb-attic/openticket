@@ -19,6 +19,7 @@ package org.openengsb.openticket.ui.web;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.context.ContextCurrentService;
+import org.openengsb.ui.common.wicket.OpenEngSBWebSession;
 
 public class BasePage extends WebPage {
     @SpringBean
@@ -51,7 +52,7 @@ public class BasePage extends WebPage {
     }
 
     public String getSessionContextId() {
-        WicketSession session = WicketSession.get();
+        OpenEngSBWebSession session = OpenEngSBWebSession.get();
         if (session == null) {
             return "foo";
         }
@@ -62,7 +63,7 @@ public class BasePage extends WebPage {
     }
 
     private void setThreadLocalContext(String threadLocalContext) {
-        WicketSession session = WicketSession.get();
+        OpenEngSBWebSession session = OpenEngSBWebSession.get();
         if (session != null) {
             session.setThreadContextId(threadLocalContext);
         }

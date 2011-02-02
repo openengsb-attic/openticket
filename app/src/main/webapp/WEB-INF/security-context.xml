@@ -29,13 +29,7 @@
   </http>
 
   <authentication-manager alias="authenticationManager">
-    <authentication-provider>
-      <password-encoder hash="md5" />
-      <user-service>
-        <user name="user" password="5f4dcc3b5aa765d61d8327deb882cf99" authorities="CASEWORKER"/>
-      </user-service>
-    </authentication-provider>
+    <authentication-provider ref="userAuthenticationProvider" />
   </authentication-manager>
 
-  <global-method-security secured-annotations="enabled"/>
 </beans:beans>

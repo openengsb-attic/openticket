@@ -25,6 +25,7 @@ import java.util.List;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.util.tester.FormTester;
 import org.junit.Test;
+import org.openengsb.ui.common.wicket.OpenEngSBWebSession;
 
 public class LoginPageTest extends AuthenticatedPageTest {
     @Test
@@ -47,7 +48,7 @@ public class LoginPageTest extends AuthenticatedPageTest {
         formTester.setValue("password", "password");
         formTester.submit();
         tester.assertNoErrorMessage();
-        assertTrue(WicketSession.get().isSignedIn());
+        assertTrue(OpenEngSBWebSession.get().isSignedIn());
         tester.assertRenderedPage(Welcome.class);
     }
 
@@ -59,7 +60,7 @@ public class LoginPageTest extends AuthenticatedPageTest {
         formTester.setValue("password", "password");
         formTester.submit();
         tester.clickLink("header:logout");
-        assertFalse(WicketSession.get().isSignedIn());
+        assertFalse(OpenEngSBWebSession.get().isSignedIn());
         tester.assertRenderedPage(Welcome.class);
     }
 
@@ -71,7 +72,7 @@ public class LoginPageTest extends AuthenticatedPageTest {
         formTester.setValue("password", "wrongpassword");
         formTester.submit();
         tester.assertRenderedPage(LoginPage.class);
-        assertFalse(WicketSession.get().isSignedIn());
+        assertFalse(OpenEngSBWebSession.get().isSignedIn());
         List<Serializable> messages = tester.getMessages(FeedbackMessage.ERROR);
         assertFalse(messages.isEmpty());
     }
