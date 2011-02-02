@@ -23,17 +23,20 @@ import org.openengsb.core.common.workflow.RuleBaseException;
 import org.openengsb.core.common.workflow.RuleManager;
 import org.openengsb.core.common.workflow.model.RuleBaseElementId;
 import org.openengsb.core.common.workflow.model.RuleBaseElementType;
+import org.springframework.security.authentication.AuthenticationManager;
 
 public class OpenTicketConfiguratorTest {
     private OpenTicketConfigurator configurator;
     private RuleManager ruleManager;
-
+    private AuthenticationManager authenticationManager;
+    
     @Before
     public void setUp() {
         ruleManager = Mockito.mock(RuleManager.class);
-
+        authenticationManager=Mockito.mock(AuthenticationManager.class);
         configurator = new OpenTicketConfigurator();
         configurator.setRuleManager(ruleManager);
+        configurator.setAuthenticationManager(authenticationManager);
     }
 
     @Test

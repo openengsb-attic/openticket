@@ -25,16 +25,27 @@ import org.openengsb.core.common.workflow.RuleBaseException;
 import org.openengsb.core.common.workflow.RuleManager;
 import org.openengsb.core.common.workflow.model.RuleBaseElementId;
 import org.openengsb.core.common.workflow.model.RuleBaseElementType;
+import org.openengsb.core.security.BundleAuthenticationToken;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public class OpenTicketConfigurator {
     private Log log = LogFactory.getLog(getClass());
-
+    private AuthenticationManager authenticationManager;
     private RuleManager ruleManager;
 
     public void init() {
+        Authentication authentication = authenticationManager.authenticate(new BundleAuthenticationToken("openticket-app", ""));
+        SecurityContextHolder.getContext().setAuthentication(authentication);
+        
         if (ruleManager.get(new RuleBaseElementId(RuleBaseElementType.Process, "TaskDemoWorkflow")) == null) {
             addWorkflows();
         }
+    }
+
+    public void setAuthenticationManager(AuthenticationManager authenticationManager) {
+        this.authenticationManager = authenticationManager;
     }
 
     private void addWorkflows() {

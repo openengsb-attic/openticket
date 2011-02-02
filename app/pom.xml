@@ -81,7 +81,7 @@
          <dependency>
            <groupId>org.openengsb.build</groupId>
            <artifactId>shared-plugin-settings</artifactId>
-           <version>Version of OPENENGSB you use</version>
+           <version>1.2.0-SNAPSHOT</version>
            <type>pom</type>
            <scope>import</scope>
          </dependency>
@@ -102,7 +102,6 @@
     <dependency>
       <groupId>org.openengsb.core</groupId>
       <artifactId>openengsb-core-security</artifactId>
-      <version>${openengsb.version}</version>
       <scope>provided</scope>
     </dependency>
 
