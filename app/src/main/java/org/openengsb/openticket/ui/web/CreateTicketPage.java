@@ -26,7 +26,7 @@ import org.openengsb.openticket.ui.web.panel.CustomTaskPanel;
 import org.openengsb.openticket.ui.web.panel.TicketPanel;
 import org.openengsb.openticket.model.Ticket;
 
-@AuthorizeInstantiation("CASEWORKER")
+@AuthorizeInstantiation("ROLE_USER")
 public class CreateTicketPage extends BasePage {
 
     public CreateTicketPage() {

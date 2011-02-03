@@ -28,7 +28,7 @@ import org.openengsb.openticket.model.TicketType;
 import org.openengsb.openticket.ui.web.panel.DeveloperTicketPanel;
 import org.openengsb.openticket.ui.web.panel.TicketPanel;
 
-@AuthorizeInstantiation("CASEWORKER")
+@AuthorizeInstantiation("ROLE_USER")
 public class PanelDemo extends BasePage {
 
     @SpringBean(name="webtaskboxService")

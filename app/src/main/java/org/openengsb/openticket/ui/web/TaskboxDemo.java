@@ -28,7 +28,7 @@ import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.core.common.workflow.WorkflowException;
 import org.openengsb.core.common.workflow.WorkflowService;
 
-@AuthorizeInstantiation("CASEWORKER")
+@AuthorizeInstantiation("ROLE_USER")
 public class TaskboxDemo extends BasePage {
     @SpringBean(name = "taskboxService")
     private TaskboxService taskboxService;

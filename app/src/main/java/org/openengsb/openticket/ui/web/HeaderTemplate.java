@@ -22,7 +22,7 @@ import java.util.Locale;
 
 import org.apache.wicket.AttributeModifier;
 import org.apache.wicket.authentication.AuthenticatedWebSession;
-import org.apache.wicket.authorization.strategies.role.Roles;
+import org.apache.wicket.authorization.strategies.role.metadata.MetaDataRoleAuthorizationStrategy;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.basic.Label;
@@ -35,6 +35,7 @@ import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.protocol.http.WebSession;
 import org.openengsb.ui.common.wicket.OpenEngSBWebSession;
 
+@SuppressWarnings("serial")
 public class HeaderTemplate extends Panel {
     private final ArrayList<HeaderMenuItem> menuItems = new ArrayList<HeaderMenuItem>();
     private final ArrayList<String> avialableItems = new ArrayList<String>();
@@ -92,23 +93,12 @@ public class HeaderTemplate extends Panel {
     }
 
     private void initMainMenuItems() {
-        addHeaderMenuItem("Home", Welcome.class, "index.title");
-
-        try {
-            Roles roles = ((OpenEngSBWebSession) WebSession.get()).getRoles();
-            for (String role : roles) {
-                if (role.equals("CASEWORKER")) {
-                    addHeaderMenuItem("TaskboxDemo", TaskboxDemo.class, "taskboxdemo.title");
-                    addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title");
-                    addHeaderMenuItem("OverviewDemo", OverviewDemo.class, "overviewdemo.title");
-                    addHeaderMenuItem("CreateTicket", CreateTicketPage.class, "createticket.title");
-                    addHeaderMenuItem("OpenTicketOverview", OverviewTicketPage.class, "overviewticket.title");
-                }
-            }
-        } catch (ClassCastException e) {
-            addHeaderMenuItem("TasboxDemo", TaskboxDemo.class, "taskboxdemo.title");
-            addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title");
-        }
+        addHeaderMenuItem("Home", Welcome.class, "index.title", "");
+        addHeaderMenuItem("TaskboxDemo", TaskboxDemo.class, "taskboxdemo.title", "ROLE_USER");
+        addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title", "ROLE_USER");
+        addHeaderMenuItem("OverviewDemo", OverviewDemo.class, "overviewdemo.title", "ROLE_USER");
+        addHeaderMenuItem("CreateTicket", CreateTicketPage.class, "createticket.title", "ROLE_USER");
+        addHeaderMenuItem("OpenTicketOverview", OverviewTicketPage.class, "overviewticket.title", "ROLE_USER");
     }
 
     private void initializeMenu() {
@@ -155,11 +145,22 @@ public class HeaderTemplate extends Panel {
      * @param linkClass - class name to be linked to
      * @param langKey - language key, the text which should be displayed
      */
-    @SuppressWarnings("unchecked")
-    public void addHeaderMenuItem(String index, Class<? extends WebPage> linkClass, String langKey) {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+    public void addHeaderMenuItem(String index, Class<? extends WebPage> linkClass, String langKey, String authority) {
         StringResourceModel label = new StringResourceModel(langKey, this, null);
-        menuItems.add(new HeaderMenuItem(index, new BookmarkablePageLabelLink("link", linkClass, label)));
+        BookmarkablePageLabelLink pageLabelLink = new BookmarkablePageLabelLink("link", linkClass, label);
+        addAuthorizationRoles(pageLabelLink, authority);
+        menuItems.add(new HeaderMenuItem(index, pageLabelLink));
         avialableItems.add(index);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private void addAuthorizationRoles(BookmarkablePageLabelLink pageLabelLink, String authority) {
+        if (authority != null && !"".equals(authority)) {
+            MetaDataRoleAuthorizationStrategy.authorize(pageLabelLink, RENDER, authority);
+        } else {
+            MetaDataRoleAuthorizationStrategy.authorizeAll(pageLabelLink, RENDER);
+        }
     }
 
     /**

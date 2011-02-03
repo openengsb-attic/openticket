@@ -42,7 +42,7 @@ import org.openengsb.core.common.taskbox.model.Task;
 import org.openengsb.core.common.workflow.WorkflowException;
 import org.openengsb.openticket.model.DeveloperTicket;
 
-@AuthorizeInstantiation("CASEWORKER")
+@AuthorizeInstantiation("ROLE_USER")
 public class DeveloperTicketPanel extends Panel {
 
     @SpringBean(name = "taskboxService")

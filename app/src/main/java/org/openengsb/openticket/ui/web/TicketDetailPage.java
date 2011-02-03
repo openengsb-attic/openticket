@@ -25,7 +25,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 //import org.openengsb.openticket.model.Ticket;
 
-@AuthorizeInstantiation("CASEWORKER")
+@AuthorizeInstantiation("ROLE_USER")
 public class TicketDetailPage extends BasePage {
     private Panel panel= new EmptyPanel("panel");
 
