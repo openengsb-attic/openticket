@@ -19,7 +19,7 @@ package org.openengsb.openticket.ui.web;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.openticket.ui.web.panel.OverviewTicketPanel;
-import org.openengsb.ui.common.wicket.taskbox.WebTaskboxService;
+import org.openengsb.ui.common.taskbox.WebTaskboxService;
 
 public class OverviewTicketPage extends BasePage {
     @SpringBean(name = "webtaskboxService")

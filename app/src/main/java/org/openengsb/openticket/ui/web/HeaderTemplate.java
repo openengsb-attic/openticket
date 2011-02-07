@@ -33,7 +33,7 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.AbstractReadOnlyModel;
 import org.apache.wicket.model.StringResourceModel;
 import org.apache.wicket.protocol.http.WebSession;
-import org.openengsb.ui.common.wicket.OpenEngSBWebSession;
+import org.openengsb.ui.common.OpenEngSBWebSession;
 
 @SuppressWarnings("serial")
 public class HeaderTemplate extends Panel {

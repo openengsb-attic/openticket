@@ -18,7 +18,7 @@ package org.openengsb.openticket.ui.web;
 
 import org.apache.wicket.Page;
 import org.apache.wicket.markup.html.WebPage;
-import org.openengsb.ui.common.wicket.OpenEngSBWicketApplication;
+import org.openengsb.ui.common.OpenEngSBWicketApplication;
 
 public class WicketApplication extends OpenEngSBWicketApplication {
 

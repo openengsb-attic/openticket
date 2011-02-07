@@ -18,13 +18,8 @@ package org.openengsb.openticket.ui.web;
 
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.openengsb.core.common.taskbox.TaskboxException;
-import org.openengsb.ui.common.wicket.taskbox.WebTaskboxService;
 import org.openengsb.core.common.taskbox.model.Task;
-import org.openengsb.openticket.ui.web.panel.CustomTaskPanel;
 import org.openengsb.openticket.ui.web.panel.TicketPanel;
-import org.openengsb.openticket.model.Ticket;
 
 @AuthorizeInstantiation("ROLE_USER")
 public class CreateTicketPage extends BasePage {

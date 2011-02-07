@@ -50,7 +50,7 @@ import org.openengsb.core.common.workflow.model.ProcessBag;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.model.TicketPriority;
 import org.openengsb.openticket.model.TicketType;
-import org.openengsb.ui.common.wicket.taskbox.WebTaskboxService;
+import org.openengsb.ui.common.taskbox.WebTaskboxService;
 
 public class TicketPanel extends Panel {
 

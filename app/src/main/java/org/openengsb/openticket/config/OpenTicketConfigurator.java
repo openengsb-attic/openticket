@@ -34,7 +34,7 @@ import org.openengsb.openticket.model.TicketType;
 import org.openengsb.openticket.ui.web.panel.DeveloperTicketPanel;
 import org.openengsb.openticket.ui.web.panel.ReviewerTicketPanel;
 import org.openengsb.openticket.ui.web.panel.TaskFinalViewPanel;
-import org.openengsb.ui.common.wicket.taskbox.WebTaskboxService;
+import org.openengsb.ui.common.taskbox.WebTaskboxService;
 
 public class OpenTicketConfigurator {
     private Log log = LogFactory.getLog(getClass());

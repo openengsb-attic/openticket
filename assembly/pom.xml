@@ -53,6 +53,7 @@
     <dependency>
       <groupId>org.openengsb</groupId>
       <artifactId>openengsb</artifactId>
+	  <version>${openengsb.version}</version>
       <type>xml</type>
       <classifier>features</classifier>
     </dependency>

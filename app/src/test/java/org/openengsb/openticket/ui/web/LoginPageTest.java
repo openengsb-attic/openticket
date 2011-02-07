@@ -25,7 +25,7 @@ import java.util.List;
 import org.apache.wicket.feedback.FeedbackMessage;
 import org.apache.wicket.util.tester.FormTester;
 import org.junit.Test;
-import org.openengsb.ui.common.wicket.OpenEngSBWebSession;
+import org.openengsb.ui.common.OpenEngSBWebSession;
 
 public class LoginPageTest extends AuthenticatedPageTest {
     @Test

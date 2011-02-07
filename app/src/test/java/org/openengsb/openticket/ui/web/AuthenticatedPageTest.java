@@ -7,7 +7,7 @@ import org.apache.wicket.Session;
 import org.apache.wicket.spring.injection.annot.SpringComponentInjector;
 import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
-import org.openengsb.ui.common.wicket.OpenEngSBWebSession;
+import org.openengsb.ui.common.OpenEngSBWebSession;
 
 public abstract class AuthenticatedPageTest extends PageTest {
     @Before

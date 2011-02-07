@@ -20,14 +20,11 @@ import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInst
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
 import org.openengsb.core.common.taskbox.TaskboxException;
-import org.openengsb.ui.common.wicket.taskbox.WebTaskboxService;
 import org.openengsb.core.common.taskbox.model.Task;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.model.TicketPriority;
 import org.openengsb.openticket.model.TicketType;
-import org.openengsb.openticket.ui.web.panel.DeveloperTicketPanel;
-import org.openengsb.openticket.ui.web.panel.ReviewerTicketPanel;
-import org.openengsb.openticket.ui.web.panel.TaskFinalViewPanel;
+import org.openengsb.ui.common.taskbox.WebTaskboxService;
 
 @AuthorizeInstantiation("ROLE_USER")
 public class PanelDemo extends BasePage {
