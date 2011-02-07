@@ -95,8 +95,8 @@
       <scope>provided</scope>
     </dependency>
     <dependency>
-      <groupId>org.openengsb.ui.common</groupId>
-      <artifactId>openengsb-ui-common-wicket</artifactId>
+      <groupId>org.openengsb.ui</groupId>
+      <artifactId>openengsb-ui-common</artifactId>
       <scope>provided</scope>
     </dependency>
     <dependency>
