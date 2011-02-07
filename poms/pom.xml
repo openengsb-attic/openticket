@@ -61,10 +61,12 @@
     <hamcrest.version>1.1</hamcrest.version>
     <dbunit.version>2.4.7</dbunit.version>
     <exam.version>1.2.2</exam.version>
-    <htmlunit.version>2.8</htmlunit.version>
+
 
     <!-- Provided Framework Versions -->
     <karaf.version>2.1.3</karaf.version>
+	<htmlunit.version>2.8</htmlunit.version>
+    <htmlunit.wrapped.version>${htmlunit.version}.w1</htmlunit.wrapped.version>
     <openengsb.version>1.2.0-SNAPSHOT</openengsb.version>
   </properties>
 
