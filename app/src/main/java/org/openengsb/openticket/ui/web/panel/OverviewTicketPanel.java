@@ -19,34 +19,23 @@ package org.openengsb.openticket.ui.web.panel;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.wicket.ajax.AjaxRequestTarget;
-import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.markup.html.basic.Label;
-import org.apache.wicket.markup.html.form.Form;
-import org.apache.wicket.markup.html.form.TextArea;
-import org.apache.wicket.markup.html.form.TextField;
 import org.apache.wicket.markup.html.link.Link;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
 import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.model.CompoundPropertyModel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
-import org.apache.wicket.model.util.ListModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.apache.wicket.validation.validator.StringValidator;
 import org.openengsb.core.common.taskbox.TaskboxException;
 import org.openengsb.core.common.taskbox.TaskboxService;
 import org.openengsb.core.common.taskbox.model.Task;
-import org.openengsb.core.common.workflow.WorkflowException;
-import org.openengsb.openticket.model.Ticket;
 import org.openengsb.ui.common.taskbox.WebTaskboxService;
 
 public class OverviewTicketPanel extends Panel {
 
-    private Ticket ticket;
     private Panel panel = new EmptyPanel("taskPanel");
 
     @SpringBean(name="taskboxService")
@@ -61,7 +50,7 @@ public class OverviewTicketPanel extends Panel {
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
         feedback.setOutputMarkupId(true);
         add(feedback);
-        
+        add(panel);
 
         IModel<? extends List<Task>> taskModel = new LoadableDetachableModel<List<Task>>() {
             @Override
@@ -96,6 +85,6 @@ public class OverviewTicketPanel extends Panel {
                 
             }
         });
-        add(panel);
+        
     }
 }
