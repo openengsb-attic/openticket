@@ -21,9 +21,9 @@
 
   <parent>
     <groupId>org.openengsb</groupId>
-    <artifactId>openengsb-parent</artifactId>
-    <version>1.2.0-SNAPSHOT</version>
-  </parent>	
+    <artifactId>openengsb-root</artifactId>
+    <version>7</version>
+  </parent>
 
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.openengsb.openticket</groupId>
@@ -139,7 +139,6 @@
       </roles>
     </developer>
   </developers>
-
   <contributors>
     <contributor>
       <name>Andreas Pieber</name>
@@ -182,6 +181,11 @@
           <meminitial>128m</meminitial>
           <maxmem>512m</maxmem>
         </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.openengsb</groupId>
+        <artifactId>openengsb-maven-plugin</artifactId>
+        <version>1.2.0</version>
       </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
