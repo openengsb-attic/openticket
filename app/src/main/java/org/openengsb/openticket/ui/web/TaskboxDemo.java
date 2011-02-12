@@ -57,6 +57,7 @@ public class TaskboxDemo extends BasePage {
             @Override
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 try {
+                    initContextForCurrentThread();
                     workflowService.startFlow("TaskDemoWorkflow");
                     info("Workflow started!");
                 } catch (WorkflowException e) {
