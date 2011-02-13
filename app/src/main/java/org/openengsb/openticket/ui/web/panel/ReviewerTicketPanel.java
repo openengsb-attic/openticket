@@ -120,6 +120,7 @@ public class ReviewerTicketPanel extends Panel {
 
                     form.setOutputMarkupId(true);
                     target.addComponent(form);
+                    setResponsePage(getPage().getClass());
                 } catch (WorkflowException e) {
                     e.printStackTrace();
                     error("Error: " + e.toString());

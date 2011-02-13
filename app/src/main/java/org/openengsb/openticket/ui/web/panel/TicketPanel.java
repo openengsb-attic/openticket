@@ -50,6 +50,7 @@ import org.openengsb.core.common.workflow.model.ProcessBag;
 import org.openengsb.openticket.model.Ticket;
 import org.openengsb.openticket.model.TicketPriority;
 import org.openengsb.openticket.model.TicketType;
+import org.openengsb.openticket.ui.web.OverviewTicketPage;
 import org.openengsb.ui.common.taskbox.WebTaskboxService;
 
 public class TicketPanel extends Panel {
@@ -92,6 +93,7 @@ public class TicketPanel extends Panel {
                     map.put("processBag", bag);
                     workflowService.startFlow("TaskDemoWorkflow",map);
                     info("Workflow started!");
+                    setResponsePage(OverviewTicketPage.class);
                 } catch (WorkflowException e) {
                     info(e.getMessage());
                 }

@@ -67,6 +67,7 @@ public class TaskFinalViewPanel extends Panel {
                     form.remove("ok");
                     form.add(this);
                     target.addComponent(form);
+                    setResponsePage(getPage().getClass());
                 } catch (WorkflowException e) {
                     e.printStackTrace();
                     error("Error: " + e.toString());

@@ -76,6 +76,7 @@ public class CustomTaskPanel extends Panel {
             protected void onSubmit(AjaxRequestTarget target, Form<?> form) {
                 try {
                     service.finishTask(task);
+                    setResponsePage(getPage().getClass());
                 } catch (WorkflowException e) {
                     // TODO Auto-generated catch block
                     e.printStackTrace();

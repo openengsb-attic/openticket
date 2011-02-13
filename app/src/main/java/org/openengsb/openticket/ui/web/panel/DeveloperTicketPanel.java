@@ -18,12 +18,14 @@ package org.openengsb.openticket.ui.web.panel;
 
 import java.util.ArrayList;
 
+import org.apache.wicket.Component;
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.WebMarkupContainer;
 import org.apache.wicket.markup.html.list.ListItem;
 import org.apache.wicket.markup.html.list.ListView;
+import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.markup.html.basic.Label;
@@ -49,10 +51,11 @@ public class DeveloperTicketPanel extends Panel {
     private TaskboxService service;
 
     private DeveloperTicket temp;
+    private String panelid;
 
     public DeveloperTicketPanel(String id, Task task) {
         super(id);
-
+        panelid = id;
         temp = new DeveloperTicket(task);
 
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
@@ -119,6 +122,7 @@ public class DeveloperTicketPanel extends Panel {
 
                     form.setOutputMarkupId(true);
                     target.addComponent(form);
+                    setResponsePage(getPage().getClass());
                 } catch (WorkflowException e) {
                     e.printStackTrace();
                     error("Error: " + e.toString());
