@@ -79,6 +79,13 @@
       <lineEnding>dos</lineEnding>
     </file>
     <file>
+      <source>${basedir}/target/dependencies/win/openengsb-${openengsb.version}/bin/openengsb</source>
+      <outputDirectory>/bin/</outputDirectory>
+      <destName>openticket</destName>
+      <fileMode>0755</fileMode>
+      <lineEnding>unix</lineEnding>
+    </file>
+    <file>
       <source>${basedir}/target/classes/features.xml</source>
       <outputDirectory>system/org/openengsb/openticket/${artifactId}/${version}</outputDirectory>
       <destName>${artifactId}-${version}-features.xml</destName>

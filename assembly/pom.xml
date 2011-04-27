@@ -212,6 +212,8 @@
         <groupId>org.openengsb</groupId>
         <artifactId>openengsb-maven-plugin</artifactId>
         <configuration>
+          <provisionArchivePathUnix>${project.basedir}/target/openticket-${project.version}-windows-all.zip</provisionArchivePathUnix>
+          <provisionExecutionPathUnix>bin/openticket</provisionExecutionPathUnix>
           <provisionArchivePathWindows>${project.basedir}/target/openticket-${project.version}-windows-all.zip</provisionArchivePathWindows>
           <provisionExecutionPathWindows>bin/openticket.bat</provisionExecutionPathWindows>
         </configuration>

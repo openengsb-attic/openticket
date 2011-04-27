@@ -19,10 +19,12 @@
 
 <!--<feature name="openengsb" version="${project.version}" resolver="(obr)">-->
 <features name="openengsb-${project.version}">
-  <repository>mvn:org.apache.karaf/apache-karaf/${karaf.version}/xml/features</repository>
+  <repository>mvn:org.apache.karaf.assemblies.features/standard/${karaf.version}/xml/features</repository>
+  <repository>mvn:org.apache.karaf.assemblies.features/enterprise/${karaf.version}/xml/features</repository>
   <repository>mvn:org.openengsb/openengsb/${openengsb.version}/xml/features</repository>
 
   <feature name="openticket-core" version="${project.version}" >
+    <feature version="${openengsb.version}">openengsb-core</feature>
     <feature version="${openengsb.version}">openengsb-core</feature>
     <bundle>mvn:org.openengsb.openticket/openticket-app/${project.version}/war</bundle>
   </feature>
