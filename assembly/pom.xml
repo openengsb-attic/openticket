@@ -42,13 +42,6 @@
      <version>${openengsb.version}</version>
       <type>zip</type>
     </dependency>
-    <!-- OpenEngSB Binary Base Unix -->
-    <dependency>
-      <groupId>org.openengsb</groupId>
-      <artifactId>openengsb</artifactId>
-      <version>${openengsb.version}</version>
-      <type>tar.gz</type>
-    </dependency>
     <!-- OpenEngSB Feature Definition -->
     <dependency>
       <groupId>org.openengsb</groupId>
@@ -61,6 +54,28 @@
     <dependency>
       <groupId>org.apache.karaf</groupId>
       <artifactId>apache-karaf</artifactId>
+      <type>zip</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.karaf</groupId>
+      <artifactId>apache-karaf</artifactId>
+      <type>tar.gz</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.karaf.assemblies.features</groupId>
+      <artifactId>standard</artifactId>
+      <type>xml</type>
+      <classifier>features</classifier>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.activemq</groupId>
+      <artifactId>activemq-karaf</artifactId>
+      <classifier>features</classifier>
+      <type>xml</type>
+    </dependency>
+    <dependency>
+      <groupId>org.apache.karaf.assemblies.features</groupId>
+      <artifactId>enterprise</artifactId>
       <type>xml</type>
       <classifier>features</classifier>
     </dependency>
@@ -102,23 +117,6 @@
         <artifactId>maven-dependency-plugin</artifactId>
         <executions>
           <execution>
-            <id>unpack-unix</id>
-            <phase>generate-resources</phase>
-            <goals>
-              <goal>unpack</goal>
-            </goals>
-            <configuration>
-              <artifactItems>
-                <artifactItem>
-                  <groupId>org.openengsb</groupId>
-                  <artifactId>openengsb</artifactId>
-                  <type>tar.gz</type>
-                  <outputDirectory>target/dependencies/unix</outputDirectory>
-                </artifactItem>
-              </artifactItems>
-            </configuration>
-          </execution>
-          <execution>
             <id>unpack-win</id>
             <phase>generate-resources</phase>
             <goals>
@@ -150,9 +148,10 @@
             </goals>
             <configuration>
               <descriptors>
-                <descriptor>file:${basedir}/target/classes/features.xml</descriptor>
-                <descriptor>mvn:org.apache.karaf/apache-karaf/${karaf.version}/xml/features</descriptor>
+                <descriptor>mvn:org.apache.karaf.assemblies.features/standard/${karaf.version}/xml/features</descriptor>
+                <descriptor>mvn:org.apache.karaf.assemblies.features/enterprise/${karaf.version}/xml/features</descriptor>
                 <descriptor>mvn:org.openengsb/openengsb/${openengsb.version}/xml/features</descriptor>
+                <descriptor>file:${basedir}/target/classes/features.xml</descriptor>
               </descriptors>
               <features>
                 <feature>openticket-core</feature>
@@ -169,7 +168,6 @@
         <version>${maven.plugin.assembly.version}</version>
         <configuration>
           <descriptors>
-            <descriptor>${project.basedir}/src/main/descriptors/unix-all.xml</descriptor>
             <descriptor>${project.basedir}/src/main/descriptors/windows-all.xml</descriptor>
             <!-- Further Descriptors -->
           </descriptors>
@@ -197,10 +195,6 @@
             <configuration>
               <artifacts>
                 <artifact>
-                  <file>${project.basedir}/target/openticket-${project.version}.tar.gz</file>
-                  <type>tar.gz</type>
-                </artifact>
-                <artifact>
                   <file>${project.basedir}/target/openticket-${project.version}.zip</file>
                   <type>zip</type>
                 </artifact>
@@ -218,8 +212,6 @@
         <groupId>org.openengsb</groupId>
         <artifactId>openengsb-maven-plugin</artifactId>
         <configuration>
-          <provisionArchivePathUnix>${project.basedir}/target/openticket-${project.version}-unix-all.tar.gz</provisionArchivePathUnix>
-          <provisionExecutionPathUnix>bin/openticket</provisionExecutionPathUnix>
           <provisionArchivePathWindows>${project.basedir}/target/openticket-${project.version}-windows-all.zip</provisionArchivePathWindows>
           <provisionExecutionPathWindows>bin/openticket.bat</provisionExecutionPathWindows>
         </configuration>

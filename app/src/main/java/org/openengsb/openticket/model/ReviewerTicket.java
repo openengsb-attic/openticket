@@ -16,7 +16,7 @@
 
 package org.openengsb.openticket.model;
 
-import org.openengsb.core.common.workflow.model.ProcessBag;
+import org.openengsb.core.api.workflow.model.ProcessBag;
 
 public class ReviewerTicket extends Ticket {
 

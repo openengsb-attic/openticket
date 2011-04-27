@@ -24,9 +24,9 @@ import org.apache.wicket.markup.html.form.Form;
 import org.apache.wicket.markup.html.panel.FeedbackPanel;
 import org.apache.wicket.model.PropertyModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.openengsb.core.common.taskbox.TaskboxService;
-import org.openengsb.core.common.workflow.WorkflowException;
-import org.openengsb.core.common.workflow.WorkflowService;
+import org.openengsb.core.api.workflow.TaskboxService;
+import org.openengsb.core.api.workflow.WorkflowException;
+import org.openengsb.core.api.workflow.WorkflowService;
 
 @AuthorizeInstantiation("ROLE_USER")
 public class TaskboxDemo extends BasePage {

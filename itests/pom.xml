@@ -99,8 +99,8 @@
 
     <!-- Feature File Dependencies -->
     <dependency>
-      <groupId>org.apache.karaf</groupId>
-      <artifactId>apache-karaf</artifactId>
+      <groupId>org.apache.karaf.assemblies.features</groupId>
+      <artifactId>standard</artifactId>
       <type>xml</type>
       <classifier>features</classifier>
     </dependency>

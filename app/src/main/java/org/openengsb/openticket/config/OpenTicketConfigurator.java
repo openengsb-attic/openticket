@@ -21,20 +21,20 @@ import java.io.InputStream;
 import org.apache.commons.io.IOUtils;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
-import org.openengsb.core.common.taskbox.TaskboxException;
-import org.openengsb.core.common.workflow.RuleBaseException;
-import org.openengsb.core.common.workflow.RuleManager;
-import org.openengsb.core.common.workflow.model.RuleBaseElementId;
-import org.openengsb.core.common.workflow.model.RuleBaseElementType;
+import org.openengsb.core.api.workflow.RuleBaseException;
+import org.openengsb.core.api.workflow.RuleManager;
+import org.openengsb.core.api.workflow.TaskboxException;
+import org.openengsb.core.api.workflow.model.RuleBaseElementId;
+import org.openengsb.core.api.workflow.model.RuleBaseElementType;
 import org.openengsb.core.security.BundleAuthenticationToken;
-import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.openengsb.openticket.model.TicketType;
 import org.openengsb.openticket.ui.web.panel.DeveloperTicketPanel;
 import org.openengsb.openticket.ui.web.panel.ReviewerTicketPanel;
 import org.openengsb.openticket.ui.web.panel.TaskFinalViewPanel;
 import org.openengsb.ui.common.taskbox.WebTaskboxService;
+import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
 
 public class OpenTicketConfigurator {
     private Log log = LogFactory.getLog(getClass());

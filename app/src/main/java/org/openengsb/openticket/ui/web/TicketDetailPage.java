@@ -16,14 +16,10 @@
 
 package org.openengsb.openticket.ui.web;
 
-import java.util.Date;
-
 import org.apache.wicket.PageParameters;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.panel.EmptyPanel;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.apache.wicket.spring.injection.annot.SpringBean;
-//import org.openengsb.openticket.model.Ticket;
 
 @AuthorizeInstantiation("ROLE_USER")
 public class TicketDetailPage extends BasePage {

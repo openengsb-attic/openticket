@@ -29,9 +29,9 @@ import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.model.IModel;
 import org.apache.wicket.model.LoadableDetachableModel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.openengsb.core.common.taskbox.TaskboxException;
-import org.openengsb.core.common.taskbox.TaskboxService;
-import org.openengsb.core.common.taskbox.model.Task;
+import org.openengsb.core.api.workflow.TaskboxException;
+import org.openengsb.core.api.workflow.TaskboxService;
+import org.openengsb.core.api.workflow.model.Task;
 import org.openengsb.ui.common.taskbox.WebTaskboxService;
 
 public class OverviewTicketPanel extends Panel {

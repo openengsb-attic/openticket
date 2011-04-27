@@ -19,12 +19,12 @@ package org.openengsb.openticket.config;
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.Mockito;
-import org.openengsb.core.common.workflow.RuleBaseException;
-import org.openengsb.core.common.workflow.RuleManager;
-import org.openengsb.core.common.workflow.model.RuleBaseElementId;
-import org.openengsb.core.common.workflow.model.RuleBaseElementType;
-import org.springframework.security.authentication.AuthenticationManager;
+import org.openengsb.core.api.workflow.RuleBaseException;
+import org.openengsb.core.api.workflow.RuleManager;
+import org.openengsb.core.api.workflow.model.RuleBaseElementId;
+import org.openengsb.core.api.workflow.model.RuleBaseElementType;
 import org.openengsb.ui.common.taskbox.WebTaskboxService;
+import org.springframework.security.authentication.AuthenticationManager;
 
 public class OpenTicketConfiguratorTest {
     private OpenTicketConfigurator configurator;

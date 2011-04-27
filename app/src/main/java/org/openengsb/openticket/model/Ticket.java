@@ -16,8 +16,8 @@
 
 package org.openengsb.openticket.model;
 
-import org.openengsb.core.common.taskbox.model.Task;
-import org.openengsb.core.common.workflow.model.ProcessBag;
+import org.openengsb.core.api.workflow.model.ProcessBag;
+import org.openengsb.core.api.workflow.model.Task;
 
 public class Ticket extends Task {
 

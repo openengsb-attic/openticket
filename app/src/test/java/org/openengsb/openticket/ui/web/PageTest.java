@@ -15,8 +15,7 @@ import org.apache.wicket.util.tester.WicketTester;
 import org.junit.Before;
 import org.mockito.invocation.InvocationOnMock;
 import org.mockito.stubbing.Answer;
-import org.openengsb.core.common.context.ContextCurrentService;
-import org.openengsb.core.common.service.DomainService;
+import org.openengsb.core.api.context.ContextCurrentService;
 import org.osgi.framework.ServiceReference;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
@@ -35,22 +34,10 @@ public abstract class PageTest {
         appContext = new ApplicationContextMock();
         
         mockAuthentication();
-        mockIndex();
 
         contextService = mock(ContextCurrentService.class);
         when(contextService.getAvailableContexts()).thenReturn(Arrays.asList(new String[]{ "foo", "bar" }));
         appContext.putBean(contextService);
-    }
-
-    private void mockIndex() {
-        DomainService managedServicesMock = mock(DomainService.class);
-        when(managedServicesMock.getAllServiceInstances()).thenAnswer(new Answer<List<ServiceReference>>() {
-            @Override
-            public List<ServiceReference> answer(InvocationOnMock invocation) {
-                return Collections.emptyList();
-            }
-        });
-        appContext.putBean(managedServicesMock);
     }
 
     private void mockAuthentication() {

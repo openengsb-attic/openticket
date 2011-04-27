@@ -18,7 +18,7 @@ package org.openengsb.openticket.ui.web;
 
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.panel.Panel;
-import org.openengsb.core.common.taskbox.model.Task;
+import org.openengsb.core.api.workflow.model.Task;
 import org.openengsb.openticket.ui.web.panel.TicketPanel;
 
 @AuthorizeInstantiation("ROLE_USER")

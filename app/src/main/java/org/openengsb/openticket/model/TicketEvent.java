@@ -1,6 +1,7 @@
 package org.openengsb.openticket.model;
 
-import org.openengsb.core.common.Event;
+import org.openengsb.core.api.Event;
+
 
 public class TicketEvent extends Event {
     private String type;
