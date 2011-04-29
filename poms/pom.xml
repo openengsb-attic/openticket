@@ -32,43 +32,27 @@
   <name>OpenTicket :: Plugin Configuration :: Parent</name>
 
   <packaging>pom</packaging>
-
+  
+    <dependencyManagement>
+		<dependencies>
+			 <dependency>
+			   <groupId>org.openengsb.build</groupId>
+			   <artifactId>shared-plugin-settings</artifactId>
+			   <version>${openengsb.version}</version>
+			   <type>pom</type>
+			   <scope>import</scope>
+			 </dependency>
+		   </dependencies>
+    </dependencyManagement>
   <properties>
-    <!-- Plugin Versions -->
-    <plugin.bundle.version>2.1.0</plugin.bundle.version>
-    <maven.plugin.project.info.reports.version>2.2</maven.plugin.project.info.reports.version>
-    <maven.plugin.changes.version>2.3</maven.plugin.changes.version>
-    <maven.plugin.checkstyle.version>2.6</maven.plugin.checkstyle.version>
-    <maven.plugin.assembly.version>2.2-beta-5</maven.plugin.assembly.version>
-    <maven.plugin.enforcer.version>1.0-beta-1</maven.plugin.enforcer.version>
-    <maven.plugin.antrun>1.5</maven.plugin.antrun>
-
-    <!-- Component Versions; deployed by OpenEngSB -->
-    <osgi.version>4.2.0</osgi.version>
-    <spring.version>3.0.5.RELEASE</spring.version>
-    <spring.osgi.version>2.0.0.M1</spring.osgi.version>
-    <spring.security.version>3.0.5.RELEASE</spring.security.version>
-    <slf4j.version>1.6.1</slf4j.version>
-    <commons.collection.version>3.2.1</commons.collection.version>
-    <commons.lang.version>2.5</commons.lang.version>
-    <commons.io.version>1.4</commons.io.version>
-    <guava.version>r07</guava.version>
-    <geronimo.servlet.version>1.1.2</geronimo.servlet.version>
-
-    <!-- Testing Versions -->
-    <mockito.version>1.8.5</mockito.version>
-    <junit.version>4.8.2</junit.version>
-    <hamcrest.version>1.1</hamcrest.version>
-    <dbunit.version>2.4.7</dbunit.version>
-    <exam.version>1.2.2</exam.version>
-
-
+	 
     <!-- Provided Framework Versions -->
     <karaf.version>2.2.0</karaf.version>
 	<htmlunit.version>2.8</htmlunit.version>
     <htmlunit.wrapped.version>${htmlunit.version}.w1</htmlunit.wrapped.version>
     <openengsb.version>1.2.0.RC1</openengsb.version>
   </properties>
+
 
   <modules>
     <module>compiled</module>

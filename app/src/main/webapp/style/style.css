@@ -13,185 +13,181 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
 body {
-  font-family: Calibri, Arial;
-  font-size: 0.9em;
-  background-color: #EBF4E3;
-  color: #46503C;
-  margin-top: 0px;
-  margin: auto;
-  min-width: 700px;
-  max-width: 850px;
+	font-family: Calibri, Arial;
+	font-size: 0.9em;
+	background-color: #EBF4E3;
+	color: #46503C;
+	margin-top: 0px;
+	margin: auto;
+	min-width: 700px;
+	max-width: 850px;
 }
 
-h1, h2, h3, h4, h5, h6, h7, h8 {
-  font-weight: bold;
+h1,h2,h3,h4,h5,h6,h7,h8 {
+	font-weight: bold;
 }
 
 h1 {
-  font-size: 1.7em;
+	font-size: 1.7em;
 }
 
 h2 {
-  font-size: 1.5em;
+	font-size: 1.5em;
 }
 
 h3 {
-  font-size: 1.3em;
+	font-size: 1.3em;
 }
 
 hr {
-  color: #46503C;
+	color: #46503C;
 }
 
 a {
-  color: #699B46;
-  font-weight: bold;
-  text-decoration: none;
+	color: #699B46;
+	font-weight: bold;
+	text-decoration: none;
 }
 
-a:focus,
-a:hover,
-a:active {
-  text-decoration: underline;
+a:focus,a:hover,a:active {
+	text-decoration: underline;
 }
 
 img {
-  border: none;
+	border: none;
 }
 
 a.none {
-  background: transparent;
-  padding-right: 0px;
+	background: transparent;
+	padding-right: 0px;
 }
 
 .loginForm {
-  text-align: center;
+	text-align: center;
 }
 
 .login {
-  margin-left: 10px;
-  margin-right: 20px;
-  width: 100px;
+	margin-left: 10px;
+	margin-right: 20px;
+	width: 100px;
 }
 
 .inputForm label {
-  display: block;
-  margin-top: 5px;
+	display: block;
+	margin-top: 5px;
 }
 
 #banner {
-  float: left;
-  width: 100%;
-  height: 80px;
-  border-left: 1px #738764 solid;
-  border-right: 1px #738764 solid;
-  background: transparent url("../images/header.png") repeat-x scroll top left;
+	float: left;
+	width: 100%;
+	height: 80px;
+	border-left: 1px #738764 solid;
+	border-right: 1px #738764 solid;
+	background: transparent url("../images/header.png") repeat-x scroll top
+		left;
 }
 
 #banner .logo {
-  float: left;
-  margin-top: 0.4em;
-  margin-left: 0.7em;
+	float: left;
+	margin-top: 0.4em;
+	margin-left: 0.7em;
 }
 
 #banner .languages {
-  float: right;
-  position: relative;
-  top: 25px;
-  right: 5px;
+	float: right;
+	position: relative;
+	top: 25px;
+	right: 5px;
 }
 
 #banner .version {
-  color: white;
-  float: right;
-  position: relative;
-  right: -50px;
+	color: white;
+	float: right;
+	position: relative;
+	right: -50px;
 }
 
 #mainMenu {
-  float: left;
-  width: 100%;
-  background-color: #EBF4E3;
-  border-top: 3px #738764 solid;
-  border-bottom: 3px #738764 solid;
-  border-left: 1px #738764 solid;
-  border-right: 1px #738764 solid;
+	float: left;
+	width: 100%;
+	background-color: #EBF4E3;
+	border-top: 3px #738764 solid;
+	border-bottom: 3px #738764 solid;
+	border-left: 1px #738764 solid;
+	border-right: 1px #738764 solid;
 }
 
 #mainMenu .active {
-  background-color: #D5E1C8;
-  border-right: 1px #A5B496 solid;
-  border-left: 1px #A5B496 solid;
+	background-color: #D5E1C8;
+	border-right: 1px #A5B496 solid;
+	border-left: 1px #A5B496 solid;
 }
 
 #mainMenu ul {
-  margin: 0px 0px 0px 0px;
-  padding: 0px;
-  float: left;
-  list-style: none;
+	margin: 0px 0px 0px 0px;
+	padding: 0px;
+	float: left;
+	list-style: none;
 }
 
 #mainMenu li {
-  float: left;
-  padding: 8px 16px 8px 16px;
-  border-right: 1px #EBF4E3 solid;
-  border-left: 1px #EBF4E3 solid;
+	float: left;
+	padding: 8px 16px 8px 16px;
+	border-right: 1px #EBF4E3 solid;
+	border-left: 1px #EBF4E3 solid;
 }
 
-#mainMenu a,
-#mainMenu a:visited,
-#mainMenu li a:hover {
-  color: #507832;
-  font-weight: bold;
-  font-size: 110%;
-  text-decoration: none;
+#mainMenu a,#mainMenu a:visited,#mainMenu li a:hover {
+	color: #507832;
+	font-weight: bold;
+	font-size: 110%;
+	text-decoration: none;
 }
 
 #mainMenu .logout {
-  position: relative;
-  top: 7px;
-  right: 10px;
-  float: right;
+	position: relative;
+	top: 7px;
+	right: 10px;
+	float: right;
 }
 
 .mainFrame {
-  float: left;
-  width: 100%;
-  background: white;
-  border-left: 1px #738764 solid;
-  border-right: 1px #738764 solid;
+	float: left;
+	width: 100%;
+	background: white;
+	border-left: 1px #738764 solid;
+	border-right: 1px #738764 solid;
 }
 
 .mainArea {
-  padding: 20px 20px 20px 20px;
+	padding: 20px 20px 20px 20px;
 }
 
 #footer {
-  text-align: center;
-  position: relative;
-  padding-top: 5px;
-  height: 30px;
-  border-top: 3px #738764 solid;
-  float: left;
-  width: 100.3%;
+	text-align: center;
+	position: relative;
+	padding-top: 5px;
+	height: 30px;
+	border-top: 3px #738764 solid;
+	float: left;
+	width: 100.3%;
 }
 
 #footer span {
-  padding: 5px 10px 5px 10px;
+	padding: 5px 10px 5px 10px;
 }
 
 #footer span.separator {
-  border-left: 1px #A5B496 solid;
+	border-left: 1px #A5B496 solid;
 }
 
 .footerValidation {
-  text-align: right;
+	text-align: right;
 }
 
 .footerValidation p {
-  margin: 20px 0px 0px 0px;
+	margin: 20px 0px 0px 0px;
 }
 
 table.OverviewPanel {
@@ -199,23 +195,84 @@ table.OverviewPanel {
 	font-size: 1em;
 	width: 100%;
 	border-spacing: 0px;
-	}
-	
- 
-table.OverviewPanel tr { padding-top: 2px; padding-bottom: 2px; }
-table.OverviewPanel tr.odd { background-color: #ffebcd; }
-table.OverviewPanel tr.even { background-color: #fff; }
-table.OverviewPanel tr td { padding-left: 8px; padding-right: 30px; }
+}
 
-table.OverviewPanel tr th { font-weight: normal; padding-top: 3px; padding-bottom: 3px; padding-left: 8px; padding-right: 24px; background-color: #EBF4E3; border-bottom: 1px solid #000; border-top: 1px solid #000; text-align: left; white-space: nowrap; vertical-align: middle;}
-table.OverviewPanel tr th a { padding-right: 15px; background-position: right; background-repeat:no-repeat; }
-table.OverviewPanel tr th.wicket_orderDown a { color:black; background-image: url(../images/arrow_down.png); }
-table.OverviewPanel tr th.wicket_orderUp a {  color:black; background-image: url(../images/arrow_up.png); }
-table.OverviewPanel tr th.wicket_orderNone a { background-image: url(../images/arrow_off.png);}
-table.OverviewPanel tr th a { font-weight: normal; }
+table.OverviewPanel tr {
+	padding-top: 2px;
+	padding-bottom: 2px;
+}
 
-table.OverviewPanel td.filter-td { font-size: 1em; background-color: #EBF4E3; border-bottom: 1px solid #000; }
-table.OverviewPanel td.filter-td input.go { width: 45%; }
-table.OverviewPanel td.filter-td input.clear { width: 45%; }
-table.OverviewPanel td.filter-td input { width: 100%; font-size: 0.8em; }
-table.OverviewPanel td.filter-td select { width: 100%; font-size: 0.8em; }
+table.OverviewPanel tr.odd {
+	background-color: #ffebcd;
+}
+
+table.OverviewPanel tr.even {
+	background-color: #fff;
+}
+
+table.OverviewPanel tr td {
+	padding-left: 8px;
+	padding-right: 30px;
+}
+
+table.OverviewPanel tr th {
+	font-weight: normal;
+	padding-top: 3px;
+	padding-bottom: 3px;
+	padding-left: 8px;
+	padding-right: 24px;
+	background-color: #EBF4E3;
+	border-bottom: 1px solid #000;
+	border-top: 1px solid #000;
+	text-align: left;
+	white-space: nowrap;
+	vertical-align: middle;
+}
+
+table.OverviewPanel tr th a {
+	padding-right: 15px;
+	background-position: right;
+	background-repeat: no-repeat;
+}
+
+table.OverviewPanel tr th.wicket_orderDown a {
+	color: black;
+	background-image: url(../images/arrow_down.png);
+}
+
+table.OverviewPanel tr th.wicket_orderUp a {
+	color: black;
+	background-image: url(../images/arrow_up.png);
+}
+
+table.OverviewPanel tr th.wicket_orderNone a {
+	background-image: url(../images/arrow_off.png);
+}
+
+table.OverviewPanel tr th a {
+	font-weight: normal;
+}
+
+table.OverviewPanel td.filter-td {
+	font-size: 1em;
+	background-color: #EBF4E3;
+	border-bottom: 1px solid #000;
+}
+
+table.OverviewPanel td.filter-td input.go {
+	width: 45%;
+}
+
+table.OverviewPanel td.filter-td input.clear {
+	width: 45%;
+}
+
+table.OverviewPanel td.filter-td input {
+	width: 100%;
+	font-size: 0.8em;
+}
+
+table.OverviewPanel td.filter-td select {
+	width: 100%;
+	font-size: 0.8em;
+}

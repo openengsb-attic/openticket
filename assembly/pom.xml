@@ -165,7 +165,6 @@
       </plugin>
       <plugin>
         <artifactId>maven-assembly-plugin</artifactId>
-        <version>${maven.plugin.assembly.version}</version>
         <configuration>
           <descriptors>
             <descriptor>${project.basedir}/src/main/descriptors/windows-all.xml</descriptor>
