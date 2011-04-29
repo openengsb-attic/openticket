@@ -16,15 +16,11 @@
 
 package org.openengsb.openticket.ui.web;
 
-import org.apache.wicket.markup.html.WebPage;
-import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.openengsb.core.api.context.ContextCurrentService;
 import org.openengsb.core.api.context.ContextHolder;
+import org.openengsb.ui.common.OpenEngSBPage;
 import org.openengsb.ui.common.OpenEngSBWebSession;
 
-public class BasePage extends WebPage {
-    @SpringBean
-    private ContextCurrentService contextService;
+public class BasePage extends OpenEngSBPage {
 
     public BasePage() {
         add(new HeaderTemplate("header", getHeaderMenuItem()));
@@ -32,41 +28,17 @@ public class BasePage extends WebPage {
         initContextForCurrentThread();
     }
 
-    /**
-     * @return the class name, which should be the index in navigation bar
-     */
-    public String getHeaderMenuItem() {
-        return this.getClass().getSimpleName();
-    }
-
-    final void initContextForCurrentThread() {
-        String sessionContextId = getSessionContextId();
-        try {
-            if (contextService != null) {
-                contextService.setThreadLocalContext(sessionContextId);
-            }
-        } catch (IllegalArgumentException e) {
-            contextService.createContext(sessionContextId);
-            contextService.setThreadLocalContext(sessionContextId);
-            contextService.putValue("domain/AuditingDomain/defaultConnector/id", "auditing");
-        }
-    }
-
     public String getSessionContextId() {
         OpenEngSBWebSession session = OpenEngSBWebSession.get();
         if (session == null) {
             return "foo";
         }
-        if (ContextHolder.get().getCurrentContextId() == null) {
-            setThreadLocalContext("foo");
+        String contextId = ContextHolder.get().getCurrentContextId();
+        if (contextId == null) {
+            ContextHolder.get().setCurrentContextId("foo");
+            return contextId;
         }
-        return ContextHolder.get().getCurrentContextId();
+        return contextId;
     }
 
-    private void setThreadLocalContext(String threadLocalContext) {
-        OpenEngSBWebSession session = OpenEngSBWebSession.get();
-        if (session != null) {
-            ContextHolder.get().setCurrentContextId(threadLocalContext);
-        }
-    }
 }

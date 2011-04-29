@@ -19,6 +19,7 @@ package org.openengsb.openticket.model;
 import org.openengsb.core.api.workflow.model.ProcessBag;
 import org.openengsb.core.api.workflow.model.Task;
 
+@SuppressWarnings("serial")
 public class Ticket extends Task {
 
     public Ticket() {

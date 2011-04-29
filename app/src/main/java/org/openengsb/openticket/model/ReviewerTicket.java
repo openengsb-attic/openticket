@@ -18,6 +18,7 @@ package org.openengsb.openticket.model;
 
 import org.openengsb.core.api.workflow.model.ProcessBag;
 
+@SuppressWarnings("serial")
 public class ReviewerTicket extends Ticket {
 
     public ReviewerTicket() {
