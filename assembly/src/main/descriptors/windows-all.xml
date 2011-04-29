@@ -87,8 +87,8 @@
     </file>
     <file>
       <source>${basedir}/target/classes/features.xml</source>
-      <outputDirectory>system/org/openengsb/openticket/${artifactId}/${version}</outputDirectory>
-      <destName>${artifactId}-${version}-features.xml</destName>
+      <outputDirectory>system/org/openengsb/openticket/${artifactId}/${project.version}</outputDirectory>
+      <destName>${artifactId}-${project.version}-features.xml</destName>
       <fileMode>0644</fileMode>
       <lineEnding>dos</lineEnding>
     </file>

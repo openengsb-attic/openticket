@@ -34,6 +34,7 @@
 
   <description>Help desk workflow application using OpenEngSB</description>
 
+ 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- Environment Versions -->
@@ -149,7 +150,7 @@
 
 
   <build>
-    <finalName>openticket-${version}</finalName>
+    <finalName>openticket-${project.version}</finalName>
     <resources>
       <resource>
         <directory>src/main/resources</directory>
