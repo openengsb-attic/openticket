@@ -47,9 +47,8 @@
   <properties>	 
     <!-- Provided Framework Versions -->
     <karaf.version>2.2.0</karaf.version>
-
-	<maven.plugin.project.info.reports.version>2.2</maven.plugin.project.info.reports.version>
     <openengsb.version>1.2.0.RC1</openengsb.version>
+	 <maven.plugin.project.info.reports.version>2.2</maven.plugin.project.info.reports.version>
   </properties>
 
 

@@ -25,6 +25,7 @@
 
   <feature name="openticket-core" version="${project.version}" >
     <feature version="${openengsb.version}">openengsb-core</feature>
+	<bundle>mvn:org.openengsb.ui/openengsb-ui-common/${openengsb.version}</bundle>
     <bundle>mvn:org.openengsb.openticket/openticket-app/${project.version}/war</bundle>
   </feature>
 

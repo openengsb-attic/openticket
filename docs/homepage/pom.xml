@@ -71,7 +71,7 @@
             <plugin>
               <groupId>org.apache.maven.plugins</groupId>
               <artifactId>maven-project-info-reports-plugin</artifactId>
-              <version>${maven.plugin.project.info.reports.version}</version>
+			  <version>${maven.plugin.project.info.reports.version}</version>
               <configuration>
                 <webAccessUrl>http://github.com/openengsb/openticket</webAccessUrl>
                 <anonymousConnection>scm:git:git://github.com/openengsb/openticket.git</anonymousConnection>
