@@ -19,10 +19,11 @@ package org.openengsb.openticket.integrationtest.exam;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.openengsb.core.common.context.ContextCurrentService;
-import org.openengsb.core.common.taskbox.TaskboxService;
-import org.openengsb.core.common.workflow.RuleManager;
+import org.openengsb.core.api.context.ContextCurrentService;
+import org.openengsb.core.api.workflow.TaskboxService;
+import org.openengsb.core.api.workflow.RuleManager;
 import org.openengsb.openticket.integrationtest.util.AbstractExamTestHelper;
+
 import org.ops4j.pax.exam.junit.JUnit4TestRunner;
 
 @RunWith(JUnit4TestRunner.class)
