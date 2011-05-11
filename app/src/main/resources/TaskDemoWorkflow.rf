@@ -13,22 +13,22 @@
   </header>
 
   <nodes>
-    <start id="1" name="Start" x="203" y="16" width="49" height="49" />
-    <end id="2" name="End" x="207" y="603" width="49" height="49" />
-    <subProcess id="3" name="Human interaction" x="155" y="201" width="159" height="48" processId="humantask" >
+    <start id="1" name="Start" x="203" y="3" width="49" height="49" />
+    <end id="2" name="End" x="200" y="602" width="49" height="49" />
+    <subProcess id="3" name="Human interaction" x="155" y="238" width="159" height="48" processId="humantask" >
       <mapping type="in" from="processBag" to="processBag" />
       <mapping type="out" from="processBag" to="processBag" />
       <onEntry>
         <action type="expression" dialect="java" >processBag.addOrReplaceProperty("humanTask_inProgress", processBag.getProperty("taskType"));</action>
       </onEntry>
     </subProcess>
-    <eventNode id="5" name="FlowStarted" x="60" y="96" width="48" height="48" >
+    <eventNode id="5" name="FlowStarted" x="52" y="88" width="48" height="48" >
       <eventFilters>
         <eventFilter type="eventType" eventType="FlowStartedEvent" />
       </eventFilters>
     </eventNode>
-    <join id="6" name="Gateway" x="205" y="93" width="49" height="49" type="1" />
-    <subProcess id="7" name="Human interaction" x="152" y="505" width="159" height="48" processId="humantask" >
+    <join id="6" name="Gateway" x="205" y="87" width="49" height="49" type="1" />
+    <subProcess id="7" name="Human interaction" x="145" y="501" width="159" height="48" processId="humantask" >
       <mapping type="in" from="processBag" to="processBag" />
       <mapping type="out" from="processBag" to="processBag" />
       <onEntry>
@@ -36,17 +36,16 @@
         <action type="expression" dialect="java" >processBag.addOrReplaceProperty("humanTask_affirm", "TaskFinalView");</action>
       </onEntry>
     </subProcess>
-    <split id="8" name="Gateway" x="27" y="305" width="49" height="49" type="2" >
+    <split id="8" name="Gateway" x="206" y="329" width="49" height="49" type="2" >
       <constraints>
-        <constraint toNodeId="9" toType="DROOLS_DEFAULT" name="ReviewerTicket" priority="1" type="code" dialect="java" >return "ReviewerTicket".equals(processBag.getProperty("taskType");</constraint>
-        <constraint toNodeId="12" toType="DROOLS_DEFAULT" name="default" priority="100" type="code" dialect="java" >return true;</constraint>
-        <constraint toNodeId="11" toType="DROOLS_DEFAULT" name="DeveloperTicket" priority="2" type="code" dialect="java" >return "DeveloperTicket".equals(processBag.getProperty("taskType");</constraint>
+        <constraint toNodeId="9" toType="DROOLS_DEFAULT" name="ReviewerTicket" priority="1" type="code" dialect="java" >return "ReviewerTicket".equals(processBag.getProperty("taskType"));</constraint>
+        <constraint toNodeId="11" toType="DROOLS_DEFAULT" name="DeveloperTicket" priority="2" type="code" dialect="java" >return "DeveloperTicket".equals(processBag.getProperty("taskType"));</constraint>
       </constraints>
     </split>
-    <split id="9" name="Gateway" x="456" y="302" width="49" height="49" type="2" >
+    <split id="9" name="Gateway" x="454" y="329" width="49" height="49" type="2" >
       <constraints>
-        <constraint toNodeId="10" toType="DROOLS_DEFAULT" name="notPassedReview" priority="1" type="code" dialect="java" >return (!processBag.getProperty("ticketResolved"));</constraint>
-        <constraint toNodeId="12" toType="DROOLS_DEFAULT" name="default" priority="100" type="code" dialect="java" >return true;</constraint>
+        <constraint toNodeId="10" toType="DROOLS_DEFAULT" name="notPassedReview" priority="1" type="code" dialect="java" >return false;</constraint>
+        <constraint toNodeId="7" toType="DROOLS_DEFAULT" name="default" priority="100" type="code" dialect="java" >return true;</constraint>
       </constraints>
     </split>
     <actionNode id="10" name="anotherDevTask" x="435" y="184" width="80" height="48" >
@@ -55,23 +54,22 @@
     <actionNode id="11" name="reviewAfterDev" x="10" y="171" width="80" height="48" >
         <action type="expression" dialect="java" >processBag.addOrReplaceProperty("taskType", "ReviewerTicket");</action>
     </actionNode>
-    <join id="12" name="Gateway" x="203" y="378" width="49" height="49" type="1" />
+    <join id="12" name="Gateway" x="209" y="169" width="49" height="49" type="2" />
   </nodes>
 
   <connections>
     <connection from="7" to="2" />
-    <connection from="6" to="3" />
-    <connection from="1" to="6" />
+    <connection from="12" to="3" />
     <connection from="5" to="6" />
-    <connection from="10" to="6" />
-    <connection from="11" to="6" />
-    <connection from="12" to="7" />
+    <connection from="1" to="6" />
+    <connection from="9" to="7" />
     <connection from="3" to="8" />
     <connection from="8" to="9" />
     <connection from="9" to="10" />
     <connection from="8" to="11" />
-    <connection from="8" to="12" />
-    <connection from="9" to="12" />
+    <connection from="11" to="12" />
+    <connection from="6" to="12" />
+    <connection from="10" to="12" />
   </connections>
 
 </process>
