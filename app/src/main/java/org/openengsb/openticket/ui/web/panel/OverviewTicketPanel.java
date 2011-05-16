@@ -34,6 +34,7 @@ import org.openengsb.core.api.workflow.TaskboxService;
 import org.openengsb.core.api.workflow.model.Task;
 import org.openengsb.ui.common.taskbox.WebTaskboxService;
 
+@SuppressWarnings("serial")
 public class OverviewTicketPanel extends Panel {
 
     private Panel panel = new EmptyPanel("taskPanel");
@@ -43,7 +44,6 @@ public class OverviewTicketPanel extends Panel {
     @SpringBean(name="webtaskboxService")
     private WebTaskboxService webtaskboxService;
 
-    @SuppressWarnings({ "serial", "unchecked" })
     public OverviewTicketPanel(String id) {
         super(id);
         //this.ticket = new Ticket(t);

@@ -17,6 +17,7 @@
 package org.openengsb.openticket.ui.web.panel;
 
 import java.util.ArrayList;
+import java.util.Map.Entry;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
@@ -42,7 +43,6 @@ import org.openengsb.core.api.workflow.TaskboxService;
 import org.openengsb.core.api.workflow.WorkflowException;
 import org.openengsb.core.api.workflow.model.Task;
 import org.openengsb.openticket.model.ReviewerTicket;
-
 
 @SuppressWarnings("serial")
 @AuthorizeInstantiation("ROLE_USER")

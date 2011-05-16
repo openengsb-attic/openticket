@@ -44,8 +44,8 @@
     </split>
     <split id="9" name="Gateway" x="454" y="329" width="49" height="49" type="2" >
       <constraints>
-        <constraint toNodeId="10" toType="DROOLS_DEFAULT" name="notPassedReview" priority="1" type="code" dialect="java" >return false;</constraint>
-        <constraint toNodeId="7" toType="DROOLS_DEFAULT" name="default" priority="100" type="code" dialect="java" >return true;</constraint>
+        <constraint toNodeId="10" toType="DROOLS_DEFAULT" name="notPassedReview" priority="1" type="code" dialect="java" >return processBag.getProperty("ticketResolved").equals(false);</constraint>
+        <constraint toNodeId="7" toType="DROOLS_DEFAULT" name="default" priority="2" type="code" dialect="java" >return processBag.getProperty("ticketResolved").equals(true);</constraint>
       </constraints>
     </split>
     <actionNode id="10" name="anotherDevTask" x="435" y="184" width="80" height="48" >

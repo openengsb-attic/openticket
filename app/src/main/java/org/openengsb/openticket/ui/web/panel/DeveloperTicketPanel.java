@@ -42,6 +42,7 @@ import org.openengsb.core.api.workflow.WorkflowException;
 import org.openengsb.core.api.workflow.model.Task;
 import org.openengsb.openticket.model.DeveloperTicket;
 
+@SuppressWarnings("serial")
 @AuthorizeInstantiation("ROLE_USER")
 public class DeveloperTicketPanel extends Panel {
 
