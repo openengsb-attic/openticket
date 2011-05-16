@@ -16,17 +16,18 @@
 
 package org.openengsb.openticket.ui.web;
 
+import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.apache.wicket.spring.injection.annot.SpringBean;
-import org.openengsb.openticket.ui.web.panel.OverviewTicketPanel;
 import org.openengsb.ui.common.taskbox.WebTaskboxService;
 
-public class OverviewTicketPage extends BasePage {
+@AuthorizeInstantiation("ROLE_USER")
+public class TicketOverview extends BasePage {
     @SpringBean(name = "webtaskboxService")
     private WebTaskboxService taskboxService;
 
-    public OverviewTicketPage() {
-        Panel p = new OverviewTicketPanel("OverviewPanel");
+    public TicketOverview() {
+        Panel p = taskboxService.getOverviewPanel();     
         this.add(p);
     }
 }

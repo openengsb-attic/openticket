@@ -94,10 +94,10 @@ public class HeaderTemplate extends Panel {
 
     private void initMainMenuItems() {
         addHeaderMenuItem("Home", Welcome.class, "index.title", "");
-        addHeaderMenuItem("CreateTicket", CreateTicketPage.class, "createticket.title", "ROLE_USER");
-        addHeaderMenuItem("OverviewDemo", OverviewDemo.class, "overviewdemo.title", "ROLE_ADMIN");
+        addHeaderMenuItem("CreateTicketPage", CreateTicketPage.class, "createticket.title", "ROLE_USER");
+        addHeaderMenuItem("TicketOverview", TicketOverview.class, "overviewdemo.title", "ROLE_ADMIN");
         addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title", "ROLE_USER");
-        addHeaderMenuItem("OpenTicketOverview", OverviewTicketPage.class, "overviewticket.title", "ROLE_ADMIN");
+        addHeaderMenuItem("CustomOverviewPage", CustomOverviewPage.class, "customoverview.title", "ROLE_ADMIN");
     }
 
     private void initializeMenu() {
@@ -107,7 +107,6 @@ public class HeaderTemplate extends Panel {
             // update menu item to index, because page index is not found!
             HeaderTemplate.menuIndex = "Home";
         }
-
         // generate main navigation
         ListView<HeaderMenuItem> headerMenuItems = new ListView<HeaderMenuItem>("headerMenuItems", menuItems) {
             @Override
@@ -117,6 +116,7 @@ public class HeaderTemplate extends Panel {
 
                 // set menu item to active
                 if (menuItem.getItemName().equals(HeaderTemplate.getActiveIndex())) {
+
                     item.add(new AttributeModifier("class", true, new AbstractReadOnlyModel<String>() {
                         @Override
                         public String getObject() {

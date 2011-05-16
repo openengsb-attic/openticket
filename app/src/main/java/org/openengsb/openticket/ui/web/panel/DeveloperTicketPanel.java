@@ -49,11 +49,8 @@ public class DeveloperTicketPanel extends Panel {
     private TaskboxService service;
 
     private DeveloperTicket temp;
-    private String panelid;
-
     public DeveloperTicketPanel(String id, Task task) {
         super(id);
-        panelid = id;
         temp = new DeveloperTicket(task);
 
         final FeedbackPanel feedback = new FeedbackPanel("feedback");
