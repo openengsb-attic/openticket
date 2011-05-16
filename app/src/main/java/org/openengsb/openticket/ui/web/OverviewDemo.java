@@ -27,7 +27,7 @@ public class OverviewDemo extends BasePage {
     private WebTaskboxService taskboxService;
 
     public OverviewDemo() {
-        Panel p = taskboxService.getOverviewPanel();
+        Panel p = taskboxService.getOverviewPanel();     
         this.add(p);
     }
 }

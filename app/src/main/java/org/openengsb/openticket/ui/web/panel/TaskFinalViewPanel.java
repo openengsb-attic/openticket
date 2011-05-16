@@ -33,6 +33,7 @@ import org.openengsb.core.api.workflow.TaskboxService;
 import org.openengsb.core.api.workflow.WorkflowException;
 import org.openengsb.core.api.workflow.model.Task;
 
+@SuppressWarnings("serial")
 @AuthorizeInstantiation("ROLE_USER")
 public class TaskFinalViewPanel extends Panel {
 
@@ -82,7 +83,7 @@ public class TaskFinalViewPanel extends Panel {
         form.add(okButton);
     }
 
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     private WebMarkupContainer printTicketProperties(Task task) {
         ArrayList<String> ticket_properties = new ArrayList<String>();
         String propertyName;

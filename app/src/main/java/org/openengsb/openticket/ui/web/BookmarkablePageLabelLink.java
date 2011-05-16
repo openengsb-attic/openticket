@@ -23,6 +23,7 @@ import org.apache.wicket.markup.html.WebPage;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.model.StringResourceModel;
 
+@SuppressWarnings("serial")
 public class BookmarkablePageLabelLink<Type extends WebPage> extends BookmarkablePageLink<Type> {
     private StringResourceModel label;
 

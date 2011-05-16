@@ -64,7 +64,7 @@
 
   <modules>
     <module>poms</module>
-    <module>docs</module>
+  <!--  <module>docs</module> temporary disabled-->
     <module>app</module>
     <module>assembly</module>
     <module>itests</module>

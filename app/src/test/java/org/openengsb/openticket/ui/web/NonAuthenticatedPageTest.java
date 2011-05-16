@@ -22,7 +22,7 @@ public abstract class NonAuthenticatedPageTest extends PageTest {
 
             @Override
             public Class<? extends Page> getHomePage() {
-                return TaskboxDemo.class;
+                return LoginPage.class;
             }
 
             @Override

@@ -94,10 +94,9 @@ public class HeaderTemplate extends Panel {
 
     private void initMainMenuItems() {
         addHeaderMenuItem("Home", Welcome.class, "index.title", "");
-        addHeaderMenuItem("TaskboxDemo", TaskboxDemo.class, "taskboxdemo.title", "ROLE_USER");
-        addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title", "ROLE_USER");
-        addHeaderMenuItem("OverviewDemo", OverviewDemo.class, "overviewdemo.title", "ROLE_ADMIN");
         addHeaderMenuItem("CreateTicket", CreateTicketPage.class, "createticket.title", "ROLE_USER");
+        addHeaderMenuItem("OverviewDemo", OverviewDemo.class, "overviewdemo.title", "ROLE_ADMIN");
+        addHeaderMenuItem("PanelDemo", PanelDemo.class, "paneldemo.title", "ROLE_USER");
         addHeaderMenuItem("OpenTicketOverview", OverviewTicketPage.class, "overviewticket.title", "ROLE_ADMIN");
     }
 

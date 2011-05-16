@@ -28,6 +28,7 @@ import org.openengsb.core.api.security.model.User;
 public class LoginPage extends BasePage {
     private User user = new User(null);
 
+    @SuppressWarnings("serial")
     public LoginPage() {
         Form<User> loginForm = new Form<User>("form") {
             @Override

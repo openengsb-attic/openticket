@@ -43,9 +43,10 @@ public class OpenTicketConfigurator {
     private WebTaskboxService webtaskboxService;
 
     public void init() {
-        Authentication authentication = authenticationManager.authenticate(new BundleAuthenticationToken("openticket-app", ""));
+        Authentication authentication =
+            authenticationManager.authenticate(new BundleAuthenticationToken("openticket-app", ""));
         SecurityContextHolder.getContext().setAuthentication(authentication);
-        
+
         if (ruleManager.get(new RuleBaseElementId(RuleBaseElementType.Process, "TaskDemoWorkflow")) == null) {
             addWorkflows();
             registerPanels();

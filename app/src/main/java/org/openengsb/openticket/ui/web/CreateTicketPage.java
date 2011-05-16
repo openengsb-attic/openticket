@@ -19,15 +19,13 @@ package org.openengsb.openticket.ui.web;
 import org.apache.wicket.authorization.strategies.role.annotations.AuthorizeInstantiation;
 import org.apache.wicket.markup.html.panel.Panel;
 import org.openengsb.core.api.workflow.model.Task;
-import org.openengsb.openticket.ui.web.panel.TicketPanel;
+import org.openengsb.openticket.ui.web.panel.CreateTicketPanel;
 
 @AuthorizeInstantiation("ROLE_USER")
 public class CreateTicketPage extends BasePage {
 
     public CreateTicketPage() {
-        Task t = new Task();
-        Panel p;
-        p = new TicketPanel("panel",t);
+        Panel p = new CreateTicketPanel("panel", new Task());
         this.add(p);
     }
 }

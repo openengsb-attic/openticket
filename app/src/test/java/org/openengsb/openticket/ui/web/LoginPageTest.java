@@ -34,11 +34,6 @@ public class LoginPageTest extends AuthenticatedPageTest {
         tester.assertRenderedPage(LoginPage.class);
     }
 
-    @Test
-    public void testRedirectToLogin() {
-        tester.startPage(TaskboxDemo.class);
-        tester.assertRenderedPage(LoginPage.class);
-    }
 
     @Test
     public void testEnterLogin() {
