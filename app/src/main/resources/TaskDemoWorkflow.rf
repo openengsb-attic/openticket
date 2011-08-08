@@ -40,12 +40,13 @@
       <constraints>
         <constraint toNodeId="9" toType="DROOLS_DEFAULT" name="ReviewerTicket" priority="1" type="code" dialect="java" >return "ReviewerTicket".equals(processBag.getProperty("taskType"));</constraint>
         <constraint toNodeId="11" toType="DROOLS_DEFAULT" name="DeveloperTicket" priority="2" type="code" dialect="java" >return "DeveloperTicket".equals(processBag.getProperty("taskType"));</constraint>
+        <constraint toNodeId="13" toType="DROOLS_DEFAULT" name="InformationTicket" priority="3" type="code" dialect="java" >return "InformationTicket".equals(processBag.getProperty("taskType"));</constraint>
       </constraints>
     </split>
     <split id="9" name="Gateway" x="454" y="329" width="49" height="49" type="2" >
       <constraints>
         <constraint toNodeId="10" toType="DROOLS_DEFAULT" name="notPassedReview" priority="1" type="code" dialect="java" >return processBag.getProperty("ticketResolved").equals(false);</constraint>
-        <constraint toNodeId="7" toType="DROOLS_DEFAULT" name="default" priority="2" type="code" dialect="java" >return processBag.getProperty("ticketResolved").equals(true);</constraint>
+        <constraint toNodeId="13" toType="DROOLS_DEFAULT" name="PassedReview" priority="2" type="code" dialect="java" >return processBag.getProperty("ticketResolved").equals(true);</constraint>
       </constraints>
     </split>
     <actionNode id="10" name="anotherDevTask" x="435" y="184" width="80" height="48" >
@@ -55,6 +56,7 @@
         <action type="expression" dialect="java" >processBag.addOrReplaceProperty("taskType", "ReviewerTicket");</action>
     </actionNode>
     <join id="12" name="Gateway" x="209" y="169" width="49" height="49" type="2" />
+    <join id="13" name="Gateway" x="207" y="407" width="49" height="49" type="2" />
   </nodes>
 
   <connections>
@@ -62,7 +64,7 @@
     <connection from="12" to="3" />
     <connection from="5" to="6" />
     <connection from="1" to="6" />
-    <connection from="9" to="7" />
+    <connection from="13" to="7" />
     <connection from="3" to="8" />
     <connection from="8" to="9" />
     <connection from="9" to="10" />
@@ -70,6 +72,8 @@
     <connection from="11" to="12" />
     <connection from="6" to="12" />
     <connection from="10" to="12" />
+    <connection from="8" to="13" />
+    <connection from="9" to="13" />
   </connections>
 
 </process>

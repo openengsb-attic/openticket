@@ -21,9 +21,6 @@
   <artifactId>openticket</artifactId>
   <packaging>pom</packaging>
   <name>OpenTicket :: Assembly</name>
-
-
-
   
   <dependencies>
     <!-- OpenEngSB Binary Base Windows -->

@@ -22,7 +22,7 @@
   <parent>
     <groupId>org.openengsb</groupId>
     <artifactId>openengsb-root</artifactId>
-    <version>15</version>
+    <version>19</version>
   </parent>
 
   <modelVersion>4.0.0</modelVersion>
@@ -33,9 +33,23 @@
   <name>OpenTicket :: Parent</name>
 
   <description>Help desk workflow application using OpenEngSB</description>
+   <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>org.openengsb.build</groupId>
+        <artifactId>shared-plugin-settings</artifactId>
+        <version>${openengsb.version}</version>
+        <type>pom</type>
+        <scope>import</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
 
- 
   <properties>
+    <!-- Provided Framework Versions -->
+    <karaf.version>2.2.2</karaf.version>
+    <openengsb.version>1.2.1.RELEASE</openengsb.version>
+	<!-- Encoding -->
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <!-- Environment Versions -->
     <jdk.version>1.6</jdk.version>
@@ -64,7 +78,7 @@
 
   <modules>
     <module>poms</module>
-  <!--  <module>docs</module> temporary disabled-->
+    <module>docs</module>
     <module>app</module>
     <module>assembly</module>
     <module>itests</module>

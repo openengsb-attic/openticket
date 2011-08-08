@@ -20,6 +20,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.openengsb.core.api.context.ContextCurrentService;
+import org.openengsb.core.api.context.ContextHolder;
 import org.openengsb.core.api.workflow.TaskboxService;
 import org.openengsb.core.api.workflow.RuleManager;
 import org.openengsb.openticket.integrationtest.util.AbstractExamTestHelper;
@@ -38,12 +39,8 @@ public class OpenticketIT extends AbstractExamTestHelper {
         ContextCurrentService contextService = getOsgiService(ContextCurrentService.class);
         if (!contextService.getAvailableContexts().contains("openticket-it")) {
             contextService.createContext("openticket-it");
-            contextService.setThreadLocalContext("openticket-it");
-            contextService.putValue("domain/AuditingDomain/defaultConnector/id", "auditing");
-        } else {
-            contextService.setThreadLocalContext("openticket-it");
         }
-
+        ContextHolder.get().setCurrentContextId("it-taskbox");
         ruleManager = getOsgiService(RuleManager.class);
         taskboxService = getOsgiService(TaskboxService.class);
     }

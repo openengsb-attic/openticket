@@ -17,7 +17,6 @@
 package org.openengsb.openticket.ui.web.panel;
 
 import java.util.ArrayList;
-import java.util.Map.Entry;
 
 import org.apache.wicket.ajax.AjaxRequestTarget;
 import org.apache.wicket.ajax.markup.html.form.AjaxButton;
