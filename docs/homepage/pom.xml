@@ -28,12 +28,12 @@
   <parent>
     <groupId>org.openengsb.openticket.docs</groupId>
     <artifactId>openticket-docs-parent</artifactId>
-    <version>1</version>
+    <version>2-SNAPSHOT</version>
   </parent>
 
   <groupId>org.openengsb.openticket.docs</groupId>
   <artifactId>openticket-docs-homepage</artifactId>
-  <version>1</version>
+  <version>2-SNAPSHOT</version>
   <name>OpenTicket :: Documentation</name>
 
   <packaging>pom</packaging>

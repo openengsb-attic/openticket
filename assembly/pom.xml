@@ -12,7 +12,7 @@
   <parent>
     <groupId>org.openengsb.openticket.build</groupId>
     <artifactId>shared-plugin-settings</artifactId>
-    <version>1</version>
+    <version>2-SNAPSHOT</version>
     <relativePath>../poms/</relativePath>
   </parent>
 
