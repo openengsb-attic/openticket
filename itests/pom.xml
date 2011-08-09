@@ -23,13 +23,13 @@
   <parent>
     <groupId>org.openengsb.openticket.build</groupId>
     <artifactId>shared-plugin-settings</artifactId>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1</version>
     <relativePath>../poms/</relativePath>
   </parent>
 
   <groupId>org.openengsb.openticket.itests</groupId>
   <artifactId>openticket-itests</artifactId>
-  <version>1.0.0-SNAPSHOT</version>
+  <version>1</version>
   <name>OpenTicket :: Integration Tests</name>
 
   <packaging>jar</packaging>
