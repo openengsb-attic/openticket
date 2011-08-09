@@ -46,7 +46,9 @@ public class OpenticketIT extends AbstractExamTestHelper {
     }
 
     @Test
-    public void test_Name() {
-
+    public void test_Name() throws Exception {
+        if (taskboxService==null){
+            throw new Exception();
+        }
     }
 }

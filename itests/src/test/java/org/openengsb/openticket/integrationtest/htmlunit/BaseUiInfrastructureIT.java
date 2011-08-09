@@ -36,8 +36,7 @@ import com.gargoylesoftware.htmlunit.html.HtmlSubmitInput;
 @RunWith(JUnit4TestRunner.class)
 public class BaseUiInfrastructureIT extends AbstractExamTestHelper {
     private WebClient webClient;
-    private String loginPageEntryUrl
-        = "http://localhost:8090/openticket/?wicket:bookmarkablePage=:org.openengsb.openticket.ui.web.LoginPage";
+    private String startPageUrl = "http://localhost:8091/openticket/";
 
     @Before
     public void setUp() throws Exception {
@@ -52,13 +51,13 @@ public class BaseUiInfrastructureIT extends AbstractExamTestHelper {
 
     @Test
     public void testIfAllMainNavigationLinksWork() throws Exception {
-        final HtmlPage page = webClient.getPage(loginPageEntryUrl);
-        HtmlForm form = page.getForms().get(0);
+        final HtmlPage page = webClient.getPage(startPageUrl);
+        final HtmlPage loginPage=page.getAnchorByText("Login").click();
+        HtmlForm form = loginPage.getForms().get(0);
         HtmlSubmitInput loginButton = form.getInputByValue("Login");
         form.getInputByName("username").setValueAttribute("user");
         form.getInputByName("password").setValueAttribute("password");
         HtmlPage indexPage = loginButton.click();
-
         assertTrue(indexPage.asText().contains("OpenTicket is a solution based "));
     }
 }
