@@ -21,7 +21,7 @@
   <parent>
     <groupId>org.openengsb.openticket.build</groupId>
     <artifactId>compiled-bundle-settings</artifactId>
-    <version>2-SNAPSHOT</version>
+    <version>1-SNAPSHOT</version>
     <relativePath>../poms/compiled/</relativePath>
   </parent>
 
@@ -33,7 +33,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.openengsb.openticket</groupId>
   <artifactId>openticket-app</artifactId>
-  <version>2-SNAPSHOT</version>
+  <version>1-SNAPSHOT</version>
 
   <name>OpenTicket :: Application</name>
 
